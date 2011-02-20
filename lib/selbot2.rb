@@ -1,6 +1,5 @@
 require "restclient"
 require "nokogiri"
-require "ruby-debug"
 require "time"
 
 require 'selbot2/util'
