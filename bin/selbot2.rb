@@ -18,5 +18,13 @@ Cinch::Bot.new {
       Selbot2::Youtube
     ]
   end
+
+  on :message, /:newissue/ do |m|
+    m.reply "http://code.google.com/p/selenium/issues/entry"
+  end
+
+  on :message, /:apidocs/ do |m|
+    m.reply "http://selenium.googlecode.com/svn/trunk/docs/api/java/index.html (java), http://selenium.googlecode.com/svn/trunk/docs/api/rb/index.html (ruby)"
+  end
 }.start
 
