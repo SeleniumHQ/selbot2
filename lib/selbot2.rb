@@ -1,3 +1,4 @@
+require 'cinch'
 require "restclient"
 require "nokogiri"
 require "time"
@@ -9,3 +10,4 @@ require 'selbot2/revisions'
 require 'selbot2/commits'
 require 'selbot2/wiki'
 require 'selbot2/youtube'
+require 'selbot2/notes'

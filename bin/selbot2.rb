@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
-require 'cinch'
-require 'selbot2'
 
+require 'selbot2'
 
 channel = $DEBUG ? "#selbot-test" : "#selenium"
 
@@ -15,7 +14,8 @@ Cinch::Bot.new {
       Selbot2::Revisions,
       Selbot2::Commits,
       Selbot2::Wiki,
-      Selbot2::Youtube
+      Selbot2::Youtube,
+      Selbot2::Notes
     ]
   end
 
