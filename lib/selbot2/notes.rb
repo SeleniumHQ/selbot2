@@ -1,16 +1,15 @@
-require "yaml"
-
 module Selbot2
   class Notes
     include Cinch::Plugin
-    
+    include Persistable
+
     listen_to :message, :join
-    
-    prefix ":"
+
+    prefix Selbot2::PREFIX
     match /note (.+?) (.+)/
-    
+
     STATE = "notes.yml"
-    
+
     class Note
       def initialize(from, to, message, time)
         @from    = from
@@ -18,53 +17,40 @@ module Selbot2
         @message = message
         @time    = time
       end
-      
+
       def to_s
-        "[#{@time.asctime}] #{@from} said: #{@message}"
+        "[#{Util.distance_of_time_in_words @time}] #{@from} said: #{@message}"
       end
     end # Note
-    
+
     def initialize(*args)
       super
-      @notes = load_notes || {}
+      @notes = load || {}
       @notes.default_proc = lambda { |hash, key| hash[key] = [] }
     end
-    
+
     def execute(message, receiver, note)
       if [@bot.nick, message.user.nick].include? receiver
         message.channel.action "looks the other way"
         return
       end
-      
+
       @notes[receiver] << Note.new(message.user.nick, receiver, note, Time.now)
-      save_notes
-      
+      save @notes
+
       message.reply "ok!"
     end
-    
+
     def listen(m)
       return unless @notes.has_key? m.user.nick
-      
+
       @notes.delete(m.user.nick).each do |note|
         m.user.send note.to_s
       end
+
+      save @notes
     end
-    
-    private
-    
-    def load_notes
-      notes = nil
-      
-      if File.exist?(STATE)
-        notes = YAML.load_file(STATE)
-      end
-      
-      notes
-    end
-    
-    def save_notes
-      File.open(STATE, "w") { |file| YAML.dump(@notes, file) }
-    end
+
   end
 end
 

@@ -2,7 +2,7 @@ module Selbot2
   class Wiki
     include Cinch::Plugin
 
-    prefix ":"
+    prefix Selbot2::PREFIX
     match /wiki (.+)/
 
     def execute(message, query)

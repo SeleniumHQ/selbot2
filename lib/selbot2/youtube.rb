@@ -2,7 +2,7 @@ module Selbot2
   class Youtube
     include Cinch::Plugin
 
-    prefix ":"
+    prefix Selbot2::PREFIX
     match /(?:yt|youtube) (.+)/
 
     def execute(message, query)
