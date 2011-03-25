@@ -39,7 +39,7 @@ module Selbot2
       end
 
       def to_s
-        msg = "#{@nick} was last seen #{Util.distance_of_time_in_words @time}"
+        msg = "#{@nick} was last seen #{Util.distance_of_time_in_words @time} ago"
 
         case @type
         when 'JOIN'
