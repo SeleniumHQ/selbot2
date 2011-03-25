@@ -26,7 +26,8 @@ module Selbot2
     
     def initialize(*args)
       super
-      @notes = load_notes || Hash.new { |hash, key| hash[key] = [] }
+      @notes = load_notes || {}
+      @notes.default_proc = lambda { |hash, key| hash[key] = [] }
     end
     
     def execute(message, receiver, note)
