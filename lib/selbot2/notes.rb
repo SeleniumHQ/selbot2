@@ -20,7 +20,7 @@ module Selbot2
       end
       
       def to_s
-        "[#{@time.asctime}] #{@from} said: #{text}"
+        "[#{@time.asctime}] #{@from} said: #{@message}"
       end
     end # Note
     
