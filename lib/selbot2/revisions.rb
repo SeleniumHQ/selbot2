@@ -3,7 +3,7 @@ module Selbot2
     include Cinch::Plugin
     include SvnHelper
 
-    match /\br(\d+)/, :use_prefix => false
+    match /\br(\d+|HEAD)/, :use_prefix => false
 
     def execute(message, rev)
       resp = find(rev)
