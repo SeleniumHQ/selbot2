@@ -10,7 +10,8 @@ module Selbot2
       doc = Nokogiri.HTML(resp)
 
       rows = doc.css("#resultstable tr")
-      replies = rows[1..3].map { |d| Page.new(d).reply }
+      rows.shift # header
+      replies = rows[0..2].map { |d| Page.new(d).reply }
 
       replies.each_with_index do |resp, idx|
         message.reply "#{idx + 1}: #{resp}"
