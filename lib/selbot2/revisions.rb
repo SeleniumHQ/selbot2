@@ -3,11 +3,16 @@ module Selbot2
     include Cinch::Plugin
     include SvnHelper
 
-    match /\br(\d+|HEAD)/, :use_prefix => false
+    listen_to :message
 
-    def execute(message, rev)
-      resp = find(rev)
-      resp && message.reply(resp)
+    REVISION_EXP = /\br(\d+|HEAD)/
+
+    def listen(m)
+      revs = m.message.scan(REVISION_EXP).flatten
+      revs.each do |rev|
+        resp = find(rev)
+        resp && m.reply(resp)
+      end
     end
 
     private
