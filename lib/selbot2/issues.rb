@@ -2,11 +2,15 @@ module Selbot2
   class Issues
     include Cinch::Plugin
 
-    match /(?:^|\s)#(\d+)/, :use_prefix => false
+    ISSUE_EXP = /(?:^|\s)#(\d+)/
+    listen_to :message
 
-    def execute(message, num)
-      resp = find(num)
-      resp && message.reply(resp)
+    def listen(m)
+      issues = m.message.scan(ISSUE_EXP).flatten
+      issues.each do |num|
+        resp = find(num)
+        resp && m.reply(resp)
+      end
     end
 
     private
