@@ -17,4 +17,5 @@ require 'selbot2/wiki'
 require 'selbot2/youtube'
 require 'selbot2/notes'
 require 'selbot2/seen'
+require 'selbot2/seleniumhq'
 
