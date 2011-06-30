@@ -32,5 +32,9 @@ Cinch::Bot.new {
   on :message, /:downloads/ do |m|
     m.reply "http://code.google.com/p/selenium/downloads/list"
   end
+
+  on :message, /:gist/ do |m|
+    m.reply "Please paste >3 lines of text to http://gist.github.com"
+  end
 }.start
 
