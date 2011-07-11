@@ -26,7 +26,7 @@ Cinch::Bot.new {
   end
 
   on :message, /:apidocs/ do |m|
-    m.reply "http://selenium.googlecode.com/svn/trunk/docs/api/java/index.html (java), http://selenium.googlecode.com/svn/trunk/docs/api/rb/index.html (ruby)"
+    m.reply ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT"
   end
 
   on :message, /:downloads/ do |m|
