@@ -17,24 +17,10 @@ Cinch::Bot.new {
       Selbot2::Youtube,
       Selbot2::Notes,
       Selbot2::Seen,
-      Selbot2::SeleniumHQ
+      Selbot2::SeleniumHQ,
+      Selbot2::RandomCommands
     ]
   end
 
-  on :message, /:newissue/ do |m|
-    m.reply "http://code.google.com/p/selenium/issues/entry"
-  end
-
-  on :message, /:apidocs/ do |m|
-    m.reply ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT"
-  end
-
-  on :message, /:downloads/ do |m|
-    m.reply "http://code.google.com/p/selenium/downloads/list"
-  end
-
-  on :message, /:gist/ do |m|
-    m.reply "Please paste >3 lines of text to http://gist.github.com"
-  end
 }.start
 
