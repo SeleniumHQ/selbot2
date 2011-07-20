@@ -3,6 +3,8 @@ module Selbot2
     include Cinch::Plugin
     include Persistable
 
+    HELPS << [":note <receiver> <message>", "send a note"]
+
     listen_to :message, :join
 
     prefix Selbot2::PREFIX

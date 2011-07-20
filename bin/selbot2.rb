@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby
 
-require 'selbot2'
 
 channel = $DEBUG ? "#selbot-test" : "#selenium"
+
+# find a way to not maintain this manually
+HELPS = []
+require 'selbot2'
+HELPS << [":newissue", "link to issue the tracker"]
+HELPS << [":apidocs", "links to API docs"]
+HELPS << [":downloads","link to the downloads page"]
+HELPS << [":gist", "link to gist.github.com"]
+HELPS << [":ask", "don't ask to ask."]
+HELPS << [":help", "you're looking at it"]
+
 
 Cinch::Bot.new {
   configure do |c|
@@ -19,6 +29,11 @@ Cinch::Bot.new {
       Selbot2::Seen,
       Selbot2::SeleniumHQ
     ]
+  end
+
+  on :message, /:help/ do |m|
+    just = HELPS.map { |e| e[0].length }.max
+    HELPS.each { |command, help| m.reply "#{command.ljust just} - #{help}" }
   end
 
   on :message, /:newissue/ do |m|

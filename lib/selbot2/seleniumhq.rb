@@ -5,6 +5,8 @@ module Selbot2
   class SeleniumHQ
     include Cinch::Plugin
 
+    HELPS << [":sehq", "search SeleniumHQ"]
+
     prefix Selbot2::PREFIX
     match /sehq (.+)/
 

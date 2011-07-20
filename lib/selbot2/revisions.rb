@@ -3,6 +3,8 @@ module Selbot2
     include Cinch::Plugin
     include SvnHelper
 
+    HELPS << ["r<revision>", "show revision"]
+
     listen_to :message
 
     REVISION_EXP = /\br(\d+|HEAD)/

@@ -3,6 +3,8 @@ module Selbot2
     include Cinch::Plugin
     include Persistable
 
+    HELPS << [":seen <nick>", "show when <nick> last seen"]
+
     listen_to :channel, :join, :part, :quit, :nick
     prefix Selbot2::PREFIX
     match /seen (.+)/

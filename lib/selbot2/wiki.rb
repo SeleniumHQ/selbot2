@@ -2,6 +2,8 @@ module Selbot2
   class Wiki
     include Cinch::Plugin
 
+    HELPS << [":wiki", "search the wiki"]
+
     prefix Selbot2::PREFIX
     match /wiki (.+)/
 

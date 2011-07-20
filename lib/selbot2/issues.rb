@@ -2,6 +2,8 @@ module Selbot2
   class Issues
     include Cinch::Plugin
 
+    HELPS << ["#<issue-number>", "show issue"]
+
     ISSUE_EXP = /(?:^|\s)#(\d+)/
     listen_to :message
 

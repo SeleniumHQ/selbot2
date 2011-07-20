@@ -2,6 +2,8 @@ module Selbot2
   class Youtube
     include Cinch::Plugin
 
+    HELPS << [":yt", "search YouTube"]
+
     prefix Selbot2::PREFIX
     match /(?:yt|youtube) (.+)/
 
