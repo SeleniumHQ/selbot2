@@ -47,7 +47,7 @@ module Selbot2
       end
 
       def id
-        @doc.xpath(".//issues:id").text
+        @doc.xpath(".//issues:id").last.text
       end
 
       def url
