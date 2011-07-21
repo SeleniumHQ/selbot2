@@ -47,10 +47,22 @@ module Selbot2
       end
 
       def id
-        @doc.xpath(".//issues:id").last.text
+        ids.first
+      end
+
+      def duplicate?
+        state == "duplicate" && ids.size > 1
+      end
+
+      def duplicate_url
+        url_for(ids.last) if duplicate?
       end
 
       def url
+        url_for(ids.first)
+      end
+
+      def url_for(id)
         "http://code.google.com/p/selenium/issues/detail?id=#{id}"
       end
 
@@ -71,7 +83,16 @@ module Selbot2
       end
 
       def reply
-        Util.format_string "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url}"
+        str = "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url}"
+        str << " (duplicate of #{duplicate_url})" if duplicate?
+
+        Util.format_string str
+      end
+
+      private
+
+      def ids
+        @ids ||= @doc.xpath(".//issues:id").map { |e| e.text }
       end
     end
   end
