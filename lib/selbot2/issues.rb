@@ -51,7 +51,7 @@ module Selbot2
       end
 
       def duplicate?
-        state == "duplicate" && ids.size > 1
+        status == "duplicate" && ids.size > 1
       end
 
       def duplicate_url
