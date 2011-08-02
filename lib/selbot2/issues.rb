@@ -47,15 +47,15 @@ module Selbot2
       end
 
       def id
-        ids.first
+        @id ||= @doc.xpath("./issues:id").text
       end
 
       def duplicate?
-        status == "duplicate" && ids.size > 1
+        status == "duplicate" && duplicate_id
       end
 
       def duplicate_url
-        url_for(ids.last) if duplicate?
+        url_for(duplicate_id) if duplicate?
       end
 
       def url
@@ -67,23 +67,23 @@ module Selbot2
       end
 
       def state
-        @doc.xpath(".//issues:state").text
+        @doc.xpath("./issues:state").text
       end
 
       def summary
         @doc.css("title").text
       end
 
-      def priority
-        @doc.xpath(".//issues:id").text
+      def labels
+        @doc.xpath("./issues:label").map { |e| e.text }
       end
 
       def status
-        @doc.xpath(".//issues:status").text.downcase
+        @doc.xpath("./issues:status").text.downcase
       end
 
       def reply
-        str = "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url}"
+        str = "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
         str << " (duplicate of #{duplicate_url})" if duplicate?
 
         Util.format_string str
@@ -91,9 +91,11 @@ module Selbot2
 
       private
 
-      def ids
-        @ids ||= @doc.xpath(".//issues:id").map { |e| e.text }
+      def duplicate_id
+        node = @doc.xpath("./issues:duplicate/issues:id").first
+        node && node.text
       end
+
     end
   end
 end
