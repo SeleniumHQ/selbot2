@@ -59,11 +59,7 @@ module Selbot2
       end
 
       def url
-        url_for(ids.first)
-      end
-
-      def url_for(id)
-        "http://code.google.com/p/selenium/issues/detail?id=#{id}"
+        url_for id
       end
 
       def state
@@ -91,8 +87,12 @@ module Selbot2
 
       private
 
+      def url_for(id)
+        "http://code.google.com/p/selenium/issues/detail?id=#{id}"
+      end
+
       def duplicate_id
-        node = @doc.xpath("./issues:duplicate/issues:id").first
+        node = @doc.xpath("./issues:mergedInto/issues:id").first
         node && node.text
       end
 
