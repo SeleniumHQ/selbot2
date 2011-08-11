@@ -44,6 +44,10 @@ Cinch::Bot.new {
   on :message, /:ask/ do |m|
     m.reply "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)"
   end
+  
+  on :message, /:cla/ do |m|
+    m.reply "http://goo.gl/qC50R"
+  end
 
 }.start
 
