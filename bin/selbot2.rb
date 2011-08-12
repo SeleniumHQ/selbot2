@@ -34,7 +34,7 @@ Cinch::Bot.new {
   end
 
   on :message, /:downloads/ do |m|
-    m.reply "http://seleniumhq.org/download/"
+    m.reply "http://seleniumhq.org/download/ and http://code.google.com/p/selenium/downloads/list"
   end
 
   on :message, /:gist/ do |m|
