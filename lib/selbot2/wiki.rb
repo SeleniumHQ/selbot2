@@ -8,25 +8,32 @@ module Selbot2
     match /wiki (.+)/
 
     def execute(message, query)
-      resp = RestClient.get "http://code.google.com/p/selenium/w/list?can=1&q=#{escaper.escape query}&colspec=PageName+Summary+Changed+ChangedBy"
-      doc = Nokogiri.HTML(resp)
+      replies = replies_for("pagename:#{query}")
 
-      rows = doc.css("#resultstable tr")
-      rows.shift # header
-      replies = rows[0..2].map { |d| Page.new(d).reply }
+      if replies.empty?
+        replies = replies_for(query)
+      end
+
+      if replies.empty?
+        message.reply "No results."
+        return
+      end
 
       replies.each_with_index do |resp, idx|
         message.reply "#{idx + 1}: #{resp}"
-      end
-
-      more = rows.size - replies.size
-      if more > 0
-        message.reply "(+ #{more} more)"
       end
     end
 
     def escaper
       @escaper ||= URI::Parser.new
+    end
+
+    def replies_for(query)
+      resp = RestClient.get "http://code.google.com/p/selenium/w/list?can=1&q=#{escaper.escape query}&colspec=PageName+Summary+Changed+ChangedBy"
+      doc = Nokogiri.HTML(resp)
+
+      rows = doc.css("#resultstable > tr")
+      rows[0..2].map { |d| Page.new(d).reply unless d.text =~ /did not generate any results/ }.compact
     end
 
     class Page
