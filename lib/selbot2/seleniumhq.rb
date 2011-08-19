@@ -32,7 +32,7 @@ module Selbot2
     end
 
     def fetch(query)
-      str = RestClient.get "https://www.googleapis.com/customsearch/v1?cx=016909259827549404702%3Ahzru01fldsm&key=AIzaSyC3Nf0aBxyTLp9aZZkbAJkq0sXXWU35bJ4&q=#{escaper.escape query}"
+      str = RestClient.get "https://www.googleapis.com/customsearch/v1?cx=005991058577830013072%3A2lr_j6t3fko&key=AIzaSyC3Nf0aBxyTLp9aZZkbAJkq0sXXWU35bJ4&q=#{escaper.escape query}"
       JSON.parse(str)
     end
 
