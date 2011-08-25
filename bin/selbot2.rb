@@ -49,5 +49,9 @@ Cinch::Bot.new {
     m.reply "http://goo.gl/qC50R"
   end
 
+  on :message, /:log/ do |m|
+    m.reply "http://selenium.saucelabs.com/irc/logs/selenium.#{(Time.new.gmtime - 25200).strftime('%F')}.log"
+  end
+
 }.start
 
