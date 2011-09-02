@@ -18,15 +18,15 @@ module Selbot2
     def listen(m)
       nick = m.command == 'NICK' ? m.user.last_nick : m.user.nick
 
-      @users[nick] = Event.new(nick, m.message, m.command, Time.now)
+      @users[nick.downcase] = Event.new(nick, m.message, m.command, Time.now)
       save @users
     end
 
     def execute(message, nick)
-      if [@bot.nick, message.user.nick].include? nick
+      if [@bot.nick.downcase, message.user.nick.downcase].include? nick.downcase
         message.reply "Yes."
-      elsif @users.key? nick
-        message.reply @users[nick].to_s
+      elsif @users.key? nick.downcase
+        message.reply @users[nick.downcase].to_s
       else
         message.reply "I haven't seen #{nick}."
       end
