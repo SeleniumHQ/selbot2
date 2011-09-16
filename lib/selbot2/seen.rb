@@ -54,7 +54,7 @@ module Selbot2
           msg << ", changing nick to #{@message}."
         else
           if @message =~ /^\001ACTION (.+?)\001/
-            msg << ", saying '#{@nick} #{@message}'"
+            msg << ", saying '#{@nick} #{$1}'"
           else
             msg << ", saying '#{@message}'."
           end
