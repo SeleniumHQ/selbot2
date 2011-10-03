@@ -21,7 +21,7 @@ module Selbot2
       end
 
       def to_s
-        "[#{Util.distance_of_time_in_words @time}] #{@from} said: #{@message}"
+        "#{@to}: #{@from} said: #{@message} [#{Util.distance_of_time_in_words @time}]"
       end
     end # Note
 
@@ -47,7 +47,7 @@ module Selbot2
       return unless @notes.has_key? m.user.nick
 
       @notes.delete(m.user.nick).each do |note|
-        m.user.send note.to_s
+        m.channel.send note.to_s
       end
 
       save @notes
