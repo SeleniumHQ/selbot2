@@ -21,7 +21,7 @@ module Selbot2
       end
 
       def to_s
-        "#{@to}: #{@from} said: #{@message} [#{Util.distance_of_time_in_words @time}]"
+        "#{@to}: note from #{@from} #{Util.distance_of_time_in_words @time} ago: #{@message} "
       end
     end # Note
 
