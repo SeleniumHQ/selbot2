@@ -4,6 +4,7 @@ module Selbot2
     include Persistable
 
     HELPS << [":note <receiver> <message>", "send a note"]
+    MAX_NOTES = 5
 
     listen_to :message, :join
 
@@ -34,6 +35,11 @@ module Selbot2
     def execute(message, receiver, note)
       if [@bot.nick, message.user.nick].include? receiver
         message.channel.action "looks the other way"
+        return
+      end
+
+      if @notes[receiver].size > MAX_NOTES
+        message.reply "#{receiver} already has #{MAX_NOTES} notes."
         return
       end
 
