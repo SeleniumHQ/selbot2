@@ -38,7 +38,7 @@ module Selbot2
         return
       end
 
-      if @notes[receiver].size > MAX_NOTES
+      if @notes[receiver].size >= MAX_NOTES
         message.reply "#{receiver} already has #{MAX_NOTES} notes."
         return
       end
