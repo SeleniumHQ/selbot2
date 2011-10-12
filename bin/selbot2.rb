@@ -22,8 +22,12 @@ Cinch::Bot.new {
 
   Selbot2::HELPS << [':help', "you're looking at it"]
   on :message, /:help/ do |m|
-    just = Selbot2::HELPS.map { |e| e[0].length }.max
-    Selbot2::HELPS.each { |command, help| m.user.privmsg "#{command.ljust just} - #{help}" }
+    helps = Selbot2::HELPS.sort_by { |e| e[0] }
+    just = helps.map { |e| e[0].length }.max
+    
+    helps.each do |command, help|
+      m.user.privmsg "#{command.ljust just} - #{help}"
+    end
   end
 
   on :message, /:log/ do |m|
