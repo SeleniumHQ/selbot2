@@ -8,8 +8,7 @@ module Selbot2
 
     listen_to :message, :join
 
-    prefix Selbot2::PREFIX
-    match /note (.+?) (.+)/
+    match /^#{Selbot2::PREFIX}note (.+?) (.+)/
 
     STATE = "notes.yml"
 
