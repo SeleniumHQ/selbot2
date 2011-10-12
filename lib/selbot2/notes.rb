@@ -33,7 +33,7 @@ module Selbot2
     end
 
     def execute(message, receiver, note)
-      return unless message.params.first =~ /^:note/ # anchor to the beginning
+      return unless message.params.last =~ /^:note/ # anchor to the beginning
 
       if [@bot.nick, message.user.nick].include? receiver
         message.channel.action "looks the other way"
