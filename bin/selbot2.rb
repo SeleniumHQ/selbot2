@@ -31,14 +31,14 @@ Cinch::Bot.new {
   end
 
   [
-    [/:newissue/         , "http://code.google.com/p/selenium/issues/entry", "link to issue the tracker"],
-    [/:apidocs/          , ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT", "links to API docs"],
-    [/:downloads/        , "http://seleniumhq.org/download/ and http://code.google.com/p/selenium/downloads/list", "links to downloads pages"],
-    [/:gist/             , "Please paste >3 lines of text to http://gist.github.com", "link to gist.github.com", "link to Selenium's CLA"],
-    [/:ask/              , "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)", "Don't ask to ask."],
-    [/:cla/              , "http://goo.gl/qC50R", "don't ask to ask.", "link to today's chat log at saucelabs"],
-    [/:(mailing)?lists?/ , "https://groups.google.com/forum/#!forum/selenium-users | https://groups.google.com/forum/#!forum/selenium-developers", "link to mailing lists"],
-    [/:chrome(driver)?/  , "http://code.google.com/p/selenium/wiki/ChromeDriver | http://code.google.com/p/chromium/downloads/list", "link to ChromeDriver (wiki + downloads)"],
+    [/:newissue/, "http://code.google.com/p/selenium/issues/entry", "link to issue the tracker"],
+    [/:apidocs/, ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT", "links to API docs"],
+    [/:downloads/, "http://seleniumhq.org/download/ and http://code.google.com/p/selenium/downloads/list", "links to downloads pages"],
+    [/:gist/, "Please paste >3 lines of text to http://gist.github.com", "link to gist.github.com", "link to Selenium's CLA"],
+    [/:ask/, "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)", "Don't ask to ask."],
+    [/:cla/, "http://goo.gl/qC50R", "link to today's chat log at saucelabs"],
+    [/:(mailing)?lists?/, "https://groups.google.com/forum/#!forum/selenium-users | https://groups.google.com/forum/#!forum/selenium-developers", "link to mailing lists"],
+    [/:chrome(driver)?/, "http://code.google.com/p/selenium/wiki/ChromeDriver | http://code.google.com/p/chromium/downloads/list", "link to ChromeDriver (wiki + downloads)"],
   ].each do |exp, msg, help_text|
     Selbot2::HELPS << [exp.source, help_text]
     on(:message, exp) { |m| m.reply msg }

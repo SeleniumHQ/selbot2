@@ -8,7 +8,8 @@ module Selbot2
 
     listen_to :message, :join
 
-    match /^#{Selbot2::PREFIX}note (.+?) (.+)/
+    prefix Selbot2::PREFIX
+    match /note (.+?) (.+)/
 
     STATE = "notes.yml"
 
@@ -32,6 +33,8 @@ module Selbot2
     end
 
     def execute(message, receiver, note)
+      return unless message.params.first =~ /^:note/ # anchor to the beginning
+
       if [@bot.nick, message.user.nick].include? receiver
         message.channel.action "looks the other way"
         return
