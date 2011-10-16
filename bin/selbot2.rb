@@ -24,7 +24,7 @@ Cinch::Bot.new {
   on :message, /:help/ do |m|
     helps = Selbot2::HELPS.sort_by { |e| e[0] }
     just = helps.map { |e| e[0].length }.max
-    
+
     helps.each do |command, help|
       m.user.privmsg "#{command.ljust just} - #{help}"
     end
@@ -36,7 +36,7 @@ Cinch::Bot.new {
 
   [
     [/:newissue/, "http://code.google.com/p/selenium/issues/entry", "link to issue the tracker"],
-    [/:apidocs/, ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT", "links to API docs"],
+    [/:apidocs/, ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT | Python: http://goo.gl/5yWoR", "links to API docs"],
     [/:downloads/, "http://seleniumhq.org/download/ and http://code.google.com/p/selenium/downloads/list", "links to downloads pages"],
     [/:gist/, "Please paste >3 lines of text to http://gist.github.com", "link to gist.github.com", "link to Selenium's CLA"],
     [/:ask/, "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)", "Don't ask to ask."],
