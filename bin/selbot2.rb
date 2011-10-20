@@ -62,7 +62,7 @@ Cinch::Bot.new {
       :help       => "Don't ask to ask."
     },
     {
-      :expression => /:cla/,
+      :expression => /:cla\W/,
       :text       => "http://goo.gl/qC50R",
       :help       => "link to Selenium's CLA"
     },
