@@ -30,22 +30,60 @@ Cinch::Bot.new {
     end
   end
 
+  Selbot2::HELPS << [':log', "link to today's chat log at saucelabs"]
   on :message, /:log/ do |m|
     m.reply "http://selenium.saucelabs.com/irc/logs/selenium.#{(Time.new.gmtime - 25200).strftime('%F')}.log"
   end
 
   [
-    [/:newissue/, "http://code.google.com/p/selenium/issues/entry", "link to issue the tracker"],
-    [/:apidocs/, ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT | Python: http://goo.gl/5yWoR", "links to API docs"],
-    [/:downloads/, "http://seleniumhq.org/download/ and http://code.google.com/p/selenium/downloads/list", "links to downloads pages"],
-    [/:gist/, "Please paste >3 lines of text to http://gist.github.com", "link to gist.github.com", "link to Selenium's CLA"],
-    [/:ask/, "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)", "Don't ask to ask."],
-    [/:cla/, "http://goo.gl/qC50R", "link to today's chat log at saucelabs"],
-    [/:(mailing)?lists?/, "https://groups.google.com/forum/#!forum/selenium-users | https://groups.google.com/forum/#!forum/selenium-developers", "link to mailing lists"],
-    [/:chrome(driver)?/, "http://code.google.com/p/selenium/wiki/ChromeDriver | http://code.google.com/p/chromium/downloads/list", "link to ChromeDriver (wiki + downloads)"],
-  ].each do |exp, msg, help_text|
-    Selbot2::HELPS << [exp.source, help_text]
-    on(:message, exp) { |m| m.reply msg }
+    {
+      :expression => /:newissue/,
+      :text       => "http://code.google.com/p/selenium/issues/entry",
+      :help       => "link to issue the tracker"
+    },
+    {
+      :expression => /:apidocs/,
+      :text       => ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT | Python: http://goo.gl/5yWoR",
+      :help       => "links to API docs"
+    },
+    {
+      :expression => /:downloads/,
+      :text       => "http://seleniumhq.org/download/ and http://code.google.com/p/selenium/downloads/list",
+      :help       => "links to downloads pages"
+    },
+    {
+      :expression => /:gist/,
+      :text       => "Please paste >3 lines of text to http://gist.github.com",
+      :help       => "link to gist.github.com",
+    },
+    {
+      :expression => /:ask/,
+      :text       => "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)",
+      :help       => "Don't ask to ask."
+    },
+    {
+      :expression => /:cla/,
+      :text       => "http://goo.gl/qC50R",
+      :help       => "link to Selenium's CLA"
+    },
+    {
+      :expression => /:(mailing)?lists?/,
+      :text       => "https://groups.google.com/forum/#!forum/selenium-users | https://groups.google.com/forum/#!forum/selenium-developers",
+      :help       => "link to mailing lists"
+    },
+    {
+      :expression => /:chrome(driver)?/,
+      :text       => "http://code.google.com/p/selenium/wiki/ChromeDriver | http://code.google.com/p/chromium/downloads/list",
+      :help       => "link to ChromeDriver (wiki + downloads)"
+    },
+    {
+      :expression => /:clarify/,
+      :text       => "Please clarify: Are you using WebDriver, RC or IDE? What version of Selenium? What programming language? What browser and browser version? What operating system?",
+      :help       => "Please clarify your question."
+    }
+  ].each do |cmd|
+    Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
+    on(:message, cmd[:expression]) { |m| m.reply cmd[:text] }
   end
 
 }.start
