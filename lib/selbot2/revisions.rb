@@ -7,7 +7,7 @@ module Selbot2
 
     listen_to :message
 
-    REVISION_EXP = /\br(\d+|HEAD)/
+    REVISION_EXP = /\br(\d+|HEAD)\b/
 
     def listen(m)
       revs = m.message.scan(REVISION_EXP).flatten
