@@ -3,11 +3,14 @@ module Selbot2
     include Cinch::Plugin
 
     HELPS << ["#<issue-number>", "show issue"]
+    IGNORED_NICKS = %w[seljenkinsbot]
 
     ISSUE_EXP = /(?:^|\s)#(\d+)/
     listen_to :message
 
     def listen(m)
+      return if IGNORED_NICKS.include? m.user.nick
+
       issues = m.message.scan(ISSUE_EXP).flatten
       issues.each do |num|
         resp = find(num)
