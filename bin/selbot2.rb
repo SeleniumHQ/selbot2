@@ -80,6 +80,11 @@ Cinch::Bot.new {
       :expression => /:clarify/,
       :text       => "Please clarify: Are you using WebDriver, RC or IDE? What version of Selenium? What programming language? What browser and browser version? What operating system?",
       :help       => "Please clarify your question."
+    },
+    {
+      :expression => /:change(log|s)\b/,
+      :text       => ".NET: http://goo.gl/SL88L | Java: http://goo.gl/50JPE | Ruby: http://goo.gl/K9ayk | Python: http://goo.gl/Ikm8u",
+      :help       => "links to change logs"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
