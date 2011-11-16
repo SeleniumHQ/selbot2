@@ -85,6 +85,11 @@ Cinch::Bot.new {
       :expression => /:change(log|s)\b/,
       :text       => ".NET: http://goo.gl/SL88L | Java: http://goo.gl/50JPE | Ruby: http://goo.gl/K9ayk | Python: http://goo.gl/Ikm8u",
       :help       => "links to change logs"
+    },
+    {
+      :expression => /(can i|how do i|is it possible to).+set (a )? cookies?.+\?/,
+      :text       => "http://seleniumhq.org/docs/03_webdriver.html#cookies",
+      :help       => "Help people with cookies."
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
