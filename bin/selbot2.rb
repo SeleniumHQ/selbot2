@@ -87,7 +87,7 @@ Cinch::Bot.new {
       :help       => "links to change logs"
     },
     {
-      :expression => /(can i|how do i|is it possible to).+set (a )? cookies?.+\?/,
+      :expression => /(can i|how do i|is it possible to).+set (a )?cookies?.*\?/i,
       :text       => "http://seleniumhq.org/docs/03_webdriver.html#cookies",
       :help       => "Help people with cookies."
     }
