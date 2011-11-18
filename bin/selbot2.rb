@@ -83,7 +83,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:change(log|s)\b/,
-      :text       => ".NET: http://goo.gl/SL88L | Java: http://goo.gl/50JPE | Ruby: http://goo.gl/K9ayk | Python: http://goo.gl/Ikm8u",
+      :text       => ".NET: http://goo.gl/SL88L | Java: http://goo.gl/50JPE | Ruby: http://goo.gl/K9ayk | Python: http://goo.gl/Ikm8u | IDE: http://goo.gl/tm4FM",
       :help       => "links to change logs"
     },
     {
