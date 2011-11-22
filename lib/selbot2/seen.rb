@@ -16,6 +16,7 @@ module Selbot2
     end
 
     def listen(m)
+      return unless m.user
       nick = m.command == 'NICK' ? m.user.last_nick : m.user.nick
 
       @users[nick.downcase] = Event.new(nick, m.message, m.command, Time.now)
