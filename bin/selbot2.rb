@@ -90,6 +90,11 @@ Cinch::Bot.new {
       :expression => /(can i|how do i|is it possible to).+set (a )?cookies?.*\?/i,
       :text       => "http://seleniumhq.org/docs/03_webdriver.html#cookies",
       :help       => "Help people with cookies."
+    },
+    {
+      :expression => /:ignores?/i,
+      :text       => "http://selenium-ignores.jaribakken.com/",
+      :help       => "Link to the @Ignore dashboard."
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
