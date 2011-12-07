@@ -1,13 +1,12 @@
 #!/usr/bin/env ruby
 
 require 'selbot2'
-channel = $DEBUG ? "#selbot-test" : "#selenium"
 
 Cinch::Bot.new {
   configure do |c|
     c.server = "irc.freenode.net"
     c.nick   = "selbot2"
-    c.channels = [channel]
+    c.channels = $DEBUG ? ["#selbot-test"] : ["#selenium", "#seleniumide"]
     c.plugins.plugins = [
       Selbot2::Issues,
       Selbot2::Revisions,
