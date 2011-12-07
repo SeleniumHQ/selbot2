@@ -25,17 +25,13 @@ module Selbot2
       return if current_revision == @last_revision
 
       revisions_between(@last_revision + 1, current_revision).each do |rev|
-        Channel(channel).send rev.reply
+        Selbot2::CHANNELS.each { |channel| Channel(channel).send rev.reply }
       end
 
       @last_revision = current_revision
     end
 
     private
-
-    def channel
-      $DEBUG ? "#selbot-test" : "#selenium"
-    end
 
     def fetch_latest_revision
       doc = svn("info")

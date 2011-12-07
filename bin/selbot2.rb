@@ -6,7 +6,7 @@ Cinch::Bot.new {
   configure do |c|
     c.server = "irc.freenode.net"
     c.nick   = "selbot2"
-    c.channels = $DEBUG ? ["#selbot-test"] : ["#selenium", "#seleniumide"]
+    c.channels = Selbot2::CHANNELS
     c.plugins.plugins = [
       Selbot2::Issues,
       Selbot2::Revisions,
