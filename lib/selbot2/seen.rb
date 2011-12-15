@@ -23,7 +23,13 @@ module Selbot2
       save @users
     end
 
-    def execute(message, nick)
+    def execute(message, str)
+      str.split(/\s*/).each { |nick| check_nick(message, nick) }
+    end
+
+    private
+
+    def check_nick(message, nick)
       if [@bot.nick.downcase, message.user.nick.downcase].include? nick.downcase
         message.reply "Yes."
       elsif @users.key? nick.downcase
@@ -31,6 +37,7 @@ module Selbot2
       else
         message.reply "I haven't seen #{nick}."
       end
+
     end
 
     class Event
