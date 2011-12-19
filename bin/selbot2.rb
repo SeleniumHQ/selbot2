@@ -94,6 +94,11 @@ Cinch::Bot.new {
       :expression => /:ignores?/i,
       :text       => "http://selenium-ignores.jaribakken.com/",
       :help       => "Link to the @Ignore dashboard."
+    },
+    {
+      :expression => /:(testcase|repro|example|sscce)/i,
+      :text       => "Please read http://sscce.org/",
+      :help       => "Link to 'Short, Self Contained, Correct (Compilable), Example' site"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
