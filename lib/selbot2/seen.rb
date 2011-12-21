@@ -24,7 +24,7 @@ module Selbot2
     end
 
     def execute(message, str)
-      str.split(/\s*/).each { |nick| check_nick(message, nick) }
+      str.split(/\s+/).each { |nick| check_nick(message, nick) }
     end
 
     private
