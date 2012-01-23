@@ -102,8 +102,8 @@ Cinch::Bot.new {
     },
     {
       :expression => /:(ci|jenkins)/i,
-      :text       => "Links to Selenium CI",
-      :help       => "Jenkins: http://sci.illicitonion.com:8080/ | Dashboard: http://selenium-ci.jaribakken.com/"
+      :text       => "Jenkins: http://sci.illicitonion.com:8080/ | Dashboard: http://selenium-ci.jaribakken.com/",
+      :help       => "Links to Selenium CI"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
