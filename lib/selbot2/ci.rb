@@ -13,7 +13,7 @@ module Selbot2
     def execute(m, arg)
       arg = arg.strip if arg
 
-      if arg.empty?
+      if arg.nil? || arg.empty?
         m.reply LINKS
       else
         case arg
