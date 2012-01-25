@@ -19,8 +19,9 @@ module Selbot2
         case arg
         when 'status'
           m.reply ci_status
+        else
+          m.reply "unknown subcommand #{arg.inspect}"
         end
-        m.reply "unknown subcommand #{arg.inspect}"
       end
     end
 
