@@ -94,16 +94,12 @@ module Selbot2
         @doc.css("msg").text.to_s.strip
       end
 
-      def short_message
-        message.split("\n").first
-      end
-
       def url
         "http://code.google.com/p/selenium/source/detail?r=#{revision}"
       end
 
       def reply
-        Util.format_string "%g#{author}%n #{Util.distance_of_time_in_words date} ago - %B#{short_message}%n - #{url}"
+        Util.format_revision author, date, message, revision
       end
 
     end

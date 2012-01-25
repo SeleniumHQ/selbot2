@@ -59,5 +59,12 @@ module Selbot2
       return string
     end
 
+    def format_revision(author, date, message, revision)
+      url           = "http://code.google.com/p/selenium/source/detail?r=#{revision}"
+      ci_url        = "http://selenium-ci.jaribakken.com/#/revision/#{revision}"
+      short_message = message.split("\n").first
+
+      Util.format_string "%g#{author}%n #{Util.distance_of_time_in_words date} ago - %B#{short_message}%n | #{url} | #{ci_url}"
+    end
   end
 end

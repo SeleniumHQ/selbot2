@@ -54,7 +54,7 @@ module Selbot2
       end
 
       def reply
-        Util.format_string "%g#{author}%n #{Util.distance_of_time_in_words date} ago - %B#{message.split("\n").first}%n - #{url}"
+        Util.format_revision author, date, message, revision
       end
     end
 
