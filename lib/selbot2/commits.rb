@@ -5,13 +5,37 @@ module Selbot2
     include SvnHelper
     include Cinch::Plugin
 
+    MAX_REVS = 10
+    HELPS << [":last [num]", "show last num revisions (default = 1)"]
+
     timer 30, :method => :poll
+
+    prefix Selbot2::PREFIX
+    match /last( \d+)?/
+
 
     def initialize(*args)
       super
 
       @last_revision = fetch_latest_revision
     end
+
+    def execute(message, num)
+      if num.to_i > 0
+        num = num.to_i
+      else
+        num = 1
+      end
+
+      num = MAX_REVS if num > MAX_REVS
+
+      if @last_revision && (@last_revision - num) >= 0
+        revisions_between(@last_revision - num, @last_revision).each do |rev|
+          message.reply rev
+        end
+      end
+    end
+
 
     def poll
       if @last_revision <= 0
