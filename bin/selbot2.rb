@@ -15,7 +15,8 @@ Cinch::Bot.new {
       Selbot2::Youtube,
       Selbot2::Notes,
       Selbot2::Seen,
-      Selbot2::SeleniumHQ
+      Selbot2::SeleniumHQ,
+      Selbot2::CI
     ]
   end
 
@@ -99,11 +100,6 @@ Cinch::Bot.new {
       :expression => /:(testcase|repro|example|sscce)/i,
       :text       => "Please read http://sscce.org/",
       :help       => "Link to 'Short, Self Contained, Correct (Compilable), Example' site"
-    },
-    {
-      :expression => /:(ci|jenkins)/i,
-      :text       => "Jenkins: http://sci.illicitonion.com:8080/ | Dashboard: http://selenium-ci.jaribakken.com/",
-      :help       => "Links to Selenium CI"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]

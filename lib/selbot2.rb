@@ -9,6 +9,8 @@ module Selbot2
   HELPS = []
 end
 
+require 'selbot2/helpers/jenkins'
+
 require 'selbot2/persistable'
 require 'selbot2/util'
 require 'selbot2/svn_helper'
@@ -20,4 +22,5 @@ require 'selbot2/youtube'
 require 'selbot2/notes'
 require 'selbot2/seen'
 require 'selbot2/seleniumhq'
+require 'selbot2/ci'
 
