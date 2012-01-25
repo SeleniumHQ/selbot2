@@ -17,9 +17,7 @@ module Selbot2
         counts[state] += 1
       end
 
-      counts
-
-      "#{counts['building']} building | #{counts['success']} successful | #{counts['unstable']} unstable | #{counts['failed']} failed | #{counts['aborted']} aborted"
+      "#{counts['building']} building | #{counts['success']} successful | #{counts['unstable']} unstable | #{counts['failed']} failing | #{counts['aborted']} aborted"
     end
 
     private
