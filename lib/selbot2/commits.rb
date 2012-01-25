@@ -29,7 +29,7 @@ module Selbot2
 
       num = MAX_REVS if num > MAX_REVS
 
-      start = @last_revision - num - 1
+      start = @last_revision - num + 1
       if @last_revision && start >= 0
         revisions_between(start, @last_revision).each do |rev|
           message.reply rev.reply
