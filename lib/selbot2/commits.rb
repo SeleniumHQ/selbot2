@@ -32,7 +32,7 @@ module Selbot2
       start = @last_revision - num + 1
       if @last_revision && start >= 0
         revisions_between(start, @last_revision).each do |rev|
-          message.reply rev.reply
+          message.user.privmsg rev.reply
         end
       end
     end
