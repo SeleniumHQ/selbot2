@@ -73,7 +73,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:chrome(driver)?/,
-      :text       => "http://code.google.com/p/selenium/wiki/ChromeDriver | http://code.google.com/p/chromium/downloads/list",
+      :text       => "http://code.google.com/p/selenium/wiki/ChromeDriver | http://code.google.com/p/chromedriver/downloads/list ",
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
