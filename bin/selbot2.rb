@@ -100,6 +100,11 @@ Cinch::Bot.new {
       :expression => /:(testcase|repro|example|sscce)/i,
       :text       => "Please read http://sscce.org/",
       :help       => "Link to 'Short, Self Contained, Correct (Compilable), Example' site"
+    },
+    {
+      :expression => /:(spec|w3c?)/i,
+      :text       => "http://dvcs.w3.org/hg/webdriver/raw-file/2afc3db68735/webdriver-spec.html | http://dvcs.w3.org/hg/webdriver/",
+      :help       => "Links to the WebDriver spec."
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
