@@ -91,7 +91,7 @@ module Selbot2
       private
 
       def url_for(id)
-        "http://code.google.com/p/selenium/issues/detail?id=#{id}"
+        "https://code.google.com/p/selenium/issues/detail?id=#{id}"
       end
 
       def duplicate_id

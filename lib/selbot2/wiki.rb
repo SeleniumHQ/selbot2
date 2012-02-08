@@ -29,7 +29,7 @@ module Selbot2
     end
 
     def replies_for(query)
-      resp = RestClient.get "http://code.google.com/p/selenium/w/list?can=1&q=#{escaper.escape query}&colspec=PageName+Summary+Changed+ChangedBy"
+      resp = RestClient.get "https://code.google.com/p/selenium/w/list?can=1&q=#{escaper.escape query}&colspec=PageName+Summary+Changed+ChangedBy"
       doc = Nokogiri.HTML(resp)
 
       rows = doc.css("#resultstable > tr")
@@ -49,7 +49,7 @@ module Selbot2
         el = @doc.css("td.id a").first
         path = el && el['href']
 
-        "http://code.google.com#{path}"
+        "https://code.google.com#{path}"
       end
 
       def summary
