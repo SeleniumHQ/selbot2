@@ -8,7 +8,7 @@ module Selbot2
         let(:blocking_issue) { Issue.new(Nokogiri::XML(fixture("blocking_issue.xml")).css("entry").first) }
 
         it "returns the correct url" do
-          blocking_issue.url.should == "http://code.google.com/p/selenium/issues/detail?id=7"
+          blocking_issue.url.should == "https://code.google.com/p/selenium/issues/detail?id=7"
         end
       end
 
@@ -16,7 +16,7 @@ module Selbot2
         let(:duplicate_issue) { Issue.new(Nokogiri::XML(fixture("duplicate_issue.xml")).css("entry").first)}
 
         it "returns the correct url" do
-          duplicate_issue.url.should == "http://code.google.com/p/selenium/issues/detail?id=161"
+          duplicate_issue.url.should == "https://code.google.com/p/selenium/issues/detail?id=161"
         end
 
         it "knows that the issue is a duplicate" do
@@ -24,7 +24,7 @@ module Selbot2
         end
 
         it "knows the the url of the real issue" do
-          duplicate_issue.duplicate_url.should == "http://code.google.com/p/selenium/issues/detail?id=244"
+          duplicate_issue.duplicate_url.should == "https://code.google.com/p/selenium/issues/detail?id=244"
         end
 
       end
