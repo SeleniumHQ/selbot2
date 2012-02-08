@@ -50,7 +50,7 @@ module Selbot2
       end
 
       def url
-        "http://code.google.com/p/selenium/source/detail?r=#{revision}"
+        "https://code.google.com/p/selenium/source/detail?r=#{revision}"
       end
 
       def reply

@@ -60,7 +60,7 @@ module Selbot2
     end
 
     def format_revision(author, date, message, revision)
-      url           = "http://code.google.com/p/selenium/source/detail?r=#{revision}"
+      url           = "https://code.google.com/p/selenium/source/detail?r=#{revision}"
       ci_url        = "http://seleniumhq.org/ci.jsp?r=#{revision}"
       short_message = message.split("\n").first
 
