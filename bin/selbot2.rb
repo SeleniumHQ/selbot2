@@ -38,7 +38,7 @@ Cinch::Bot.new {
   [
     {
       :expression => /:newissue/,
-      :text       => "http://code.google.com/p/selenium/issues/entry",
+      :text       => "https://code.google.com/p/selenium/issues/entry",
       :help       => "link to issue the tracker"
     },
     {
@@ -48,12 +48,12 @@ Cinch::Bot.new {
     },
     {
       :expression => /:downloads/,
-      :text       => "http://seleniumhq.org/download/ and http://code.google.com/p/selenium/downloads/list",
+      :text       => "http://seleniumhq.org/download/ and https://code.google.com/p/selenium/downloads/list",
       :help       => "links to downloads pages"
     },
     {
       :expression => /:gist/,
-      :text       => "Please paste >3 lines of text to http://gist.github.com",
+      :text       => "Please paste >3 lines of text to https://gist.github.com",
       :help       => "link to gist.github.com",
     },
     {
@@ -73,7 +73,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:chrome(driver)?/,
-      :text       => "http://code.google.com/p/selenium/wiki/ChromeDriver | http://code.google.com/p/chromedriver/downloads/list ",
+      :text       => "https://code.google.com/p/selenium/wiki/ChromeDriver | https://code.google.com/p/chromedriver/downloads/list ",
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
