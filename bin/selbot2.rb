@@ -16,7 +16,8 @@ Cinch::Bot.new {
       Selbot2::Notes,
       Selbot2::Seen,
       Selbot2::SeleniumHQ,
-      Selbot2::CI
+      Selbot2::CI,
+      Selbot2::Twitter
     ]
   end
 
