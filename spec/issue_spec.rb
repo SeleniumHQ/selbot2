@@ -3,17 +3,20 @@ require 'spec_helper'
 module Selbot2
   class Issues
     describe Issue do
+      let(:project_name) { 'selenium' }
+      let(:blocking_node) { Nokogiri::XML(fixture("blocking_issue.xml")).css("entry").first }
+      let(:blocking_issue) { Issue.new(blocking_node, project_name) }
+      let(:duplicate_node) { Nokogiri::XML(fixture("duplicate_issue.xml")).css("entry").first }
+      let(:duplicate_issue) { Issue.new(duplicate_node, project_name)}
+
 
       context "issue blocking another" do
-        let(:blocking_issue) { Issue.new(Nokogiri::XML(fixture("blocking_issue.xml")).css("entry").first) }
-
         it "returns the correct url" do
           blocking_issue.url.should == "https://code.google.com/p/selenium/issues/detail?id=7"
         end
       end
 
       context "duplicate issue" do
-        let(:duplicate_issue) { Issue.new(Nokogiri::XML(fixture("duplicate_issue.xml")).css("entry").first)}
 
         it "returns the correct url" do
           duplicate_issue.url.should == "https://code.google.com/p/selenium/issues/detail?id=161"
