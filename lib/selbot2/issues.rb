@@ -28,10 +28,10 @@ module Selbot2
         project_name = "selenium"
       end
 
-      response = RestClient.get(url_for(num))
+      response = RestClient.get(url_for(num, project_name))
       data = Nokogiri.XML(response).css("entry").first
 
-      Issue.new(data).reply if data
+      Issue.new(data, project_name).reply if data
     rescue => ex
       p [ex.message, ex.backtrace.first]
     end
