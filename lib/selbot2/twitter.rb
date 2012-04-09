@@ -11,37 +11,41 @@ module Selbot2
     match /fset (.+)/
 
     COMMITTERS = [
-      "adamgoucher", 
+      "adamgoucher",
       "ajay",
       "andreastt",
-      "automatedtester", 
+      "automatedtester",
       "barancev",
       "berrada",
       "davehunt",
       "dawagner",
       "eranm",
       "freynaud",
-      "hugs", 
+      "hugs",
       "jarib",
       "jimevans",
       "jleyba",
       "krosenvold",
-      "llaskin", 
+      "llaskin",
       "lukeis",
       "nirvdrum",
       "plightbo",
       "rosspatterson",
       "samit",
-      "santiycr", 
-      "simonstewart" 
+      "santiycr",
+      "simonstewart"
     ]
 
-    cfg = JSON.parse(File.open("twitter.conf").read())
-    ::Twitter.configure do |config|
-      config.consumer_key = cfg['consumerKey']
-      config.consumer_secret = cfg['consumerSecret']
-      config.oauth_token = cfg['accessToken']
-      config.oauth_token_secret = cfg['accessTokenSecret']
+    def initialize(*args)
+      super
+
+      cfg = JSON.parse(File.open("twitter.conf").read)
+      ::Twitter.configure do |config|
+        config.consumer_key = cfg['consumerKey']
+        config.consumer_secret = cfg['consumerSecret']
+        config.oauth_token = cfg['accessToken']
+        config.oauth_token_secret = cfg['accessTokenSecret']
+      end
     end
 
     def execute(message, query)
@@ -63,5 +67,5 @@ module Selbot2
       message.reply "ok"
     end
 
-  end # 
+  end #
 end # Selbot2
