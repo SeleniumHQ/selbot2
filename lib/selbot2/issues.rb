@@ -5,7 +5,7 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /(?:^|\s)#(\d+)/
+    ISSUE_EXP = /(?:^|\s|cd:)#(\d+)/
     listen_to :message
 
     def listen(m)
@@ -21,6 +21,13 @@ module Selbot2
     private
 
     def find(num)
+      if num =~ /^cd:(\d+)/
+        project_name = "chromedriver"
+        num = $1
+      else
+        project_name = "selenium"
+      end
+
       response = RestClient.get(url_for(num))
       data = Nokogiri.XML(response).css("entry").first
 
@@ -31,9 +38,9 @@ module Selbot2
 
     private
 
-    def url_for(num)
+    def url_for(num, project_name)
       q = "id:#{num}"
-      "https://code.google.com/feeds/issues/p/selenium/issues/full?q=#{escaper.escape q}"
+      "https://code.google.com/feeds/issues/p/#{project_name}/issues/full?q=#{escaper.escape q}"
     end
 
     def escaper
@@ -41,8 +48,9 @@ module Selbot2
     end
 
     class Issue
-      def initialize(doc)
+      def initialize(doc, project_name)
         @doc = doc
+        @project_name = project_name
       end
 
       def owner
@@ -91,7 +99,7 @@ module Selbot2
       private
 
       def url_for(id)
-        "https://code.google.com/p/selenium/issues/detail?id=#{id}"
+        "https://code.google.com/p/#{@project_name}/issues/detail?id=#{id}"
       end
 
       def duplicate_id
