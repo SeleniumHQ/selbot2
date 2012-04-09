@@ -5,25 +5,25 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /(?:^|\s|cd:)#(\d+)/
+    ISSUE_EXP = /(?:^|\s)(cd|s)?:?#(\d+)/
     listen_to :message
 
     def listen(m)
       return if IGNORED_NICKS.include? m.user.nick
 
-      issues = m.message.scan(ISSUE_EXP).flatten
-      issues.each do |num|
-        resp = find(num)
+      issues = m.message.scan(ISSUE_EXP)
+      issues.each do |prefix, num|
+        resp = find(prefix, num)
         resp && m.reply(resp)
       end
     end
 
     private
 
-    def find(num)
-      if num =~ /^cd:(\d+)/
+    def find(prefix, num)
+      case prefix
+      when 'cd'
         project_name = "chromedriver"
-        num = $1
       else
         project_name = "selenium"
       end
