@@ -24,4 +24,5 @@ require 'selbot2/seen'
 require 'selbot2/seleniumhq'
 require 'selbot2/ci'
 require 'selbot2/twitter'
+require 'selbot2/google'
 

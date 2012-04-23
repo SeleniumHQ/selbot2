@@ -17,7 +17,8 @@ Cinch::Bot.new {
       Selbot2::Seen,
       Selbot2::SeleniumHQ,
       Selbot2::CI,
-      Selbot2::Twitter
+      Selbot2::Twitter,
+      Selbot2::Google
     ]
   end
 
