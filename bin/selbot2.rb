@@ -32,9 +32,9 @@ Cinch::Bot.new {
     end
   end
 
-  Selbot2::HELPS << [':log', "link to today's chat log at saucelabs"]
+  Selbot2::HELPS << [':log', "link to today's chat log at illictonion"]
   on :message, /:log/ do |m|
-    m.reply "http://selenium.saucelabs.com/irc/logs/selenium.#{(Time.new.gmtime - 25200).strftime('%F')}.log"
+    m.reply "http://illicitonion.com/selogs/selenium/#{(Time.new.gmtime - 25200).strftime('%Y/%m/%d')}.txt"
   end
 
   [
