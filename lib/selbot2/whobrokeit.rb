@@ -1,5 +1,5 @@
 module Selbot2
-  class CI
+  class WhoBrokeIt
     include Cinch::Plugin
 
     HELPS << [":whobrokeit", "Announces who broke it"]
@@ -7,7 +7,7 @@ module Selbot2
     prefix Selbot2::PREFIX
     match /whobrokeit/
 
-    def execute(m, arg)
+    def execute(m)
       m.reply "simonstewart"
     end
   end # CI
