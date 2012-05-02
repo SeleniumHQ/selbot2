@@ -5,7 +5,7 @@ require "time"
 
 module Selbot2
   PREFIX = ":"
-  CHANNELS = $DEBUG ? ["#selbot-test"] : ["#selenium", "#seleniumide"]
+  CHANNELS = Array(ENV['SELBOT_CHANNEL'] || ["#selenium", "#seleniumide"])
   HELPS = []
 end
 

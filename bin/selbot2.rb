@@ -17,10 +17,13 @@ Cinch::Bot.new {
       Selbot2::Seen,
       Selbot2::SeleniumHQ,
       Selbot2::CI,
-      Selbot2::Twitter,
       Selbot2::Google,
       Selbot2::WhoBrokeIt
     ]
+
+    if File.exist?("twitter.conf")
+      c.plugins.plugins << Selbot2::Twitter
+    end
   end
 
   Selbot2::HELPS << [':help', "you're looking at it"]
