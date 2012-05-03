@@ -37,10 +37,12 @@ module Selbot2
     def fetch_github_issue(project_name, num)
       data = JSON.parse(RestClient.get("http://github.com/api/v2/json/issues/show/#{project_name}/#{num}"))
 
-      user    = data['user']
-      state   = data['state']
-      labels  = data['labels'] || []
-      summary = data['title']
+      issue = data['issue'] or return
+
+      user    = issue['user']
+      state   = issue['state']
+      labels  = issue['labels'] || []
+      summary = issue['title']
       url     = "http://github.com/#{project_name}/issues/#{num}"
 
       str = "%g#{user}%n #{state} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
