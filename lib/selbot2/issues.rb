@@ -5,7 +5,7 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /(?:^|\s)(cd|s)?:?#(\d+)/
+    ISSUE_EXP = /(?:^|\s)(.+?)?#(\d+)/
     listen_to :message
 
     def listen(m)
@@ -20,13 +20,8 @@ module Selbot2
 
     private
 
-    def find(prefix, num)
-      case prefix
-      when 'cd'
-        project_name = "chromedriver"
-      else
-        project_name = "selenium"
-      end
+    def find(project_name, num)
+      project_name ||= "selenium"
 
       response = RestClient.get(url_for(num, project_name))
       data = Nokogiri.XML(response).css("entry").first
