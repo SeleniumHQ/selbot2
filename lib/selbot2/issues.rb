@@ -5,7 +5,7 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /(?:^|\s)(.+?)?#(\d+)/
+    ISSUE_EXP = /(?:^|\s)(\S+?)?#(\d+)/
     listen_to :message
 
     def listen(m)
@@ -45,6 +45,8 @@ module Selbot2
 
       str = "%g#{user}%n #{state} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
       Util.format_string str
+    rescue RestClient::ResourceNotFound
+      nil
     end
 
     def fetch_gcode_issue(project_name, num)
