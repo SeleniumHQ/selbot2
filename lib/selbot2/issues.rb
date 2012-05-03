@@ -39,7 +39,7 @@ module Selbot2
 
       user    = data['user']
       state   = data['state']
-      labels  = data['labels']
+      labels  = data['labels'] || []
       summary = data['title']
       url     = "http://github.com/#{project_name}/issues/#{num}"
 
