@@ -23,26 +23,45 @@ module Selbot2
     def find(project_name, num)
       project_name ||= "selenium"
 
-      response = RestClient.get(url_for(num, project_name))
-      data = Nokogiri.XML(response).css("entry").first
-
-      Issue.new(data, project_name).reply if data
+      if project_name.include? "/"
+        fetch_github_issue(project_name, num)
+      else
+        fetch_gcode_issue(project_name, num)
+      end
     rescue => ex
       p [ex.message, ex.backtrace.first]
     end
 
     private
 
-    def url_for(num, project_name)
-      q = "id:#{num}"
-      "https://code.google.com/feeds/issues/p/#{project_name}/issues/full?q=#{escaper.escape q}"
+    def fetch_github_issue(project_name, num)
+      data = JSON.parse(RestClient.get("http://github.com/api/v2/json/issues/show/#{project_name}/#{num}"))
+
+      user    = data['user']
+      state   = data['state']
+      labels  = data['labels']
+      summary = data['title']
+      url     = "http://github.com/#{project_name}/issues/#{num}"
+
+      str = "%g#{user}%n #{state} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
+      Util.format_string str
+    end
+
+    def fetch_gcode_issue(project_name, num)
+      q = escaper.escape "id:#{num}"
+      url = "https://code.google.com/feeds/issues/p/#{project_name}/issues/full?q=#{q}"
+
+      response = RestClient.get(url)
+      data = Nokogiri.XML(response).css("entry").first
+
+      GCodeIssue.new(data, project_name).reply if data
     end
 
     def escaper
       @escaper ||= URI::Parser.new
     end
 
-    class Issue
+    class GCodeIssue
       def initialize(doc, project_name)
         @doc = doc
         @project_name = project_name
