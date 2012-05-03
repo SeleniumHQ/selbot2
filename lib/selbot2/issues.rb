@@ -59,6 +59,8 @@ module Selbot2
       data = Nokogiri.XML(response).css("entry").first
 
       GCodeIssue.new(data, project_name).reply if data
+    rescue RestClient::ResourceNotFound
+      nil
     end
 
     def escaper
