@@ -21,7 +21,7 @@ module Selbot2
     private
 
     def find(project_name, num)
-      return if prefix && prefix =~ /^http/
+      return if project_name && project_name =~ /^http/
 
       project_name ||= "selenium"
 
