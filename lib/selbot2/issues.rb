@@ -5,7 +5,7 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /(?:^|\s)(\S+?)?#(\d+)/
+    ISSUE_EXP = /(?:^|\s)(?!http)(\S+?)?#(\d+)/
     listen_to :message
 
     def listen(m)
@@ -21,6 +21,8 @@ module Selbot2
     private
 
     def find(project_name, num)
+      return if prefix && prefix =~ /^http/
+
       project_name ||= "selenium"
 
       if project_name.include? "/"
