@@ -37,19 +37,18 @@ module Selbot2
     private
 
     def fetch_github_issue(project_name, num)
-      data = JSON.parse(RestClient.get("http://github.com/api/v2/json/issues/show/#{project_name}/#{num}"))
+      issue = JSON.parse(RestClient.get("https://api.github.com/repos/#{project_name}/issues/#{num}"))
 
-      issue = data['issue'] or return
-
-      user    = issue['user']
+      user    = issue['user'] && issue['user']['login']
       state   = issue['state']
       labels  = issue['labels'] || []
       summary = issue['title']
-      url     = "http://github.com/#{project_name}/issues/#{num}"
+      url     = issue['html_url']
 
       str = "%g#{user}%n #{state} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
       Util.format_string str
-    rescue RestClient::ResourceNotFound
+    rescue RestClient::ResourceNotFound => ex
+      p [ex.message, ex.backtrace.first]
       nil
     end
 
