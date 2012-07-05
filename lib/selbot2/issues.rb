@@ -25,7 +25,10 @@ module Selbot2
 
       project_name ||= "selenium"
 
-      if project_name.include? "/"
+      case project_name
+      when "moz", "mozilla", "bugzilla"
+        fetch_moz_issue(num)
+      when /\//
         fetch_github_issue(project_name, num)
       else
         fetch_gcode_issue(project_name, num)
@@ -35,6 +38,21 @@ module Selbot2
     end
 
     private
+
+    def fetch_moz_issue(num)
+      data = JSON.parse(RestClient.get("https://api-dev.bugzilla.mozilla.org/latest/bug?id=#{num}"))
+
+      bug     = Array(data['bugs']).first || return
+      user    = bug['assigned_to'] && bug['assigned_to']['real_name']
+      state   = "#{bug['status']}/#{bug['resolution']}"
+      summary = bug['summary']
+      url     = "https://bugzilla.mozilla.org/show_bug.cgi?id=#{num}"
+
+      "%g#{user}%n #{state} %B#{summary}%n - #{url}"
+    rescue RestClient::ResourceNotFound
+      p [ex.message, ex.backtrace.first]
+      nil
+    end
 
     def fetch_github_issue(project_name, num)
       issue = JSON.parse(RestClient.get("https://api.github.com/repos/#{project_name}/issues/#{num}"))
@@ -61,6 +79,7 @@ module Selbot2
 
       GCodeIssue.new(data, project_name).reply if data
     rescue RestClient::ResourceNotFound
+      p [ex.message, ex.backtrace.first]
       nil
     end
 
