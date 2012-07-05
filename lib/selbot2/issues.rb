@@ -48,7 +48,7 @@ module Selbot2
       summary = bug['summary']
       url     = "https://bugzilla.mozilla.org/show_bug.cgi?id=#{num}"
 
-      "%g#{user}%n #{state} %B#{summary}%n - #{url}"
+      Util.format_string "%g#{user}%n #{state} %B#{summary}%n - #{url}"
     rescue RestClient::ResourceNotFound
       p [ex.message, ex.backtrace.first]
       nil
