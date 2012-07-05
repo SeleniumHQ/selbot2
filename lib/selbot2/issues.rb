@@ -5,7 +5,7 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /(?:^|\s)(?!http)([\w+\/-]?)?#(\d+)/
+    ISSUE_EXP = /(?:^|\s)(?!http)([\w\/-]+?)?#(\d+)/
     listen_to :message
 
     def listen(m)
