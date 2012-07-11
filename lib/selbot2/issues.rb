@@ -5,7 +5,17 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /(?:^|\s)(?!http)([\w\/-]+?)?#(\d+)/
+    ISSUE_EXP = /
+      (?:^|\s)     # space or BOL
+      (?!http)     # ignore url anchors
+      (?:\(|\[)?   # optional opening parentheses or brace
+      ([\w\/-]+?)? # capture 1 - project name
+      \#
+      (\d+)        # capture 2 - issue number
+      (?:\)|\])?   # optional closing parentheses or brace
+
+    /x
+
     listen_to :message
 
     def listen(m)
