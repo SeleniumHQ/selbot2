@@ -48,6 +48,11 @@ Cinch::Bot.new {
       :help       => "link to issue the tracker"
     },
     {
+      :expression => /:(source|code)/,
+      :text       => "https://code.google.com/p/selenium/source/checkout",
+      :help       => "link to the source code"
+    },
+    {
       :expression => /:apidocs/,
       :text       => ".NET: http://goo.gl/Fm3cw | Java: http://goo.gl/kKQqM | Ruby: http://goo.gl/cFyyT | Python: http://goo.gl/5yWoR",
       :help       => "links to API docs"
