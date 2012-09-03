@@ -1,6 +1,13 @@
+language: ruby
 rvm:
   - 1.9.3
 notifications:
   recipients:
     - jari.bakken@gmail.com
-  irc: "irc.freenode.net#selenium"
+  irc:
+    channels:
+      - "irc.freenode.net#selenium"
+    on_success: change
+    on_failure: change
+    template:
+      - "%{author} | %{commit} | %{message} | %{build_url}"
