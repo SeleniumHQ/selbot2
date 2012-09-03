@@ -5,7 +5,7 @@ module Selbot2
     HELPS << [":ci", "Links to Selenium's CI"]
     HELPS << [":ci status", "Summary the current CI state"]
 
-    LINKS = "Jenkins: http://sci.illicitonion.com:8080/ | Dashboard: http://goo.gl/ydhTP"
+    LINKS = "Jenkins: #{Selbot2::Jenkins::HOST} | Dashboard: http://dashboard.ci.seleniumhq.org/"
 
     prefix Selbot2::PREFIX
     match /ci( .+)?/
@@ -18,17 +18,11 @@ module Selbot2
       else
         case arg
         when 'status'
-          m.reply ci_status
+          m.reply Jenkins.current_status
         else
           m.reply "unknown subcommand #{arg.inspect}"
         end
       end
-    end
-
-    private
-
-    def ci_status
-      Jenkins.current_status
     end
 
   end # CI

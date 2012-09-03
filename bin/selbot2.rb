@@ -104,7 +104,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:ignores?/i,
-      :text       => "http://selenium-ignores.jaribakken.com/",
+      :text       => "http://ignores.ci.seleniumhq.org/",
       :help       => "Link to the @Ignore dashboard."
     },
     {
