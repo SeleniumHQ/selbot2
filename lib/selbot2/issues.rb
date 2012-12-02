@@ -69,7 +69,7 @@ module Selbot2
 
       user    = issue['user'] && issue['user']['login']
       state   = issue['state']
-      labels  = issue['labels'] || []
+      labels  = (issue['labels'] || []).map { |e| e['name'] }
       summary = issue['title']
       url     = issue['html_url']
 
