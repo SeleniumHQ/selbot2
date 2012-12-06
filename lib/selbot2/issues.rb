@@ -12,11 +12,6 @@ module Selbot2
       IssueFinder.each(m.message) { |resp| m.reply(resp) }
     end
 
-    private
-
-    def issue_finder
-      @issue_finder ||= IssueFinder.new
-    end
   end
 
   class IssueFinder
@@ -30,13 +25,14 @@ module Selbot2
       (?:\)|\])?   # optional closing parentheses or brace
     /x
 
-    def each(str)
+    def self.each(str)
+      finder = new
       result = []
 
       str.scan(RX).each do |prefix, num|
-        found = find(prefix, num)
+        found = finder.find(prefix, num)
         if found
-          yield found if block_given
+          yield found if block_given?
           result << found
         end
       end

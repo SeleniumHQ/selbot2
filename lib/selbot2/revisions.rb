@@ -15,7 +15,7 @@ module Selbot2
     private
 
     module RevisionFinder
-      include SvnHelper
+      extend SvnHelper
 
       RX = /\br(\d+|HEAD)\b/
 
