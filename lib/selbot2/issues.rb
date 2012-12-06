@@ -9,12 +9,7 @@ module Selbot2
 
     def listen(m)
       return if IGNORED_NICKS.include? m.user.nick
-
-      issues = m.message.scan(IssueFinder::RX)
-      issues.each do |prefix, num|
-        resp = issue_finder.find(prefix, num)
-        resp && m.reply(resp)
-      end
+      IssueFinder.each(m.message) { |resp| m.reply(resp) }
     end
 
     private
@@ -34,6 +29,20 @@ module Selbot2
       (\d+)        # capture 2 - issue number
       (?:\)|\])?   # optional closing parentheses or brace
     /x
+
+    def each(str)
+      result = []
+
+      str.scan(RX).each do |prefix, num|
+        found = find(prefix, num)
+        if found
+          yield found if block_given
+          result << found
+        end
+      end
+
+      result
+    end
 
     def find(project_name, num)
       return if project_name && project_name =~ /^http/

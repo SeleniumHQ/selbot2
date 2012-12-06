@@ -28,8 +28,11 @@ module Selbot2
       end
 
       def issues
-        finder = IssueFinder.new
-        @message.scan(IssueFinder::RX).map { |prefix, num| finder.find(prefix, num) }
+        IssueFinder.each(@message).to_a
+      end
+
+      def revisions
+        RevisionFinder.each(@message).to_a
       end
     end # Note
 

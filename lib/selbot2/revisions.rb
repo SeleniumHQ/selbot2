@@ -7,25 +7,43 @@ module Selbot2
 
     listen_to :message
 
-    REVISION_EXP = /\br(\d+|HEAD)\b/
-
     def listen(m)
-      revs = m.message.scan(REVISION_EXP).flatten
-      revs.each do |rev|
-        resp = find(rev)
-        resp && m.reply(resp)
+      RevisionFinder.each(m.message) do |resp|
+        m.reply(resp)
       end
     end
 
     private
 
-    def find(num)
-      doc = svn "log", "-r#{num}"
-      entry = doc.css("logentry").first
+    module RevisionFinder
+      RX = /\br(\d+|HEAD)\b/
 
-      entry && Entry.new(entry).reply
-    rescue => ex
-      p [ex.message, ex.backtrace.first]
+      module_function
+
+      def each(str)
+        nums = str.scan(RX).flatten
+
+        result = []
+
+        nums.each do |num|
+          reply = find(num)
+          if reply
+            yield reply if block_given?
+            result << reply
+          end
+        end
+
+        result
+      end
+
+      def find(num)
+        doc = svn "log", "-r#{num}"
+        entry = doc.css("logentry").first
+
+        entry && Entry.new(entry).reply
+      rescue => ex
+        p [ex.message, ex.backtrace.first]
+      end
     end
 
     class Entry
