@@ -124,7 +124,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /m-?day/i,
-      :text       => "M-Day: day in the future when when Marionette is made available for non-debug builds",
+      :text       => "M-Day: day in the future when Marionette is made available for non-debug builds",
       :help       => "What is M-day?"
     }
   ].each do |cmd|
