@@ -5,7 +5,27 @@ module Selbot2
     HELPS << ["#<issue-number>", "show issue"]
     IGNORED_NICKS = %w[seljenkinsbot]
 
-    ISSUE_EXP = /
+    listen_to :message
+
+    def listen(m)
+      return if IGNORED_NICKS.include? m.user.nick
+
+      issues = m.message.scan(IssueFinder::RX)
+      issues.each do |prefix, num|
+        resp = issue_finder.find(prefix, num)
+        resp && m.reply(resp)
+      end
+    end
+
+    private
+
+    def issue_finder
+      @issue_finder ||= IssueFinder.new
+    end
+  end
+
+  class IssueFinder
+    RX = /
       (?:^|\s)     # space or BOL
       (?!http)     # ignore url anchors
       (?:\(|\[)?   # optional opening parentheses or brace
@@ -13,22 +33,7 @@ module Selbot2
       \#
       (\d+)        # capture 2 - issue number
       (?:\)|\])?   # optional closing parentheses or brace
-
     /x
-
-    listen_to :message
-
-    def listen(m)
-      return if IGNORED_NICKS.include? m.user.nick
-
-      issues = m.message.scan(ISSUE_EXP)
-      issues.each do |prefix, num|
-        resp = find(prefix, num)
-        resp && m.reply(resp)
-      end
-    end
-
-    private
 
     def find(project_name, num)
       return if project_name && project_name =~ /^http/
@@ -96,67 +101,67 @@ module Selbot2
     def escaper
       @escaper ||= URI::Parser.new
     end
+  end # IssueFidner
 
-    class GCodeIssue
-      def initialize(doc, project_name)
-        @doc = doc
-        @project_name = project_name
-      end
+  class GCodeIssue
+    def initialize(doc, project_name)
+      @doc = doc
+      @project_name = project_name
+    end
 
-      def owner
-        @doc.xpath(".//issues:owner/issues:username").text
-      end
+    def owner
+      @doc.xpath(".//issues:owner/issues:username").text
+    end
 
-      def id
-        @id ||= @doc.xpath("./issues:id").text
-      end
+    def id
+      @id ||= @doc.xpath("./issues:id").text
+    end
 
-      def duplicate?
-        status == "duplicate" && duplicate_id
-      end
+    def duplicate?
+      status == "duplicate" && duplicate_id
+    end
 
-      def duplicate_url
-        url_for(duplicate_id) if duplicate?
-      end
+    def duplicate_url
+      url_for(duplicate_id) if duplicate?
+    end
 
-      def url
-        url_for id
-      end
+    def url
+      url_for id
+    end
 
-      def state
-        @doc.xpath("./issues:state").text
-      end
+    def state
+      @doc.xpath("./issues:state").text
+    end
 
-      def summary
-        @doc.css("title").text
-      end
+    def summary
+      @doc.css("title").text
+    end
 
-      def labels
-        @doc.xpath("./issues:label").map { |e| e.text }
-      end
+    def labels
+      @doc.xpath("./issues:label").map { |e| e.text }
+    end
 
-      def status
-        @doc.xpath("./issues:status").text.downcase
-      end
+    def status
+      @doc.xpath("./issues:status").text.downcase
+    end
 
-      def reply
-        str = "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
-        str << " (duplicate of #{duplicate_url})" if duplicate?
+    def reply
+      str = "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
+      str << " (duplicate of #{duplicate_url})" if duplicate?
 
-        Util.format_string str
-      end
+      Util.format_string str
+    end
 
-      private
+    private
 
-      def url_for(id)
-        "https://code.google.com/p/#{@project_name}/issues/detail?id=#{id}"
-      end
+    def url_for(id)
+      "https://code.google.com/p/#{@project_name}/issues/detail?id=#{id}"
+    end
 
-      def duplicate_id
-        node = @doc.xpath("./issues:mergedInto/issues:id").first
-        node && node.text
-      end
-
+    def duplicate_id
+      node = @doc.xpath("./issues:mergedInto/issues:id").first
+      node && node.text
     end
   end
+
 end

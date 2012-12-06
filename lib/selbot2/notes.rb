@@ -14,6 +14,8 @@ module Selbot2
     STATE = "notes.yml"
 
     class Note
+      attr_reader :message
+
       def initialize(from, to, message, time)
         @from    = from
         @to      = to
@@ -23,6 +25,11 @@ module Selbot2
 
       def to_s
         "#{@to}: note from #{@from} #{Util.distance_of_time_in_words @time} ago: #{@message} "
+      end
+
+      def issues
+        finder = IssueFinder.new
+        @message.scan(IssueFinder::RX).map { |prefix, num| finder.find(prefix, num) }
       end
     end # Note
 
@@ -56,6 +63,7 @@ module Selbot2
 
       @notes.delete(m.user.nick).each do |note|
         m.channel.send note.to_s
+        note.issues.each { |str| m.channel.send str }
       end
 
       save @notes
