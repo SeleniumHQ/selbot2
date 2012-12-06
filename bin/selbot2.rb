@@ -121,6 +121,11 @@ Cinch::Bot.new {
       :expression => /:kittens\b/,
       :text       => "Before you say you cannot provide html, think of the kittens! http://jimevansmusic.blogspot.ca/2012/12/not-providing-html-page-is-bogus.html",
       :help       => "Letting users know they need to provide html"
+    },
+    {
+      :expression => /m-?day/i,
+      :text       => "M-Day: day in the future when when Marionette is made available for non-debug builds",
+      :help       => "What is M-day?"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
