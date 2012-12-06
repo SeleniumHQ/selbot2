@@ -67,6 +67,7 @@ module Selbot2
       @notes.delete(m.user.nick).each do |note|
         m.channel.send note.to_s
         note.issues.each { |str| m.channel.send str }
+        note.revisions.each { |str| m.channel.send str }
       end
 
       save @notes
