@@ -1,7 +1,6 @@
 module Selbot2
   class Revisions
     include Cinch::Plugin
-    include SvnHelper
 
     HELPS << ["r<revision>", "show revision"]
 
@@ -16,6 +15,8 @@ module Selbot2
     private
 
     module RevisionFinder
+      include SvnHelper
+
       RX = /\br(\d+|HEAD)\b/
 
       module_function
