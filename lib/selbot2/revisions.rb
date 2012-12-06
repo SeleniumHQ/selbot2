@@ -11,71 +11,68 @@ module Selbot2
         m.reply(resp)
       end
     end
+  end
+  
+  module RevisionFinder
+    extend SvnHelper
 
-    private
+    RX = /\br(\d+|HEAD)\b/
 
-    module RevisionFinder
-      extend SvnHelper
+    module_function
 
-      RX = /\br(\d+|HEAD)\b/
+    def each(str)
+      nums = str.scan(RX).flatten
 
-      module_function
+      result = []
 
-      def each(str)
-        nums = str.scan(RX).flatten
-
-        result = []
-
-        nums.each do |num|
-          reply = find(num)
-          if reply
-            yield reply if block_given?
-            result << reply
-          end
+      nums.each do |num|
+        reply = find(num)
+        if reply
+          yield reply if block_given?
+          result << reply
         end
-
-        result
       end
 
-      def find(num)
-        doc = svn "log", "-r#{num}"
-        entry = doc.css("logentry").first
-
-        entry && Entry.new(entry).reply
-      rescue => ex
-        p [ex.message, ex.backtrace.first]
-      end
+      result
     end
 
-    class Entry
-      def initialize(doc)
-        @doc = doc
-      end
+    def find(num)
+      doc = svn "log", "-r#{num}"
+      entry = doc.css("logentry").first
 
-      def revision
-        @doc['revision']
-      end
+      entry && Entry.new(entry).reply
+    rescue => ex
+      p [ex.message, ex.backtrace.first]
+    end
+  end
 
-      def author
-        @doc.css("author").text
-      end
-
-      def date
-        Time.parse @doc.css("date").text
-      end
-
-      def message
-        @doc.css("msg").text
-      end
-
-      def url
-        "https://code.google.com/p/selenium/source/detail?r=#{revision}"
-      end
-
-      def reply
-        Util.format_revision author, date, message, revision
-      end
+  class Entry
+    def initialize(doc)
+      @doc = doc
     end
 
+    def revision
+      @doc['revision']
+    end
+
+    def author
+      @doc.css("author").text
+    end
+
+    def date
+      Time.parse @doc.css("date").text
+    end
+
+    def message
+      @doc.css("msg").text
+    end
+
+    def url
+      "https://code.google.com/p/selenium/source/detail?r=#{revision}"
+    end
+
+    def reply
+      Util.format_revision author, date, message, revision
+    end
   end
 end
