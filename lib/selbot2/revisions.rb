@@ -16,7 +16,7 @@ module Selbot2
   module RevisionFinder
     extend SvnHelper
 
-    RX = /\br(\d+|HEAD)\b/
+    RX = /\br([a-f\d]+|HEAD)\b/
 
     module_function
 
