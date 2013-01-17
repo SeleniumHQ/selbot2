@@ -7,3 +7,4 @@ gem "nokogiri"
 gem "json"
 gem "rake"
 # gem "twitter"
+gem 'rugged'

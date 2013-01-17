@@ -39,11 +39,11 @@ module Selbot2
 
 
     def poll
-      if @last_revision <= 0
-        bot.debug "ignoring revision #{@last_revision} for #{URL}"
+      if @last_revision.nil?
+        bot.debug "ignoring revision #{@last_revision.inspect} for #{URL}"
         return
       else
-        bot.debug "polling #{URL} @ #{@last_revision}"
+        bot.debug "polling git @ #{@last_revision.inspect}"
       end
 
       current_revision = fetch_latest_revision
