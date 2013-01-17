@@ -2,7 +2,6 @@ require "uri"
 
 module Selbot2
   class Commits
-    include SvnHelper
     include Cinch::Plugin
 
     MAX_REVS = 10
@@ -13,11 +12,11 @@ module Selbot2
     prefix Selbot2::PREFIX
     match /last( \d+)?/
 
-
     def initialize(*args)
       super
 
-      @last_revision = fetch_latest_revision
+      @git = Git.new
+      @last_commit = @git.last_commit
     end
 
     def execute(message, num)
@@ -29,81 +28,37 @@ module Selbot2
 
       num = MAX_REVS if num > MAX_REVS
 
-      start = @last_revision - num + 1
-      if @last_revision && start >= 0
-        revisions_between(start, @last_revision).each do |rev|
-          message.user.privmsg rev.reply
-        end
+      @git.last(num).each do |commit|
+        message.user.privmsg reply_for(commit)
       end
     end
 
-
     def poll
-      if @last_revision.nil?
-        bot.debug "ignoring revision #{@last_revision.inspect} for #{URL}"
+      bot.debug "polling git @ #{@last_commit.oid.inspect}"
+
+      @git.update
+
+      if @git.last_commit.oid == @last_commit.oid
         return
-      else
-        bot.debug "polling git @ #{@last_revision.inspect}"
       end
 
-      current_revision = fetch_latest_revision
-      return if current_revision == @last_revision
-
-      revisions_between(@last_revision + 1, current_revision).each do |rev|
-        Selbot2::CHANNELS.each { |channel| Channel(channel).send rev.reply }
+      @git.commits_since(@last_commit.time) do |commit|
+        Selbot2::CHANNELS.each { |channel| Channel(channel).send reply_for(commit) }
       end
 
-      @last_revision = current_revision
+      @last_commit = @git.last_commit
     end
 
     private
 
-    def fetch_latest_revision
-      doc = svn("info")
-
-      commit = doc.css("commit").first
-      (commit && commit['revision']).to_i
-    end
-
-
-    def revisions_between(first, last)
-      doc = svn("log", "-r#{first}:#{last}")
-      doc.css("logentry").map { |entry| Revision.new(entry) }
-    end
-
-    class Revision
-      attr_reader :url, :revision, :author, :date, :message
-
-      def initialize(doc)
-        @doc = doc
-      end
-
-      def revision
-        @doc['revision'].to_i
-      end
-
-      def author
-        @doc.css("author").text
-      end
-
-      def date
-        Time.parse(@doc.css("date").text)
-      end
-
-      def message
-        @doc.css("msg").text.to_s.strip
-      end
-
-      def url
-        "https://code.google.com/p/selenium/source/detail?r=#{revision}"
-      end
-
-      def reply
-        Util.format_revision author, date, message, revision
-      end
+    def reply_for(obj)
+      Util.format_revision obj.author[:name],
+                           Time.at(obj.time).utc,
+                           obj.message.strip,
+                           obj.oid[0,7]
 
     end
 
-  end # SvnPoller
+  end # Commits
 end # Selbot2
 
