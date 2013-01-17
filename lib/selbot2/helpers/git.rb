@@ -22,7 +22,11 @@ module Selbot2
     end
 
     def update
-      @remote.connect(:fetch) { @remote.download }
+      # @remote.connect(:fetch) { @remote.download }
+
+      # hack since the above doesn't work
+      ok = Dir.chdir(@repo.path) { system "git fetch origin" }
+      ok or puts "failed update of #{@repo.path}"
     end
 
     def commits_since(time)
