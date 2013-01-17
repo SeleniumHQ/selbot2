@@ -21,9 +21,9 @@ Cinch::Bot.new {
       Selbot2::WhoBrokeIt
     ]
 
-    if File.exist?("twitter.conf")
-      c.plugins.plugins << Selbot2::Twitter
-    end
+    # if File.exist?("twitter.conf")
+    #   c.plugins.plugins << Selbot2::Twitter
+    # end
   end
 
   Selbot2::HELPS << [':help', "you're looking at it"]
