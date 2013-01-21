@@ -10,6 +10,7 @@ module Selbot2
 end
 
 require 'selbot2/helpers/jenkins'
+require 'selbot2/helpers/git'
 
 require 'selbot2/persistable'
 require 'selbot2/util'
