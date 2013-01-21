@@ -39,14 +39,7 @@ module Selbot2
     end
 
     def find(sha)
-      obj = git.commit(sha)
-
-      if obj
-        Util.format_revision obj.author[:name],
-                             Time.at(obj.time).utc,
-                             obj.message.strip,
-                             obj.oid[0,7]
-      end
+      Util.format_revision git.commit(sha)
     rescue => ex
       p [ex.message, ex.backtrace.first]
       nil
