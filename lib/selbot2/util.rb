@@ -60,9 +60,9 @@ module Selbot2
     end
 
     def format_revision(obj)
-      author   = obj.author.login,
-      date     = Time.parse(obj.commit.author.date).utc,
-      message  = obj.commit.message.strip,
+      author   = obj.author.login
+      date     = Time.parse(obj.commit.author.date).utc
+      message  = obj.commit.message.strip
       revision = obj.sha[0,7]
 
       url           = "https://code.google.com/p/selenium/source/detail?r=#{revision}"
