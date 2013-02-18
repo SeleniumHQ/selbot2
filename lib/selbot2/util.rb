@@ -66,7 +66,7 @@ module Selbot2
       revision = obj.sha[0,7]
 
       url           = "https://code.google.com/p/selenium/source/detail?r=#{revision}"
-      ci_url        = "http://dashboard.ci.seleniumhq.org/#/revision/#{revision}"
+      ci_url        = "http://dashboard.ci.seleniumhq.org/#/revision/#{obj.sha}"
       short_message = message.split("\n").first
 
       Util.format_string "%g#{author}%n #{Util.distance_of_time_in_words date} ago - %B#{short_message}%n | #{url} | #{ci_url}"
