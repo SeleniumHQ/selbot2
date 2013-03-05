@@ -3,7 +3,7 @@ module Selbot2
     include Cinch::Plugin
 
     HELPS << ["#<issue-number>", "show issue"]
-    IGNORED_NICKS = %w[seljenkinsbot]
+    IGNORED_NICKS = %w[seljenkinsbot Selenium-Git]
 
     listen_to :message
 
