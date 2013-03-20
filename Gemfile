@@ -1,4 +1,4 @@
-source :rubygems
+source "https://rubygems.org"
 
 gem "cinch"
 gem "rspec", ">= 2.5.0"

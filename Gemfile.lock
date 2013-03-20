@@ -10,7 +10,7 @@ GEM
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
     hashie (1.2.0)
-    json (1.5.1)
+    json (1.7.7)
     method_source (0.8.1)
     mime-types (1.16)
     multi_json (1.5.0)
