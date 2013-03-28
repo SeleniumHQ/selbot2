@@ -67,6 +67,11 @@ Cinch::Bot.new {
       :help       => "link to gist.github.com",
     },
     {
+      :expression => /:(gist-?usage|using-?gist)/,
+      :text       => "https://github.com/radar/guides/blob/master/using-gist.markdown",
+      :help       => "how to use gists",
+    },
+    {
       :expression => /:ask/,
       :text       => "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)",
       :help       => "Don't ask to ask."
