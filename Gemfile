@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "cinch"
+gem "cinch", "~> 1.0"
 gem "rspec", ">= 2.5.0"
 gem "rest-client"
 gem "nokogiri"
