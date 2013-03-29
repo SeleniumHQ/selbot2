@@ -85,9 +85,24 @@ module Selbot2
 
       str = "%g#{user}%n #{state} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
       Util.format_string str
+    rescue RestClient::Gone
+      fetch_github_pull_request(project_name, num)
     rescue RestClient::ResourceNotFound => ex
       p [ex.message, ex.backtrace.first]
       nil
+    end
+
+    def fetch_github_pull_request(project_name, num)
+      issue = JSON.parse(RestClient.get("https://api.github.com/repos/#{project_name}/pulls/#{num}"))
+
+      user    = issue['user'] && issue['user']['login']
+      state   = issue['state']
+      merged  = issue['merged'] ? 'merged' : 'not merged'
+      summary = issue['title']
+      url     = issue['html_url']
+
+      str = "%g#{user}%n #{state}, #{merged} %B#{summary}%n - #{url}"
+      Util.format_string str
     end
 
     def fetch_gcode_issue(project_name, num)
