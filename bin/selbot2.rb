@@ -37,7 +37,7 @@ Cinch::Bot.new {
 
   Selbot2::HELPS << [':log', "link to today's chat log at illictonion"]
   on :message, /:log/ do |m|
-    m.reply "https://github.com/SeleniumHQ/irc-logs/blob/master/#{(Time.new.gmtime - 25200).strftime('%Y/%m/%d')}.txt | http://illicitonion.com/selogs/search"
+    m.reply "https://raw.github.com/SeleniumHQ/irc-logs/master/#{(Time.new.gmtime - 25200).strftime('%Y/%m/%d')}.txt"
   end
 
   [
