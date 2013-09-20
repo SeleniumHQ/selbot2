@@ -110,7 +110,7 @@ module Selbot2
       url = "https://code.google.com/p/#{project_name}/issues/detail?id=#{q}"
 
       response = RestClient.get(url)
-      data = Nokogiri.XML(response).css("#maincol").first
+      data = Nokogiri::HTML.parse(response).css("#maincol").first
 
       GCodeIssue.new(data, project_name).reply if data
     rescue RestClient::ResourceNotFound => ex

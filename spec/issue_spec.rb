@@ -4,9 +4,9 @@ module Selbot2
   class Issues
     describe GCodeIssue do
       let(:project_name) { 'selenium' }
-      let(:blocking_node) { Nokogiri::XML(fixture("blocking_issue.xml")).css("entry").first }
+      let(:blocking_node) { Nokogiri::HTML(fixture("blocking_issue.html")).css("#maincol").first }
       let(:blocking_issue) { GCodeIssue.new(blocking_node, project_name) }
-      let(:duplicate_node) { Nokogiri::XML(fixture("duplicate_issue.xml")).css("entry").first }
+      let(:duplicate_node) { Nokogiri::HTML(fixture("duplicate_issue.html")).css("#maincol").first }
       let(:duplicate_issue) { GCodeIssue.new(duplicate_node, project_name)}
       let(:rx) { Selbot2::IssueFinder::RX }
 
