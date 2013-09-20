@@ -106,11 +106,11 @@ module Selbot2
     end
 
     def fetch_gcode_issue(project_name, num)
-      q = escaper.escape "id:#{num}"
-      url = "https://code.google.com/feeds/issues/p/#{project_name}/issues/full?q=#{q}"
+      q = escaper.escape "#{num}"
+      url = "https://code.google.com/p/#{project_name}/issues/detail?id=#{q}"
 
       response = RestClient.get(url)
-      data = Nokogiri.XML(response).css("entry").first
+      data = Nokogiri.XML(response).css("#maincol").first
 
       GCodeIssue.new(data, project_name).reply if data
     rescue RestClient::ResourceNotFound => ex
@@ -130,15 +130,15 @@ module Selbot2
     end
 
     def owner
-      @doc.xpath(".//issues:owner/issues:username").text
+      @doc.xpath(".//td[@id='issuemeta']//th[contains(., 'Owner:')]/../td").text.gsub("\n ", '')
     end
 
     def id
-      @id ||= @doc.xpath("./issues:id").text
+      @id ||= @doc.css("a[href^='detail?id=']").text
     end
 
     def duplicate?
-      status == "duplicate" && duplicate_id
+      status == "Duplicate" && duplicate_id
     end
 
     def duplicate_url
@@ -150,23 +150,27 @@ module Selbot2
     end
 
     def state
-      @doc.xpath("./issues:state").text
+      @doc.css("#color_control").attr('class').text == 'closed_colors' ? 'closed': 'open'
     end
 
     def summary
-      @doc.css("title").text
+      @doc.css("span.h3").text
     end
 
     def labels
-      @doc.xpath("./issues:label").map { |e| e.text }
+      l = ''
+      for label in @doc.css("#issuemeta a.label") do
+        l += label.text + " "
+      end
+      l
     end
 
     def status
-      @doc.xpath("./issues:status").text.downcase
+      @doc.css("#issuemeta td")[0].text.gsub("\n ", '')
     end
 
     def reply
-      str = "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url} [#{labels.join(' ')}]"
+      str = "%g#{owner}%n #{state}/#{status} %B#{summary}%n - #{url} [#{labels}]"
       str << " (duplicate of #{duplicate_url})" if duplicate?
 
       Util.format_string str
@@ -179,8 +183,8 @@ module Selbot2
     end
 
     def duplicate_id
-      node = @doc.xpath("./issues:mergedInto/issues:id").first
-      node && node.text
+      node = @doc.xpath(".//td[@id='issuemeta']//th[contains(.,'Merged:')]/..//a").first
+      node && node.text.split(' ')[1]
     end
   end
 
