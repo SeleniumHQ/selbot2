@@ -88,7 +88,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:chrome(driver)?/,
-      :text       => "https://code.google.com/p/selenium/wiki/ChromeDriver | https://code.google.com/p/chromedriver/downloads/list ",
+      :text       => "https://code.google.com/p/selenium/wiki/ChromeDriver | http://chromedriver.storage.googleapis.com/index.html ",
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
@@ -98,7 +98,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:change(log|s)\b/,
-      :text       => ".NET: http://goo.gl/zBIjE | Java: http://goo.gl/5B23U | Ruby: http://goo.gl/yN6Qm | Python: http://goo.gl/7BtCb | IDE: http://goo.gl/50vLB",
+      :text       => ".NET: http://goo.gl/zBIjE | Java: http://goo.gl/5B23U | Ruby: http://goo.gl/yN6Qm | Python: http://goo.gl/7BtCb | IDE: http://goo.gl/50vLB | IE: http://goo.gl/VYNFyb",
       :help       => "links to change logs"
     },
     {
