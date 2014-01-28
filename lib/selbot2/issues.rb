@@ -16,6 +16,17 @@ module Selbot2
       IssueFinder.each(m.message) { |resp| m.reply(resp) }
     end
 
+    def send_open_count
+      response = RestClient.get("https://code.google.com/p/selenium/issues/list")
+      node     = Nokogiri::HTML.parse(response).css(".pagination").first
+
+      if node && node.text =~ /of (\d+)/
+        Channel("#selenium").send Util.format_string("Open issues: %B#{$1}%n")
+      end
+    rescue => ex
+      p [ex.message, ex.backtrace.first]
+    end
+
   end
 
   class IssueFinder
@@ -120,17 +131,6 @@ module Selbot2
     rescue RestClient::ResourceNotFound => ex
       p [ex.message, ex.backtrace.first]
       nil
-    end
-
-    def send_open_count
-      response = RestClient.get("https://code.google.com/p/selenium/issues/list")
-      node     = Nokogiri::HTML.parse(response).css(".pagination").first
-
-      if node && node.text =~ /of (\d+)/
-        Channel("#selenium").send "Open issues: #{$1}"
-      end
-    rescue => ex
-      p [ex.message, ex.backtrace.first]
     end
 
     def escaper
