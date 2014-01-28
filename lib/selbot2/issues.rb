@@ -7,6 +7,10 @@ module Selbot2
 
     listen_to :message
 
+    if ENV['BUG_MASH_INTERVAL']
+      timer ENV['BUG_MASH_INTERVAL'].to_i, :send_open_count
+    end
+
     def listen(m)
       return if IGNORED_NICKS.include? m.user.nick
       IssueFinder.each(m.message) { |resp| m.reply(resp) }
@@ -116,6 +120,17 @@ module Selbot2
     rescue RestClient::ResourceNotFound => ex
       p [ex.message, ex.backtrace.first]
       nil
+    end
+
+    def send_open_count
+      response = RestClient.get("https://code.google.com/p/selenium/issues/list")
+      node     = Nokogiri::HTML.parse(response).css(".pagination").first
+
+      if node && node.text =~ /of (\d+)/
+        Channel("#selenium").send "Open issues: #{$1}"
+      end
+    rescue => ex
+      p [ex.message, ex.backtrace.first]
     end
 
     def escaper
