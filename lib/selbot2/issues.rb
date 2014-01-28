@@ -7,8 +7,8 @@ module Selbot2
 
     listen_to :message
 
-    if ENV['BUG_MASH_INTERVAL']
-      timer ENV['BUG_MASH_INTERVAL'].to_i, method: :send_open_count
+    if ENV['OPEN_ISSUE_INTERVAL']
+      timer ENV['OPEN_ISSUE_INTERVAL'].to_i, method: :send_open_count
     end
 
     def listen(m)
@@ -21,7 +21,10 @@ module Selbot2
       node     = Nokogiri::HTML.parse(response).css(".pagination").first
 
       if node && node.text =~ /of (\d+)/
-        Channel("#selenium").send Util.format_string("%rBUG MASH!%n Open issues: %B#{$1}%n")
+        msg = "Open issues: %B#{$1}%n"
+        msg = "%r#{ENV['OPEN_ISSUE_ALERT']}%n #{msg}"
+
+        Channel("#selenium").notice Util.format_string(msg)
       end
     rescue => ex
       p [ex.message, ex.backtrace.first]
