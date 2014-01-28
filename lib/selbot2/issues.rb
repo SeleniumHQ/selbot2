@@ -8,7 +8,7 @@ module Selbot2
     listen_to :message
 
     if ENV['BUG_MASH_INTERVAL']
-      timer ENV['BUG_MASH_INTERVAL'].to_i, :send_open_count
+      timer ENV['BUG_MASH_INTERVAL'].to_i, method: :send_open_count
     end
 
     def listen(m)
