@@ -21,7 +21,7 @@ module Selbot2
       node     = Nokogiri::HTML.parse(response).css(".pagination").first
 
       if node && node.text =~ /of (\d+)/
-        Channel("#selenium").send Util.format_string("Open issues: %B#{$1}%n")
+        Channel("#selenium").send Util.format_string("%rBUG MASH!%n Open issues: %B#{$1}%n")
       end
     rescue => ex
       p [ex.message, ex.backtrace.first]
