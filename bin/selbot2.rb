@@ -4,7 +4,7 @@ require 'selbot2'
 
 Cinch::Bot.new {
   configure do |c|
-    c.server = "irc.freenode.net"
+    c.server = "chat.freenode.net"
     c.nick   = "selbot2"
     c.channels = Selbot2::CHANNELS
     c.plugins.plugins = [
