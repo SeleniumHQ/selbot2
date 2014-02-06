@@ -128,8 +128,13 @@ Cinch::Bot.new {
     },
     {
       :expression => /m-?day/i,
-      :text       => "M-Day: day in the future when Marionette is made available for non-debug builds",
+      :text       => "M-Day: is already! Marionette is IN Firefox!",
       :help       => "What is M-day?"
+    },
+    {
+      :expression => /:waits/,
+      :text       => "http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits"
+      :help       => "link to sehq section on explicit and implicit waits"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
