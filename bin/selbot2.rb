@@ -17,7 +17,8 @@ Cinch::Bot.new {
       Selbot2::SeleniumHQ,
       Selbot2::CI,
       Selbot2::Google,
-      Selbot2::WhoBrokeIt
+      Selbot2::WhoBrokeIt,
+      Selbot2::Commits
     ]
 
     # if File.exist?("twitter.conf")

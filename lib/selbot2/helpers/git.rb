@@ -7,7 +7,7 @@ module Selbot2
 
     def initialize(repo = "seleniumhq/selenium")
       @repo   = repo
-      @client = Octokit.new
+      @client = Octokit::Client::new
     end
 
     def commits_since(time)
@@ -15,7 +15,7 @@ module Selbot2
     end
 
     def last(n)
-      @client.commits(REPO, :per_page => n)
+      @client.commits(@repo, :per_page => n)
     end
 
     def commit(sha)

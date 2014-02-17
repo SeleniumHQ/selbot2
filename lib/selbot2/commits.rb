@@ -14,7 +14,6 @@ module Selbot2
       super
 
       @git = Git.new
-      @last_commit = @git.last_commit
     end
 
     def execute(message, num)
@@ -27,7 +26,7 @@ module Selbot2
       num = MAX_REVS if num > MAX_REVS
 
       @git.last(num).each do |commit|
-        message.user.privmsg Util.format_revision(obj)
+        message.user.privmsg Util.format_revision(commit)
       end
     end
 
