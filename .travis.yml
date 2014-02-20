@@ -11,3 +11,5 @@ notifications:
     on_failure: change
     template:
       - "%{author} | %{commit} | %{message} | %{build_url}"
+before_script:
+  - for file in **/*.rb; do ruby -c $file || return 1; done
