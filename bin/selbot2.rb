@@ -93,6 +93,22 @@ Cinch::Bot.new {
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
+      :expression => /:firefox/,
+      :text       => "Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
+      :help       => "link to Download page of every Firefox version"
+    },    
+    {
+      :expression => /:css/,
+      :text       => "CSS Selector Tutorial http://saucelabs.com/resources/selenium/css-selectors ",
+      :help       => "links to CSS Selector Tutorial"
+    },    
+    {
+      :expression => /:regex/,
+      :text       => "You can play with Regular Expressions here http://www.regexr.com/ ",
+      :help       => "links to GUI REGEX tool"
+    },    
+
+    {
       :expression => /:clarify/,
       :text       => "Please clarify: Are you using WebDriver, RC or IDE? What version of Selenium? What programming language? What browser and browser version? What operating system?",
       :help       => "Please clarify your question."
