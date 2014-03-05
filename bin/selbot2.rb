@@ -90,19 +90,19 @@ Cinch::Bot.new {
     },
     {
       :expression => /:firefox/,
-      :text       => "Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
-      :help       => "link to Download page of every Firefox version"
-    },    
+      :text       => "https://wiki.mozilla.org/Releases | Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
+      :help       => "link to release plan and download page of every Firefox version"
+    },
     {
       :expression => /:css/,
-      :text       => "CSS Selector Tutorial http://saucelabs.com/resources/selenium/css-selectors ",
+      :text       => "CSS Selector Tutorial http://saucelabs.com/resources/selenium/css-selectors",
       :help       => "links to CSS Selector Tutorial"
-    },    
+    },
     {
       :expression => /:regex/,
-      :text       => "You can play with Regular Expressions here http://www.regexr.com/ ",
+      :text       => "You can play with Regular Expressions here: http://rubular.com/ or http://www.regexr.com/",
       :help       => "links to GUI REGEX tool"
-    },    
+    },
 
     {
       :expression => /:clarify/,
@@ -155,4 +155,3 @@ Cinch::Bot.new {
   end
 
 }.start
-
