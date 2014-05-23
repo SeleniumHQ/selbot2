@@ -47,7 +47,7 @@ module Selbot2
       finder = new
       result = []
 
-      str.scan(RX).each do |prefix, num|
+      str.scan(RX).uniq.each do |prefix, num|
         found = finder.find(prefix, num)
         if found
           yield found if block_given?
@@ -130,7 +130,7 @@ module Selbot2
       response = RestClient.get(url)
       data = Nokogiri::HTML.parse(response).css("#maincol").first
 
-      GCodeIssue.new(data, project_name).reply if data
+      GCodeIssue.new(data, project_name).reply if data && data.text !~ /project has moved/i
     rescue RestClient::ResourceNotFound => ex
       p [ex.message, ex.backtrace.first]
       nil
