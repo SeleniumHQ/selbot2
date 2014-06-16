@@ -55,7 +55,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:downloads/,
-      :text       => "http://seleniumhq.org/download/ and https://code.google.com/p/selenium/downloads/list",
+      :text       => "http://seleniumhq.org/download/ and http://selenium-release.storage.googleapis.com/index.html",
       :help       => "links to downloads pages"
     },
     {
