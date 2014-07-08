@@ -148,7 +148,7 @@ module Selbot2
     end
 
     def owner
-      @doc.xpath(".//td[@id='issuemeta']//th[contains(., 'Owner:')]/../td").text.gsub("\n ", '')
+      @doc.xpath(".//td[@id='issuemeta']//th[contains(., 'Owner:')]/../td").text.gsub("\n", '').strip
     end
 
     def id
