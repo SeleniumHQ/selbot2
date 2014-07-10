@@ -49,7 +49,7 @@ Cinch::Bot.new {
       :help       => "link to the source code"
     },
     {
-      :expression => /:apidocs/,
+      :expression => /:(api|apidocs)/,
       :text       => ".NET: http://goo.gl/lvxok | Java: http://goo.gl/Wvl4G | Ruby: http://goo.gl/ue5sM | Python: http://goo.gl/sCwQ3s | Javascript: http://goo.gl/9aYaOG",
       :help       => "links to API docs"
     },
