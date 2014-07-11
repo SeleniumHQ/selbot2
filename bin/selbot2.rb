@@ -23,8 +23,8 @@ bot = Cinch::Bot.new {
     ]
   end
   
-  yamlFilePath = "res" + File::Separator + "commands.yaml"
-  commands = YAML.load_file(yamlFilePath)
+  yaml_file_path = "res" + File::Separator + "commands.yaml"
+  commands = YAML.load_file(yaml_file_path)
 
   Selbot2::HELPS << [':help', "you're looking at it"]
   on :message, /:help/ do |m|
@@ -59,7 +59,7 @@ bot = Cinch::Bot.new {
 		regexp = Regexp.new factoid_split[0]
 		new_factoid = {:expression => regexp, :text => factoid_split[1], :help => factoid_split[2]}
 		commands << new_factoid
-		File.open(yamlFilePath, 'w') do |factoid|
+		File.open(yaml_file_path, 'w') do |factoid|
 			factoid.write commands.to_yaml
 		end
 		m.reply "Successfully added factoid!"
