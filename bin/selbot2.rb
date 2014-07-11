@@ -6,7 +6,7 @@ require 'yaml'
 bot = Cinch::Bot.new {
   configure do |c|
     c.server = "chat.freenode.net"
-    c.nick   = "selbot2_"
+    c.nick   = "selbot2"
     c.channels = Selbot2::CHANNELS
     c.plugins.plugins = [
       Selbot2::Issues,
@@ -53,12 +53,12 @@ bot = Cinch::Bot.new {
 	factoid = factoid.gsub(/.*\/\:/, "/:")
 	factoid = factoid.gsub(/ @.*/, "")
 	factoid_split = factoid.split("|")
-	factoid_split[0] = factoid_split[0].gsub(/\//,"")
 	#Should have regexp to use, the factoid text and help 
-	if factoid_split.size != 3
+	if factoid_split.size != 3 && (factoid =~ /\/.*\/\|.*\|.*/) > -1 #Simple regexp to check input
 		m.reply "Failed to add factoid. Please make sure you provide the regexp, factoid text and help in the format: '/the_regexp/|the_text|the_help'"
 		break;
 	end
+	factoid_split[0] = factoid_split[0].gsub(/\//,"")
 	regexp = Regexp.new factoid_split[0]
 	new_factoid = {:expression => regexp, :text => factoid_split[1], :help => factoid_split[2]}
 	commands << new_factoid

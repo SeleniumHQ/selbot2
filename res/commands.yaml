@@ -73,15 +73,10 @@
 - :expression: !ruby/regexp /:waits/
   :text: http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits
   :help: link to sehq section on explicit and implicit waits
-- :expression: !ruby/regexp /:bea/
-  :text: test
-  :help: help
-- :expression: !ruby/regexp /:bea/
-  :text: test
-  :help: help
-- :expression: !ruby/regexp /:asq/
-  :text: test
-  :help: help
-- :expression: !ruby/regexp /:asw/
-  :text: test
-  :help: help
+- :expression: !ruby/regexp /:ide/
+  :text: The Selenium IDE is old, outdated, unreliable and deprecated. Please construct
+    your tests in code using WebDriver.
+  :help: Don't use the IDE
+- :expression: !ruby/regexp /:whee\"/
+  :text: asd
+  :help: ads
