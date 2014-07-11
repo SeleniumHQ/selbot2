@@ -54,19 +54,20 @@ bot = Cinch::Bot.new {
 	factoid = factoid.gsub(/ @.*/, "")
 	factoid_split = factoid.split("|")
 	#Should have regexp to use, the factoid text and help 
-	if factoid_split.size != 3 && (factoid =~ /\/.*\/\|.*\|.*/) > -1 #Simple regexp to check input
+	if factoid_split.size == 3 && factoid =~ /\/.+\/\|.+\|.+/ #Simple regexp to check input
+		factoid_split[0] = factoid_split[0].gsub(/\//,"")
+		regexp = Regexp.new factoid_split[0]
+		new_factoid = {:expression => regexp, :text => factoid_split[1], :help => factoid_split[2]}
+		commands << new_factoid
+		File.open(yamlFilePath, 'w') do |factoid|
+			factoid.write commands.to_yaml
+		end
+		m.reply "Successfully added factoid!"
+		Selbot2::HELPS << [new_factoid[:expression].source, new_factoid[:help]]
+		bot.on(:message, new_factoid[:expression]) { |t| t.reply new_factoid[:text] }
+	else
 		m.reply "Failed to add factoid. Please make sure you provide the regexp, factoid text and help in the format: '/the_regexp/|the_text|the_help'"
-		break;
+		return;
 	end
-	factoid_split[0] = factoid_split[0].gsub(/\//,"")
-	regexp = Regexp.new factoid_split[0]
-	new_factoid = {:expression => regexp, :text => factoid_split[1], :help => factoid_split[2]}
-	commands << new_factoid
-	File.open(yamlFilePath, 'w') do |factoid|
-		factoid.write commands.to_yaml
-	end
-	m.reply "Successfully added factoid!"
-	Selbot2::HELPS << [new_factoid[:expression].source, new_factoid[:help]]
-	bot.on(:message, new_factoid[:expression]) { |t| t.reply new_factoid[:text] }
   end
 }; bot.start
