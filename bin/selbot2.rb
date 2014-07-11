@@ -3,7 +3,7 @@
 require 'selbot2'
 require 'yaml'
 
-Cinch::Bot.new {
+bot = Cinch::Bot.new {
   configure do |c|
     c.server = "chat.freenode.net"
     c.nick   = "selbot2_"
@@ -67,6 +67,6 @@ Cinch::Bot.new {
 	end
 	m.reply "Successfully added factoid!"
 	Selbot2::HELPS << [new_factoid[:expression].source, new_factoid[:help]]
-	on(:message, new_factoid[:expression]) { |t| t.reply new_factoid[:text] }
+	bot.on(:message, new_factoid[:expression]) { |t| t.reply new_factoid[:text] }
   end
-}.start
+}; bot.start
