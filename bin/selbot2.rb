@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'selbot2'
+require 'yaml'
 
-Cinch::Bot.new {
+bot = Cinch::Bot.new {
   configure do |c|
     c.server = "chat.freenode.net"
     c.nick   = "selbot2"
@@ -21,6 +22,9 @@ Cinch::Bot.new {
       Selbot2::Commits
     ]
   end
+  
+  yaml_file_path = "res" + File::Separator + "commands.yaml"
+  commands = YAML.load_file(yaml_file_path)
 
   Selbot2::HELPS << [':help', "you're looking at it"]
   on :message, /:help/ do |m|
@@ -37,121 +41,33 @@ Cinch::Bot.new {
     m.reply "https://raw.github.com/SeleniumHQ/irc-logs/master/#{(Time.new.gmtime - 25200).strftime('%Y/%m/%d')}.txt"
   end
 
-  [
-    {
-      :expression => /:newissue/,
-      :text       => "https://code.google.com/p/selenium/issues/entry",
-      :help       => "link to issue the tracker"
-    },
-    {
-      :expression => /:(source|code)/,
-      :text       => "https://code.google.com/p/selenium/source/checkout",
-      :help       => "link to the source code"
-    },
-    {
-      :expression => /:(api|apidocs)/,
-      :text       => ".NET: http://goo.gl/lvxok | Java: http://goo.gl/Wvl4G | Ruby: http://goo.gl/ue5sM | Python: http://goo.gl/sCwQ3s | Javascript: http://goo.gl/9aYaOG",
-      :help       => "links to API docs"
-    },
-    {
-      :expression => /:downloads/,
-      :text       => "http://seleniumhq.org/download/ and http://selenium-release.storage.googleapis.com/index.html",
-      :help       => "links to downloads pages"
-    },
-    {
-      :expression => /:gist/,
-      :text       => "Please paste >3 lines of text to https://gist.github.com",
-      :help       => "link to gist.github.com",
-    },
-    {
-      :expression => /:(gist-?usage|using-?gist)/,
-      :text       => "https://github.com/radar/guides/blob/master/using-gist.markdown",
-      :help       => "how to use gists",
-    },
-    {
-      :expression => /:ask/,
-      :text       => "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)",
-      :help       => "Don't ask to ask."
-    },
-    {
-      :expression => /:cla(\W|$)/,
-      :text       => "http://goo.gl/qC50R",
-      :help       => "link to Selenium's CLA"
-    },
-    {
-      :expression => /:(mailing)?lists?/,
-      :text       => "https://groups.google.com/forum/#!forum/selenium-users | https://groups.google.com/forum/#!forum/selenium-developers",
-      :help       => "link to mailing lists"
-    },
-    {
-      :expression => /:chrome(driver)?/,
-      :text       => "https://code.google.com/p/selenium/wiki/ChromeDriver | http://chromedriver.storage.googleapis.com/index.html ",
-      :help       => "link to ChromeDriver (wiki + downloads)"
-    },
-    {
-      :expression => /:firefox/,
-      :text       => "https://wiki.mozilla.org/Releases | Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
-      :help       => "link to release plan and download page of every Firefox version"
-    },
-    {
-      :expression => /:css/,
-      :text       => "CSS Selector Tutorial http://saucelabs.com/resources/selenium/css-selectors",
-      :help       => "links to CSS Selector Tutorial"
-    },
-    {
-      :expression => /:regex/,
-      :text       => "You can play with Regular Expressions here: http://rubular.com/ or http://www.regexr.com/",
-      :help       => "links to GUI REGEX tool"
-    },
-
-    {
-      :expression => /:clarify/,
-      :text       => "Please clarify: Are you using WebDriver, RC or IDE? What version of Selenium? What programming language? What browser and browser version? What operating system?",
-      :help       => "Please clarify your question."
-    },
-    {
-      :expression => /:change(log|s)\b/,
-      :text       => ".NET: http://goo.gl/zBIjE | Java: http://goo.gl/5B23U | Ruby: http://goo.gl/yN6Qm | Python: http://goo.gl/7BtCb | IDE: http://goo.gl/50vLB | IE: http://goo.gl/VYNFyb",
-      :help       => "links to change logs"
-    },
-    {
-      :expression => /(can i|how do i|is it possible to).+set (a )?cookies?.*\?/i,
-      :text       => "http://seleniumhq.org/docs/03_webdriver.html#cookies",
-      :help       => "Help people with cookies."
-    },
-    {
-      :expression => /:ignores?/i,
-      :text       => "http://ignores.ci.seleniumhq.org/",
-      :help       => "Link to the @Ignore dashboard."
-    },
-    {
-      :expression => /:(testcase|repro|example|sscce)/i,
-      :text       => "Please read http://sscce.org/",
-      :help       => "Link to 'Short, Self Contained, Correct (Compilable), Example' site"
-    },
-    {
-      :expression => /:(spec|w3c?)/i,
-      :text       => "http://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html | http://dvcs.w3.org/hg/webdriver/ | bugs: http://goo.gl/LxCtcV",
-      :help       => "Links to the WebDriver spec."
-    },
-    {
-      :expression => /:kittens\b/,
-      :text       => "Before you say you cannot provide html, think of the kittens! http://jimevansmusic.blogspot.ca/2012/12/not-providing-html-page-is-bogus.html",
-      :help       => "Letting users know they need to provide html"
-    },
-    {
-      :expression => /m-?day/i,
-      :text       => "M-Day: is already! Marionette is IN Firefox!",
-      :help       => "What is M-day?"
-    },
-    {
-      :expression => /:waits/,
-      :text       => "http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits",
-      :help       => "link to sehq section on explicit and implicit waits"
-    }
-  ].each do |cmd|
+  commands.each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
     on(:message, cmd[:expression]) { |m| m.reply cmd[:text] }
   end
-
-}.start
+  
+  Selbot2::HELPS << [':add_factoid', "Add a factoid"]
+  on :message, /:add_factoid/ do |m|
+	factoid = m.raw
+	#Strip out all the unnecessary stuff from irc
+	factoid = factoid.gsub(/.*\/\:/, "/:")
+	factoid = factoid.gsub(/ @.*/, "")
+	factoid_split = factoid.split("|")
+	#Should have regexp to use, the factoid text and help 
+	if factoid_split.size == 3 && factoid =~ /\/.+\/\|.+\|.+/ #Simple regexp to check input
+		factoid_split[0] = factoid_split[0].gsub(/\//,"")
+		regexp = Regexp.new factoid_split[0]
+		new_factoid = {:expression => regexp, :text => factoid_split[1], :help => factoid_split[2]}
+		commands << new_factoid
+		File.open(yaml_file_path, 'w') do |factoid|
+			factoid.write commands.to_yaml
+		end
+		m.reply "Successfully added factoid!"
+		Selbot2::HELPS << [new_factoid[:expression].source, new_factoid[:help]]
+		bot.on(:message, new_factoid[:expression]) { |t| t.reply new_factoid[:text] }
+	else
+		m.reply "Failed to add factoid. Please make sure you provide the regexp, factoid text and help in the format: '/the_regexp/|the_text|the_help'"
+		return;
+	end
+  end
+}; bot.start
