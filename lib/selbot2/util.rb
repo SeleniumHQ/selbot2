@@ -60,7 +60,7 @@ module Selbot2
     end
 
     def format_revision(obj)
-      author   = obj.author.login
+      author   = obj.author ? obj.author.login : (obj.commit.author.login || obj.committer.login)
       time     = obj.commit.author.date 
       time     = Time.parse(time).utc if time.kind_of?(String)
       message  = obj.commit.message.strip
