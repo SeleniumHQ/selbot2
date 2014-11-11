@@ -131,7 +131,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:(spec|w3c?)/i,
-      :text       => "http://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html | http://dvcs.w3.org/hg/webdriver/ | bugs: http://goo.gl/LxCtcV",
+      :text       => "https://cdn.rawgit.com/w3c/webdriver/master/webdriver-spec.html | https://github.com/w3c/webdriver | bugs: http://goo.gl/LxCtcV",
       :help       => "Links to the WebDriver spec."
     },
     {
