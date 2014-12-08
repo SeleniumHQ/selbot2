@@ -54,9 +54,14 @@ Cinch::Bot.new {
       :help       => "links to API docs"
     },
     {
-      :expression => /:downloads/,
+      :expression => /:download/,
       :text       => "http://seleniumhq.org/download/ and http://selenium-release.storage.googleapis.com/index.html",
       :help       => "links to downloads pages"
+    },
+    {
+      :expression => /:downloads/,
+      :text       => "Please read this article about how to download files with Selenium, and why you shouldn't: http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/",
+      :help       => "links to article about downloading files"
     },
     {
       :expression => /:gist/,
