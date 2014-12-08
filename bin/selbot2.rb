@@ -54,7 +54,7 @@ Cinch::Bot.new {
       :help       => "links to API docs"
     },
     {
-      :expression => /:download/,
+      :expression => /:download\b/,
       :text       => "http://seleniumhq.org/download/ and http://selenium-release.storage.googleapis.com/index.html",
       :help       => "links to downloads pages"
     },
