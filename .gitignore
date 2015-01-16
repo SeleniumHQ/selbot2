@@ -1,4 +1,4 @@
-notes.yml
-selbotseen.yml
+*.yml
 tmp/
 .bundle
+/vendor
