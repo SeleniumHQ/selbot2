@@ -125,11 +125,6 @@ Cinch::Bot.new {
       :help       => "Help people with cookies."
     },
     {
-      :expression => /:ignores?/i,
-      :text       => "http://ignores.ci.seleniumhq.org/",
-      :help       => "Link to the @Ignore dashboard."
-    },
-    {
       :expression => /:(testcase|repro|example|sscce)/i,
       :text       => "Please read http://sscce.org/",
       :help       => "Link to 'Short, Self Contained, Correct (Compilable), Example' site"

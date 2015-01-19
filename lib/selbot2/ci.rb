@@ -5,7 +5,7 @@ module Selbot2
     HELPS << [":ci", "Links to Selenium's CI"]
     HELPS << [":ci status", "Summary the current CI state"]
 
-    LINKS = "Jenkins: #{Selbot2::Jenkins::HOST} | Dashboard: http://dashboard.ci.seleniumhq.org/"
+    LINKS = "Jenkins: #{Selbot2::Jenkins::HOST}"
 
     prefix Selbot2::PREFIX
     match /ci( .+)?/
