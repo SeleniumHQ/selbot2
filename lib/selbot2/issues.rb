@@ -3,6 +3,7 @@ module Selbot2
     include Cinch::Plugin
 
     HELPS << ["#<issue-number>", "show issue"]
+    HELPS << [":openissues", "show the number of open issues in the tracker"]
     IGNORED_NICKS = %w[seljenkinsbot Selenium-Git]
 
     listen_to :message
@@ -13,10 +14,19 @@ module Selbot2
 
     def listen(m)
       return if IGNORED_NICKS.include? m.user.nick
-      IssueFinder.each(m.message) { |resp| m.reply(resp) }
+
+      if m.message =~ /^:(open|open-?issues)/
+        m.reply open_count.to_s
+      else
+        IssueFinder.each(m.message) { |resp| m.reply(resp) }
+      end
     end
 
     def send_open_count
+      Channel("#selenium").notice(open_count)
+    end
+
+    def open_count
       response = RestClient.get("https://code.google.com/p/selenium/issues/list")
       node     = Nokogiri::HTML.parse(response).css(".pagination").first
 
@@ -24,7 +34,7 @@ module Selbot2
         msg = "Open issues: %B#{$1}%n"
         msg = "%r#{ENV['OPEN_ISSUE_ALERT']}%n #{msg}"
 
-        Channel("#selenium").notice Util.format_string(msg)
+        Util.format_string(msg)
       end
     rescue => ex
       p [ex.message, ex.backtrace.first]
