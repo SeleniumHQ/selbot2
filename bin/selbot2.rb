@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+require 'net/http'
 require 'selbot2'
 
 Cinch::Bot.new {
@@ -82,6 +82,11 @@ Cinch::Bot.new {
       :expression => /:cla(\W|$)/,
       :text       => "http://goo.gl/qC50R",
       :help       => "link to Selenium's CLA"
+    },
+    {
+      :expression => /:classname/,
+      :text       => Net::HTTP.get(URI.parse('http://www.classnamer.com/index.txt?generator=spring')).strip,
+      :help       => "Need help naming a class in Java? This will help"
     },
     {
       :expression => /:(mailing)?lists?/,
