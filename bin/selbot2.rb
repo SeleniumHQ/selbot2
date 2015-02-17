@@ -18,7 +18,8 @@ Cinch::Bot.new {
       Selbot2::CI,
       Selbot2::Google,
       Selbot2::WhoBrokeIt,
-      Selbot2::Commits
+      Selbot2::Commits,
+      Selbot2::Log
     ]
   end
 
