@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'net/http'
 require 'selbot2'
+require 'octokit'
 
 Cinch::Bot.new {
   configure do |c|
@@ -154,6 +155,11 @@ Cinch::Bot.new {
       :expression => /:waits/,
       :text       => "http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits",
       :help       => "link to sehq section on explicit and implicit waits"
+    },
+    {
+      :expression => /:latest/,
+      :text       => "http://ci.seleniumhq.org/selenium-server-#{Octokit::Client::new.commit("seleniumhq/selenium", "HEAD").sha}.jar",
+      :help       => "link to the latest selenium standalone server jar in ci"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
