@@ -36,18 +36,18 @@ Cinch::Bot.new {
 
   Selbot2::HELPS << [':log', "link to today's chat log at illictonion"]
   on :message, /:log/ do |m|
-    m.reply "https://raw.github.com/SeleniumHQ/irc-logs/master/#{(Time.new.gmtime - 25200).strftime('%Y/%m/%d')}.txt"
+    m.reply "https://botbot.me/freenode/selenium"
   end
 
   [
     {
       :expression => /:newissue/,
-      :text       => "https://code.google.com/p/selenium/issues/entry",
+      :text       => "https://github.com/SeleniumHQ/selenium/issues/new",
       :help       => "link to issue the tracker"
     },
     {
       :expression => /:(source|code)/,
-      :text       => "https://code.google.com/p/selenium/source/checkout",
+      :text       => "https://github.com/SeleniumHQ/selenium",
       :help       => "link to the source code"
     },
     {
