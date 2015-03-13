@@ -123,7 +123,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:change(log|s)\b/,
-      :text       => ".NET: http://goo.gl/t3faSQ | Java: http://goo.gl/5IVvjZ | Ruby: http://goo.gl/zNfSLK | Python: http://goo.gl/rHRdgk | IDE: http://goo.gl/NSHTwR | IE: http://goo.gl/LJ07LL",
+      :text       => ".NET: http://goo.gl/t3faSQ | Java: http://goo.gl/5IVvjZ | Ruby: http://goo.gl/zNfSLK | Python: http://goo.gl/rHRdgk | IDE: http://goo.gl/NSHTwR | IE: http://goo.gl/LJ07LL | Javascript http://goo.gl/e6smYw",
       :help       => "links to change logs"
     },
     {
