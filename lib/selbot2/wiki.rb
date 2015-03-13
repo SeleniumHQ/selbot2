@@ -46,9 +46,9 @@ module Selbot2
       end
 
       def url
-        path = doc['href']
+        path = @doc['href']
 
-        "https://github.com/SeleniumHQ/selenium/wiki/{path}"
+        "https://github.com#{path}"
       end
 
     end # Page
