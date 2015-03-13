@@ -29,11 +29,11 @@ module Selbot2
     end
 
     def replies_for(query)
-      resp = RestClient.get "https://code.google.com/p/selenium/w/list?can=1&q=#{escaper.escape query}&colspec=PageName+Summary+Changed+ChangedBy"
-      doc = Nokogiri.HTML(resp)
+      resp = RestClient.get "https://github.com/SeleniumHQ/selenium/wiki"
+      doc = Nokogiri.HTML(resp.downcase)
 
-      rows = doc.css("#resultstable > tr")
-      rows[0..2].map { |d| Page.new(d).reply unless d.text =~ /did not generate any results/ }.compact
+      rows = doc.css("#wiki-content a[href*='#{query.downcase}']")
+      rows[0..2].map { |d| Page.new(d).url }.compact
     end
 
     class Page
@@ -42,23 +42,15 @@ module Selbot2
       end
 
       def name
-        @doc.css("td.id").text.strip
+        @doc.text.strip
       end
 
       def url
-        el = @doc.css("td.id a").first
-        path = el && el['href']
+        path = doc['href']
 
-        "https://code.google.com#{path}"
+        "https://github.com/SeleniumHQ/selenium/wiki/{path}"
       end
 
-      def summary
-        @doc.css("td.col_1 a").text.strip
-      end
-
-      def reply
-        Util.format_string "%g#{name}%n: #{summary.split("\n").first} - #{url}"
-      end
     end # Page
   end # Wiki
 end # Selbot2

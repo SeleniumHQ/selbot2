@@ -71,7 +71,7 @@ module Selbot2
     def find(project_name, num)
       return if project_name && project_name =~ /^http/
 
-      project_name ||= "selenium"
+      project_name ||= "seleniumhq/selenium"
 
       case project_name
       when "moz", "mozilla", "bugzilla"

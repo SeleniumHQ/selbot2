@@ -52,7 +52,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:(api|apidocs)/,
-      :text       => ".NET: http://goo.gl/lvxok | Java: http://goo.gl/Wvl4G | Ruby: http://goo.gl/ue5sM | Python: http://goo.gl/sCwQ3s | Javascript: http://goo.gl/9aYaOG",
+      :text       => ".NET: http://goo.gl/uutZjZ | Java: http://goo.gl/Grc6tm | Ruby: http://goo.gl/jzh4RU | Python: http://goo.gl/sG1GfQ | Javascript: http://goo.gl/hohAut",
       :help       => "links to API docs"
     },
     {
@@ -97,7 +97,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:chrome(driver)?/,
-      :text       => "https://code.google.com/p/selenium/wiki/ChromeDriver | http://chromedriver.storage.googleapis.com/index.html ",
+      :text       => "https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver | http://chromedriver.storage.googleapis.com/index.html ",
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
@@ -123,7 +123,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:change(log|s)\b/,
-      :text       => ".NET: http://goo.gl/zBIjE | Java: http://goo.gl/5B23U | Ruby: http://goo.gl/yN6Qm | Python: http://goo.gl/7BtCb | IDE: http://goo.gl/50vLB | IE: http://goo.gl/VYNFyb",
+      :text       => ".NET: http://goo.gl/t3faSQ | Java: http://goo.gl/5IVvjZ | Ruby: http://goo.gl/zNfSLK | Python: http://goo.gl/rHRdgk | IDE: http://goo.gl/NSHTwR | IE: http://goo.gl/LJ07LL",
       :help       => "links to change logs"
     },
     {
