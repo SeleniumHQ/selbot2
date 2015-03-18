@@ -66,7 +66,7 @@ module Selbot2
       message  = obj.commit.message.strip
       revision = obj.sha[0,7]
 
-      url           = "https://github.com/SeleniumHQ/selenium/commit/#{revision}"
+      url           = "#{Selbot2::REPO}/commit/#{revision}"
       ci_url        = "http://dashboard.ci.seleniumhq.org/#/revision/#{obj.sha}"
       short_message = message.split("\n").first
 

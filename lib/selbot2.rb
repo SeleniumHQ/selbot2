@@ -4,6 +4,8 @@ require "nokogiri"
 require "time"
 
 module Selbot2
+  PROJECT_NAME = "SeleniumHQ/selenium"
+  REPO = "https://github.com/#{PROJECT_NAME}"
   PREFIX = ":"
   CHANNELS = Array(ENV['SELBOT_CHANNEL'] || ["#selenium", "#seleniumide"])
   HELPS = []

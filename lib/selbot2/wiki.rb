@@ -29,7 +29,7 @@ module Selbot2
     end
 
     def replies_for(query)
-      resp = RestClient.get "https://github.com/SeleniumHQ/selenium/wiki"
+      resp = RestClient.get "#{Selbot2::REPO}/wiki"
       doc = Nokogiri.HTML(resp.downcase)
 
       rows = doc.css("#wiki-content a[href*='#{query.downcase}']")
