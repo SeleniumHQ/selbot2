@@ -47,7 +47,7 @@ module Selbot2
       (?:^|\s)     # space or BOL
       (?!http)     # ignore url anchors
       (?:\(|\[)?   # optional opening parentheses or brace
-      ([\w\/-]+?)? # capture 1 - project name
+      ([\w\/\.-]+?)? # capture 1 - project name
       \#
       (\d+)        # capture 2 - issue number
       (?:\)|\])?   # optional closing parentheses or brace
