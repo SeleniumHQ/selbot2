@@ -10,14 +10,9 @@ module Selbot2
 
 
     def execute(message, query)
-      resp   = JSON.parse(RestClient.get("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=#{URI.escape query}"))
-      result = resp.fetch('responseData').fetch('results').first
+      link = "http://lmgtfy.com/?q=#{URI.escape query}"
 
-      if result
-        message.reply "#{result['titleNoFormatting']}: #{result['url']}"
-      else
-        message.reply "No results."
-      end
+      message.reply "Here you go: #{link}"
     rescue => e
       message.reply e.message
     end
