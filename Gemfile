@@ -9,5 +9,5 @@ gem "rake"
 # gem "twitter"
 gem 'pry'
 gem 'octokit'
-gem 'faker'
 gem 'xkcd'
+gem 'faker'
