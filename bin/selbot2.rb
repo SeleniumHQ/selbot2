@@ -3,6 +3,7 @@ require 'net/http'
 require 'selbot2'
 require 'octokit'
 require 'faker'
+require "xkcd"
 
 Cinch::Bot.new {
   configure do |c|
@@ -110,6 +111,11 @@ Cinch::Bot.new {
       :expression => /:sales/,
       :text       => "We provide #{Faker::Company.catch_phrase}. In order to #{Faker::Company.bs}.",
       :help       => "Provides a sales pitch that makes 300% of sense"
+    },
+    {
+      :expression => /:xkcd/,
+      :text       => XKCD.img,
+      :help       => "Random XKCD image"
     },
     {
       :expression => /:css/,

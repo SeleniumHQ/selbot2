@@ -10,3 +10,4 @@ gem "rake"
 gem 'pry'
 gem 'octokit'
 gem 'faker'
+gem 'xkcd'
