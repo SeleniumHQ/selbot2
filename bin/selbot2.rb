@@ -2,6 +2,7 @@
 require 'net/http'
 require 'selbot2'
 require 'octokit'
+require 'faker'
 
 Cinch::Bot.new {
   configure do |c|
@@ -104,6 +105,11 @@ Cinch::Bot.new {
       :expression => /:firefox/,
       :text       => "https://wiki.mozilla.org/Releases | Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
       :help       => "link to release plan and download page of every Firefox version"
+    },
+    {
+      :expression => /:sales/,
+      :text       => "We provide #{Faker::Company.catch_phrase}. In order to #{Faker::Company.bs}.",
+      :help       => "Provides a sales pitch that makes 300% of sense"
     },
     {
       :expression => /:css/,
