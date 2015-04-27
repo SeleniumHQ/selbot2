@@ -5,6 +5,27 @@ require 'octokit'
 require 'faker'
 require "xkcd"
 
+
+def weird
+  [
+    "https://www.youtube.com/watch?v=lOfZLb33uCg&index=1&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=C-CG5w4YwOI&index=2&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=N9qYF9DZPdw&list=RDlOfZLb33uCg&index=3",
+    "https://www.youtube.com/watch?v=hEcjgJSqSRU&index=4&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=FklUAoZ6KxY&list=RDlOfZLb33uCg&index=6",
+    "https://www.youtube.com/watch?v=ZcJjMnHoIBI&index=7&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=hQwWaWFjd0Y&index=9&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=qpMvS1Q1sos&index=10&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=YKtlK7sn0JQ&index=20&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=MRJILK3NxSM&list=RDlOfZLb33uCg&index=24",
+    "https://www.youtube.com/watch?v=otGO0a7OPtg&index=34&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=NUi926ses94&index=32&list=RDlOfZLb33uCg",
+    "https://www.youtube.com/watch?v=xY-oili63QQ&list=RDlOfZLb33uCg&index=36",
+    "https://www.youtube.com/watch?v=zq7Eki5EZ8o"
+  ].sample
+
+end
+
 Cinch::Bot.new {
   configure do |c|
     c.server = "chat.freenode.net"
@@ -116,6 +137,11 @@ Cinch::Bot.new {
       :expression => /:xkcd/,
       :text       => XKCD.img,
       :help       => "Random XKCD image"
+    },
+    {
+      :expression => /:weird/,
+      :text       => weird,
+      :help       => "Randomw Weird Al YouTube song"
     },
     {
       :expression => /:css/,
