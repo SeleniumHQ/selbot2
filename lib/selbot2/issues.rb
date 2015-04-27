@@ -27,19 +27,29 @@ module Selbot2
     end
 
     def open_count
-      response = RestClient.get("https://code.google.com/p/selenium/issues/list")
-      node     = Nokogiri::HTML.parse(response).css(".pagination").first
+      issues_response = RestClient.get("#{Selbot2::REPO}/issues")
+      pr_response     = RestClient.get("#{Selbot2::REPO}/pulls")
 
-      if node && node.text =~ /of (\d+)/
-        msg = "Open issues: %B#{$1}%n"
-        msg = "%r#{ENV['OPEN_ISSUE_ALERT']}%n #{msg}"
+      issues_node     = Nokogiri::HTML.parse(issues_response).css("div[id$='toolbar'] a[href*='is'][href*='open']").first
+      pr_node         = Nokogiri::HTML.parse(pr_response).css("div[id$='toolbar'] a[href*='is'][href*='open']").first      
 
-        Util.format_string(msg)
+      counts = []
+
+      [issues_node, pr_node].each do |node|
+        if node && node.text =~ /(\d+) Open/
+          counts << "#{$1}"
+        end
       end
+
+      msg = "Open issues: %B#{counts[0]}%n\n"
+      msg = "#{msg} Open pull requests: %B#{counts[1]}%n\n"
+      msg += "#{Selbot2::REPO}/issues | #{Selbot2::REPO}/pulls"
+      msg = "%r#{ENV['OPEN_ISSUE_ALERT']}%n #{msg}"
+
+      Util.format_string(msg)
     rescue => ex
       p [ex.message, ex.backtrace.first]
     end
-
   end
 
   class IssueFinder

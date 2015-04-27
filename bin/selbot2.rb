@@ -42,12 +42,12 @@ Cinch::Bot.new {
   [
     {
       :expression => /:newissue/,
-      :text       => "https://github.com/SeleniumHQ/selenium/issues/new",
+      :text       => "#{Selbot2::REPO}/issues/new",
       :help       => "link to issue the tracker"
     },
     {
       :expression => /:(source|code)/,
-      :text       => "https://github.com/SeleniumHQ/selenium",
+      :text       => "#{Selbot2::REPO}",
       :help       => "link to the source code"
     },
     {
@@ -97,7 +97,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:chrome(driver)?/,
-      :text       => "https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver | http://chromedriver.storage.googleapis.com/index.html ",
+      :text       => "#{Selbot2::REPO}/wiki/ChromeDriver | http://chromedriver.storage.googleapis.com/index.html ",
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
