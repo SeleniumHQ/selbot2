@@ -10,3 +10,5 @@ Note that startup is for unknown reasons quite slow. Disabling plugins may or ma
 In production, use:
 
     $ OPEN_ISSUE_INTERVAL=1800 bundle exec ruby -Ilib bin/selbot2.rb
+
+For use with youtube one needs to create an [API Key](https://developers.google.com/youtube/registering_an_application) and put that into a "youtube.conf" file.

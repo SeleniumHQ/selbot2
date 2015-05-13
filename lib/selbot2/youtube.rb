@@ -1,3 +1,5 @@
+require 'json'
+
 module Selbot2
   class Youtube
     include Cinch::Plugin
@@ -7,11 +9,17 @@ module Selbot2
     prefix Selbot2::PREFIX
     match /(?:yt|youtube) (.+)/
 
-    def execute(message, query)
-      xml = RestClient.get "http://gdata.youtube.com/feeds/api/videos?q=#{escaper.escape query}&max-results=1&v=2"
-      doc = Nokogiri.XML(xml)
+    def initialize(*args)
+      super
 
-      message.reply Video.new(doc.css("entry").first).reply
+      @apiKey = File.open("youtube.conf").read
+    end
+
+    def execute(message, query)
+      resp = RestClient.get "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{escaper.escape query}&maxResults=1&key=#{@apiKey}"
+      doc = JSON.parse(resp)
+
+      message.reply Video.new(doc["items"][0]).reply
     end
 
     def escaper
@@ -19,16 +27,16 @@ module Selbot2
     end
 
     class Video
-      def initialize(doc)
-        @doc = doc
+      def initialize(video)
+        @video = video
       end
 
       def url
-        @doc.css("link[rel=alternate]").first['href']
+        "https://www.youtube.com/watch?v=#{@video["id"]["videoId"]}"
       end
 
       def title
-        @doc.css("title").text
+        @video["snippet"]["title"]
       end
 
       def reply
