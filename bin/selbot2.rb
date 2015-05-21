@@ -158,7 +158,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:latest/,
-      :text       => "http://ci.seleniumhq.org/selenium-server-#{Octokit::Client::new.commit("seleniumhq/selenium", "HEAD").sha}.jar",
+      :text       => "http://ci.seleniumhq.org:8080/job/Build%20All%20Java/lastSuccessfulBuild/artifact/selenium-server-standalone-latest.jar",
       :help       => "link to the latest selenium standalone server jar in ci"
     }
   ].each do |cmd|
