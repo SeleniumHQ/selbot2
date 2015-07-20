@@ -67,10 +67,9 @@ module Selbot2
       revision = obj.sha[0,7]
 
       url           = "#{Selbot2::REPO}/commit/#{revision}"
-      ci_url        = "http://dashboard.ci.seleniumhq.org/#/revision/#{obj.sha}"
       short_message = message.split("\n").first
 
-      Util.format_string "%g#{author}%n #{Util.distance_of_time_in_words time} ago - %B#{short_message}%n | #{url} | #{ci_url}"
+      Util.format_string "%g#{author}%n #{Util.distance_of_time_in_words time} ago - %B#{short_message}%n | #{url}"
     end
   end
 end
