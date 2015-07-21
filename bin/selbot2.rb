@@ -71,6 +71,11 @@ Cinch::Bot.new {
       :help       => "link to gist.github.com",
     },
     {
+      :expression => /:docker/,
+      :text       => "docker-selenium project: https://github.com/SeleniumHQ/docker-selenium",
+      :help       => "Docker images for Selenium Standalone Server",
+    },
+    {
       :expression => /:(gist-?usage|using-?gist)/,
       :text       => "https://github.com/radar/guides/blob/master/using-gist.markdown",
       :help       => "how to use gists",
