@@ -12,7 +12,7 @@ module Selbot2
     def initialize(*args)
       super
 
-      @apiKey = ENV["youtube.conf"]
+      @apiKey = ENV["youtube_key"]
     end
 
     def execute(message, query)
