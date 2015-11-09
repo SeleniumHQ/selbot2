@@ -3,10 +3,12 @@ module Selbot2
     include Cinch::Plugin
 
     HELPS << ["<git sha>", "show revision"]
+    IGNORED_NICKS = %w[seljenkinsbot Selenium-Github github-bot selbot2-commits]
 
     listen_to :message
 
     def listen(m)
+      return if IGNORED_NICKS.include? m.user.nick
       RevisionFinder.each(m.message) do |resp|
         m.reply(resp)
       end
@@ -15,6 +17,7 @@ module Selbot2
 
   module RevisionFinder
     RX = /\b([a-f\d]{5,40}|HEAD)\b/
+    IGNORED_SHAS = [ '45000' ]
 
     module_function
 
@@ -28,6 +31,7 @@ module Selbot2
       result = []
 
       shas.each do |sha|
+        next if IGNORED_SHAS.include? sha
         reply = find(sha)
         if reply
           yield reply if block_given?

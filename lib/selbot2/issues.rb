@@ -4,7 +4,7 @@ module Selbot2
 
     HELPS << ["#<issue-number>", "show issue"]
     HELPS << [":openissues", "show the number of open issues in the tracker"]
-    IGNORED_NICKS = %w[seljenkinsbot Selenium-Github selbot2-commits]
+    IGNORED_NICKS = %w[seljenkinsbot Selenium-Github github-bot selbot2-commits]
 
     listen_to :message
 
