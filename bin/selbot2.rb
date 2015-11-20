@@ -164,6 +164,11 @@ Cinch::Bot.new {
       :expression => /:latest/,
       :text       => "http://ci.seleniumhq.org:8080/job/Build%20All%20Java/lastSuccessfulBuild/artifact/selenium-server-standalone-latest.jar",
       :help       => "link to the latest selenium standalone server jar in ci"
+    },
+    {
+      :expression => /:fixit/i,
+      :text       => "https://www.youtube.com/watch?v=xjzzLelV0Y0",
+      :help       => "link to Oscar Rogers quote"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
