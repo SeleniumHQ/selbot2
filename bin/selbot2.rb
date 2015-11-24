@@ -162,7 +162,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:latest/,
-      :text       => "http://ci.seleniumhq.org:8080/job/Build%20All%20Java/lastSuccessfulBuild/artifact/selenium-server-standalone-latest.jar",
+      :text       => "standalone-server: http://goo.gl/adiVxW IEDriverServer(32bit): http://bit.ly/1jik2D9 IEDriverServer(64bit): http://bit.ly/1lHYaTF",
       :help       => "link to the latest selenium standalone server jar in ci"
     },
     {
