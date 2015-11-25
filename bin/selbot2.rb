@@ -162,8 +162,8 @@ Cinch::Bot.new {
     },
     {
       :expression => /:latest/,
-      :text       => "standalone-server: http://goo.gl/adiVxW IEDriverServer(32bit): http://bit.ly/1jik2D9 IEDriverServer(64bit): http://bit.ly/1lHYaTF",
-      :help       => "link to the latest selenium standalone server jar in ci"
+      :text       => "standalone-server: http://goo.gl/adiVxW  Python: http://goo.gl/PXpx0Q   IEDriverServer(32bit): http://bit.ly/1jik2D9   IEDriverServer(64bit): http://bit.ly/1lHYaTF",
+      :help       => "link to the latest selenium builds"
     },
     {
       :expression => /:fixit/i,
