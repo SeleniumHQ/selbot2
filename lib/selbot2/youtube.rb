@@ -16,7 +16,8 @@ module Selbot2
     end
 
     def execute(message, query)
-      resp = RestClient.get "https://www.googleapis.com/youtube/v3/search?part=snippet&q=#{escaper.escape query}&maxResults=1&key=#{@apiKey}"
+      # illicitonion happens to run a proxy for YouTube search which conveniently avoids Google's EC2 block.
+      resp = RestClient.get "https://lovely.beer/youtube/v3/search?part=snippet&q=#{escaper.escape query}&maxResults=1&key=#{@apiKey}"
       doc = JSON.parse(resp)
 
       message.reply Video.new(doc["items"][0]).reply
