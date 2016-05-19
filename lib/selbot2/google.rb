@@ -10,11 +10,11 @@ module Selbot2
 
 
     def execute(message, query)
-      resp   = JSON.parse(RestClient.get("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=#{URI.escape query}"))
-      result = resp.fetch('responseData').fetch('results').first
+      resp   = JSON.parse(RestClient.get("https://www.googleapis.com/customsearch/v1?cx=005991058577830013072%3Awcdcytdwbcy&key=AIzaSyC3Nf0aBxyTLp9aZZkbAJkq0sXXWU35bJ4&num=1&q=#{URI.escape query}"))
+      result = resp.fetch('items').first
 
       if result
-        message.reply "#{result['titleNoFormatting']}: #{result['url']}"
+        message.reply "#{result['title']}: #{result['url']}"
       else
         message.reply "No results."
       end
