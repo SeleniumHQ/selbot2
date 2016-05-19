@@ -14,7 +14,7 @@ module Selbot2
       result = resp.fetch('items').first
 
       if result
-        message.reply "#{result['title']}: #{result['url']}"
+        message.reply "#{result['title']}: #{result['link']}"
       else
         message.reply "No results."
       end
