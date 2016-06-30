@@ -169,6 +169,11 @@ Cinch::Bot.new {
       :expression => /:fixit/i,
       :text       => "https://www.youtube.com/watch?v=xjzzLelV0Y0",
       :help       => "link to Oscar Rogers quote"
+    },
+    {
+      :expression => /:ide/i,
+      :text       => "Selenium IDE is no longer being maintained. You can ask a question, but most people here will be unable to help you. Instead, consider using WebDriver (http://www.seleniumhq.org/projects/webdriver/).",
+      :help       => "Let users know IDE is no longer maintained"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
