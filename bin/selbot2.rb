@@ -110,6 +110,11 @@ Cinch::Bot.new {
       :help       => "link to Microsoft WebDriver (download + status)"
     },
     {
+      :expression => /:(marionet+e|gecko(driver)?)/,
+      :text       => "Info: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette/WebDriver | Status: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette/WebDriver/status",
+      :help       => "link to Marionette (Gecko) WebDriver (info + status)"
+    },
+    {
       :expression => /:firefox/,
       :text       => "https://wiki.mozilla.org/Releases | Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
       :help       => "link to release plan and download page of every Firefox version"
