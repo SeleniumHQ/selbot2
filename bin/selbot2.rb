@@ -105,6 +105,11 @@ Cinch::Bot.new {
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
+      :expression => /:edge(driver)?/,
+      :text       => "Download: https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/dev-guide/tools/webdriver/ | Status: https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/webdriver-commands/",
+      :help       => "link to Microsoft WebDriver (download + status)"
+    },
+    {
       :expression => /:firefox/,
       :text       => "https://wiki.mozilla.org/Releases | Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
       :help       => "link to release plan and download page of every Firefox version"
