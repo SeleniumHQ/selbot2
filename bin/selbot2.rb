@@ -105,6 +105,16 @@ Cinch::Bot.new {
       :help       => "link to ChromeDriver (wiki + downloads)"
     },
     {
+      :expression => /:edge(driver)?/,
+      :text       => "Download: https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/dev-guide/tools/webdriver/ | Status: https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/webdriver-commands/",
+      :help       => "link to Microsoft WebDriver (download + status)"
+    },
+    {
+      :expression => /:(marionet+e|gecko(driver)?)/,
+      :text       => "Info: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette/WebDriver | Status: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette/WebDriver/status",
+      :help       => "link to Marionette (Gecko) WebDriver (info + status)"
+    },
+    {
       :expression => /:firefox/,
       :text       => "https://wiki.mozilla.org/Releases | Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
       :help       => "link to release plan and download page of every Firefox version"
@@ -169,6 +179,16 @@ Cinch::Bot.new {
       :expression => /:fixit/i,
       :text       => "https://www.youtube.com/watch?v=xjzzLelV0Y0",
       :help       => "link to Oscar Rogers quote"
+    },
+    {
+      :expression => /:ide/i,
+      :text       => "Selenium IDE is no longer being maintained. You can ask a question, but most people here will be unable to help you. Instead, consider using WebDriver (http://www.seleniumhq.org/projects/webdriver/).",
+      :help       => "Let users know IDE is no longer maintained"
+    },
+    {
+      :expression => /:friday/i,
+      :text       => "https://www.youtube.com/watch?v=kfVsfOSbJY0",
+      :help       => "Friday - Rebecca Black"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
