@@ -19,25 +19,33 @@ module Selbot2
       # illicitonion happens to run a proxy for YouTube search which conveniently avoids Google's EC2 block.
       resp = RestClient.get "https://lovely.beer/youtube/v3/search?part=snippet&q=#{escaper.escape query}&maxResults=1&key=#{@apiKey}"
       doc = JSON.parse(resp)
-
-      message.reply Video.new(doc["items"][0]).reply
+      results = doc.fetch("items", [])
+      if results.any?
+        message.reply Item.new(results.first).reply
+      else
+        message.reply "No results for '#{query}'!"
+      end
     end
 
     def escaper
       @escaper ||= URI::Parser.new
     end
 
-    class Video
-      def initialize(video)
-        @video = video
+    class Item
+      def initialize(item)
+        @item = item
       end
 
       def url
-        "https://www.youtube.com/watch?v=#{@video["id"]["videoId"]}"
+        if @item["id"]["kind"].include? "playlist"
+          "https://www.youtube.com/playlist?list=#{@item["id"]["playlistId"]}"
+        else
+          "https://www.youtube.com/watch?v=#{@item["id"]["videoId"]}"
+        end
       end
 
       def title
-        @video["snippet"]["title"]
+        @item["snippet"]["title"]
       end
 
       def reply
