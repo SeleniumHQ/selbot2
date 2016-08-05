@@ -90,11 +90,6 @@ Cinch::Bot.new {
       :help       => "link to Selenium's CLA"
     },
     {
-      :expression => /:classname/,
-      :text       => Net::HTTP.get(URI.parse('http://www.classnamer.com/index.txt?generator=spring')).strip,
-      :help       => "Need help naming a class in Java? This will help"
-    },
-    {
       :expression => /:(mailing)?lists?/,
       :text       => "https://groups.google.com/forum/#!forum/selenium-users | https://groups.google.com/forum/#!forum/selenium-developers",
       :help       => "link to mailing lists"
