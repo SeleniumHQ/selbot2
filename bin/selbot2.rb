@@ -116,7 +116,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:css/,
-      :text       => "CSS Selector Tutorial http://saucelabs.com/resources/selenium/css-selectors",
+      :text       => "CSS Selector Tutorial https://saucelabs.com/resources/articles/selenium-tips-css-selectors",
       :help       => "links to CSS Selector Tutorial"
     },
     {
