@@ -19,7 +19,14 @@ module Selbot2
       return unless m.user
       nick = m.command == 'NICK' ? m.user.last_nick : m.user.nick
 
-      @users[nick.downcase] = Event.new(nick, m.message, m.command, Time.now)
+      if nick.start_with? 'slackbot'
+        match = m.message.match(/^\<(\w+)\>\s(.*)/)
+        return unless match
+        @users[nick.downcase] = Event.new(*match.captures.first(2), m.command, Time.now, true)
+      else
+        @users[nick.downcase] = Event.new(nick, m.message, m.command, Time.now)
+      end
+
       save @users
     end
 
@@ -41,11 +48,12 @@ module Selbot2
     end
 
     class Event
-      def initialize(nick, message, type, time)
+      def initialize(nick, message, type, time, slack = false)
         @nick    = nick
         @message = message
         @type    = type
         @time    = time
+        @slack   = slack
       end
 
       def to_s
@@ -66,6 +74,7 @@ module Selbot2
           else
             msg << ", saying '#{@message}'."
           end
+          msg << " (via Slack)" if @slack
         end
       end
     end
