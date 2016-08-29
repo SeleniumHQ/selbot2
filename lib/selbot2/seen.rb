@@ -22,14 +22,11 @@ module Selbot2
       if nick.start_with? 'slackbot'
         match = m.message.match(/^\<(\w+)\>\s(.*)/)
         return unless match
-        nick, message = match.captures
-        slack = true
+        @users[nick.downcase] = Event.new(*match.captures.first(2), m.command, Time.now, true)
       else
-        message = m.message
-        slack = false
+        @users[nick.downcase] = Event.new(nick, m.message, m.command, Time.now)
       end
 
-      @users[nick.downcase] = Event.new(nick, message, m.command, Time.now, slack)
       save @users
     end
 
