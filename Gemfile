@@ -10,3 +10,5 @@ gem "rake"
 # gem "twitter"
 gem 'pry'
 gem 'octokit'
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
