@@ -1,9 +1,9 @@
 module Selbot2
+  require 'dm-ar-finders'
   class Notes
     include Cinch::Plugin
-    include Persistable
 
-    HELPS << [":note <receiver> <message>", "send a note"]
+    HELPS << [':note <receiver> <message>', 'send a note']
     MAX_NOTES = 5
 
     listen_to :message, :join
@@ -11,69 +11,46 @@ module Selbot2
     prefix Selbot2::PREFIX
     match /note (.+?) (.+)/
 
-    STATE = "notes.yml"
-
-    class Note
-      attr_reader :message
-
-      def initialize(from, to, message, time)
-        @from    = from
-        @to      = to
-        @message = message
-        @time    = time
-      end
-
-      def to_s
-        "#{@to}: note from #{@from} #{Util.distance_of_time_in_words @time} ago: #{@message} "
-      end
-
-      def issues
-        IssueFinder.each(@message).to_a
-      end
-
-      def revisions
-        RevisionFinder.each(@message).to_a
-      end
-    end # Note
-
-    def initialize(*args)
-      super
-      @notes = load || {}
-      @notes.default_proc = lambda { |hash, key| hash[key] = [] }
-    end
-
     def execute(message, receiver, note)
       return unless message.params.last =~ /^:note/ # anchor to the beginning
+      return if bad_nick?(message, receiver) || max?(message, receiver)
 
-      if [@bot.nick, message.user.nick].include? receiver
-        message.channel.action "looks the other way"
-        return
-      end
+      Note.create(sender: message.user.nick,
+                  receiver: receiver,
+                  message: note,
+                  time: Time.now)
 
-      if @notes[receiver].size >= MAX_NOTES
-        message.reply "#{receiver} already has #{MAX_NOTES} notes."
-        return
-      end
-
-      @notes[receiver] << Note.new(message.user.nick, receiver, note, Time.now)
-      save @notes
-
-      message.reply "ok!"
+      message.reply 'ok!'
     end
 
     def listen(m)
-      return unless @notes.has_key? m.user.nick
+      notes = Note.find_by_sql(['SELECT * FROM notes WHERE lower(receiver) = ?', m.user.nick.downcase])
+      return unless notes.any?
 
-      @notes.delete(m.user.nick).each do |note|
-        m.channel.send note.to_s
-        note.issues.each { |str| m.channel.send str }
-        note.revisions.each { |str| m.channel.send str }
-      end
-
-      save @notes
+      send_notes(m.user.nick, m.channel, notes)
+      notes.destroy
     end
 
+    private
+
+    def bad_nick?(message, receiver)
+      if [@bot.nick, message.user.nick].include? receiver
+        message.channel.action 'looks the other way'
+      end
+    end
+
+    def max?(message, receiver)
+      if Note.find_by_sql(['SELECT * FROM notes WHERE lower(receiver) = ?', receiver.downcase]).size >= MAX_NOTES
+        message.reply "#{receiver} already has #{MAX_NOTES} notes."
+      end
+    end
+
+    def send_notes(nick, channel, notes)
+      notes.each do |note|
+        channel.send "#{nick}: #{note.to_s}"
+        note.issues.each { |str| channel.send str }
+        note.revisions.each { |str| channel.send str }
+      end
+    end
   end
 end
-
-
