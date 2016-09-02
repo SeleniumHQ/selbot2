@@ -1,4 +1,5 @@
 module Selbot2
+  require 'dm-ar-finders'
   class Seen
     include Cinch::Plugin
 
@@ -12,7 +13,7 @@ module Selbot2
       return unless m.user
       nick = m.command == 'NICK' ? m.user.last_nick : m.user.nick
 
-      event = SeenEvent.first_or_create(nick: nick.downcase)
+      event = SeenEvent.first_or_create(nick: nick)
       event.update(message: m.message,
                    event_type: m.command,
                    time: Time.now)
@@ -27,7 +28,7 @@ module Selbot2
     def check_nick(message, nick)
       if [@bot.nick.downcase, message.user.nick.downcase].include? nick.downcase
         message.reply 'Yes.'
-      elsif (event = SeenEvent.first(nick: nick.downcase))
+      elsif (event = SeenEvent.find_by_sql(['SELECT * FROM seen_events WHERE lower(nick) = ?', nick.downcase]).first)
         message.reply event.to_s
       else
         message.reply "I haven't seen #{nick}."

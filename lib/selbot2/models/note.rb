@@ -4,13 +4,13 @@ module Selbot2
     storage_names[:default] = 'notes'
 
     property :id, Serial
-    property :from, String
-    property :to, String
+    property :sender, String
+    property :receiver, String, index: true
     property :message, Text
     property :time, Time
 
     def to_s
-      "#{to}: note from #{from} #{Util.distance_of_time_in_words time} ago: #{message} "
+      "note from #{sender} #{Util.distance_of_time_in_words time} ago: #{message} "
     end
 
     def issues

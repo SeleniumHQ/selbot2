@@ -1,4 +1,5 @@
 module Selbot2
+  require 'dm-ar-finders'
   class Notes
     include Cinch::Plugin
 
@@ -14,8 +15,8 @@ module Selbot2
       return unless message.params.last =~ /^:note/ # anchor to the beginning
       return if bad_nick?(message, receiver) || max?(message, receiver)
 
-      Note.create(from: message.user.nick,
-                  to: receiver.downcase,
+      Note.create(sender: message.user.nick,
+                  receiver: receiver,
                   message: note,
                   time: Time.now)
 
@@ -23,10 +24,10 @@ module Selbot2
     end
 
     def listen(m)
-      notes = Note.all(to: m.user.nick.downcase)
+      notes = Note.find_by_sql(['SELECT * FROM notes WHERE lower(receiver) = ?', m.user.nick.downcase])
       return unless notes.any?
 
-      send_notes(m.channel, notes)
+      send_notes(m.user.nick, m.channel, notes)
       notes.destroy
     end
 
@@ -39,14 +40,14 @@ module Selbot2
     end
 
     def max?(message, receiver)
-      if Note.all(to: receiver.downcase).size >= MAX_NOTES
+      if Note.find_by_sql(['SELECT * FROM notes WHERE lower(receiver) = ?', receiver.downcase]).size >= MAX_NOTES
         message.reply "#{receiver} already has #{MAX_NOTES} notes."
       end
     end
 
-    def send_notes(channel, notes)
+    def send_notes(nick, channel, notes)
       notes.each do |note|
-        channel.send note.to_s
+        channel.send "#{nick}: #{note.to_s}"
         note.issues.each { |str| channel.send str }
         note.revisions.each { |str| channel.send str }
       end

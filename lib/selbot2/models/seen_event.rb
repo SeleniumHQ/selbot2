@@ -4,7 +4,7 @@ module Selbot2
     storage_names[:default] = 'seen_events'
 
     property :id, Serial
-    property :nick, String
+    property :nick, String, index: true
     property :message, Text
     property :event_type, String
     property :time, Time
