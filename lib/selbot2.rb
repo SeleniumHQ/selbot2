@@ -16,6 +16,7 @@ require 'selbot2/helpers/jenkins'
 require 'selbot2/helpers/git'
 
 require 'selbot2/models/note'
+require 'selbot2/models/seen_event'
 
 require 'selbot2/persistable'
 require 'selbot2/util'
@@ -33,4 +34,5 @@ require 'selbot2/whobrokeit'
 require 'selbot2/commits'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
-DataMapper.auto_migrate!
+DataMapper.finalize
+DataMapper.auto_upgrade!

@@ -1,5 +1,4 @@
 module Selbot2
-
   class Note
     include DataMapper::Resource
     storage_names[:default] = 'notes'

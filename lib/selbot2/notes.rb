@@ -12,18 +12,12 @@ module Selbot2
 
     def execute(message, receiver, note)
       return unless message.params.last =~ /^:note/ # anchor to the beginning
+      return if bad_nick?(message, receiver) || max?(message, receiver)
 
-      if [@bot.nick, message.user.nick].include? receiver
-        message.channel.action 'looks the other way'
-        return
-      end
-
-      if Note.all(to: receiver.downcase).size >= MAX_NOTES
-        message.reply "#{receiver} already has #{MAX_NOTES} notes."
-        return
-      end
-
-      Note.create(from: message.user.nick, to: receiver.downcase, message: note, time: Time.now)
+      Note.create(from: message.user.nick,
+                  to: receiver.downcase,
+                  message: note,
+                  time: Time.now)
 
       message.reply 'ok!'
     end
@@ -32,15 +26,30 @@ module Selbot2
       notes = Note.all(to: m.user.nick.downcase)
       return unless notes.any?
 
-      notes.each do |note|
-        m.channel.send note.to_s
-        note.issues.each { |str| m.channel.send str }
-        note.revisions.each { |str| m.channel.send str }
-      end
+      send_notes(m.channel, notes)
       notes.destroy
     end
 
+    private
+
+    def bad_nick?(message, receiver)
+      if [@bot.nick, message.user.nick].include? receiver
+        message.channel.action 'looks the other way'
+      end
+    end
+
+    def max?(message, receiver)
+      if Note.all(to: receiver.downcase).size >= MAX_NOTES
+        message.reply "#{receiver} already has #{MAX_NOTES} notes."
+      end
+    end
+
+    def send_notes(channel, notes)
+      notes.each do |note|
+        channel.send note.to_s
+        note.issues.each { |str| channel.send str }
+        note.revisions.each { |str| channel.send str }
+      end
+    end
   end
 end
-
-
