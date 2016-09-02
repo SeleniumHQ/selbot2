@@ -162,8 +162,8 @@ Cinch::Bot.new {
     },
     {
       :expression => /:waits/,
-      :text       => "http://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#explicit-and-implicit-waits",
-      :help       => "link to sehq section on explicit and implicit waits"
+      :text       => "https://seleniumhq.github.io/docs/wd.html#waits",
+      :help       => "link to docs section on explicit and implicit waits"
     },
     {
       :expression => /:latest/,
