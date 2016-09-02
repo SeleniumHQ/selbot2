@@ -5,9 +5,10 @@ module Selbot2
     HELPS << [":wiki", "search the wiki"]
 
     prefix Selbot2::PREFIX
-    match /wiki (.+)/
+    match /wiki ((?:\w*\s?){0,3})[\\|$]?/
 
     def execute(message, query)
+      query = query.strip.gsub(' ', '-')
       replies = replies_for("pagename:#{query}")
 
       if replies.empty?
