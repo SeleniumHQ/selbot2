@@ -18,7 +18,6 @@ require 'selbot2/helpers/git'
 require 'selbot2/models/note'
 require 'selbot2/models/seen_event'
 
-require 'selbot2/persistable'
 require 'selbot2/util'
 require 'selbot2/issues'
 require 'selbot2/revisions'
