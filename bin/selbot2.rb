@@ -6,7 +6,7 @@ require 'octokit'
 Cinch::Bot.new {
   configure do |c|
     c.server = "chat.freenode.net"
-    c.nick   = "selbot2"
+    c.nick   = "lucastbot2"
     c.channels = Selbot2::CHANNELS
     c.plugins.plugins = [
       Selbot2::Issues,
