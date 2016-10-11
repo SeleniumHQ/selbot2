@@ -16,7 +16,6 @@ Cinch::Bot.new {
       Selbot2::Notes,
       Selbot2::Seen,
       Selbot2::SeleniumHQ,
-      Selbot2::CI,
       Selbot2::Google,
       Selbot2::WhoBrokeIt,
       Selbot2::Commits
@@ -189,6 +188,11 @@ Cinch::Bot.new {
       :expression => /:phantomjs/,
       :text       => "No users will ever visit your site using a browser even approximating phantomjs. While phantomjs is based on a rendering engine used by one of the major desktop browsers (webkit), it's not the current version, and more importantly, the javascript engine is completely different.",
       :help       => "Don't use headless"
+    },
+    {
+      :expression => /:ci/i,
+      :text       => "Travis: https://travis-ci.org/SeleniumHQ/selenium   Jenkins: http://ci.seleniumhq.org:8080/",
+      :help       => "Links to Selenium CI systems"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
