@@ -191,7 +191,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:ci/i,
-      :text       => "Travis: https://travis-ci.org/SeleniumHQ/selenium   Jenkins: http://ci.seleniumhq.org:8080/",
+      :text       => "Travis: https://travis-ci.org/SeleniumHQ   Jenkins: http://ci.seleniumhq.org:8080/",
       :help       => "Links to Selenium CI systems"
     }
   ].each do |cmd|
