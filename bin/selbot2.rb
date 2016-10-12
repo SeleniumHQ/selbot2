@@ -80,7 +80,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:ask/,
-      :text       => "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)",
+      :text       => "If you have a question, please just ask it. Don't look for topic experts. Don't ask to ask. Don't PM. Don't ask if people are awake, or in the mood to help. Just ask the question straight out, and stick around. We'll get to it eventually :)  For help, please also include any code samples in a :gist if applicable",
       :help       => "Don't ask to ask."
     },
     {
@@ -191,7 +191,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:ci/i,
-      :text       => "Travis: https://travis-ci.org/SeleniumHQ/selenium   Jenkins: http://ci.seleniumhq.org:8080/",
+      :text       => "Travis: https://travis-ci.org/SeleniumHQ   Jenkins: http://ci.seleniumhq.org:8080/",
       :help       => "Links to Selenium CI systems"
     }
   ].each do |cmd|
