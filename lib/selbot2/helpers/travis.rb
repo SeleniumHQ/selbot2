@@ -3,13 +3,14 @@ require 'json'
 module Selbot2
   class Travis
 
-    HOST = 'http://api.travis-ci.org/repos/SeleniumHQ'.freeze
+    HOST = 'https://travis-ci.org/SeleniumHQ'.freeze
+    API = 'https://api.travis-ci.org/repos/SeleniumHQ'.freeze
     HEADERS = { accept: 'application/vnd.travis-ci.2+json' }.freeze
 
     attr_reader :builds, :master_builds
 
     def initialize(repo)
-      @resource = RestClient::Resource.new(HOST + "/#{repo}", headers: HEADERS)
+      @resource = RestClient::Resource.new(API + "/#{repo}", headers: HEADERS)
     end
 
     def builds
