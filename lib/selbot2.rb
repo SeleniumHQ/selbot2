@@ -13,6 +13,7 @@ module Selbot2
 end
 
 require 'selbot2/helpers/git'
+require 'selbot2/helpers/travis'
 
 require 'selbot2/models/note'
 require 'selbot2/models/seen_event'
@@ -25,6 +26,7 @@ require 'selbot2/youtube'
 require 'selbot2/notes'
 require 'selbot2/seen'
 require 'selbot2/seleniumhq'
+require 'selbot2/ci'
 # require 'selbot2/twitter'
 require 'selbot2/google'
 require 'selbot2/whobrokeit'
