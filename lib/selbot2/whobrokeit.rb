@@ -9,10 +9,9 @@ module Selbot2
 
     def execute(m)
       travis = Travis.new('selenium')
-      last_completed = travis.last_completed
-      sha = last_completed['commit']['sha']
+      broken = travis.blamed
       response = 'simonstewart'
-      response << " | #{Selbot2::RevisionFinder.find(sha)}" if last_completed['state'] == 'failed'
+      response << " | #{Selbot2::RevisionFinder.find(broken['commit']['sha'])}" if broken
       m.reply response
     end
   end

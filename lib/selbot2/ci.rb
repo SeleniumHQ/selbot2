@@ -34,7 +34,7 @@ module Selbot2
       elsif state == 'failed'
         color = '%r'
       else
-        color = '%y'
+        color = '%o'
       end
       Util.format_string("#{color + state.upcase}%n")
     end
