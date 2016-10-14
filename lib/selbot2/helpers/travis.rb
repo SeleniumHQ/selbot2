@@ -22,7 +22,7 @@ module Selbot2
     end
 
     def master_builds
-      @master_builds ||= builds.select{ |build| build['commit']['branch'] == 'master' }
+      @master_builds ||= builds.select{ |build| build['commit']['branch'] == 'master' && build['pull_request'] == false }
     end
 
     def last_build
@@ -31,6 +31,15 @@ module Selbot2
 
     def last_completed
       master_builds.find { |build| !build['duration'].nil? }
+    end
+
+    def blamed
+      blame = nil
+      master_builds.each do |build|
+        blame = build if build['state'] == 'failed'
+        break if build['state'] == 'passed'
+      end
+      blame
     end
   end
 end
