@@ -189,6 +189,11 @@ Cinch::Bot.new {
       :expression => /:phantomjs/,
       :text       => "No users will ever visit your site using a browser even approximating phantomjs. While phantomjs is based on a rendering engine used by one of the major desktop browsers (webkit), it's not the current version, and more importantly, the javascript engine is completely different.",
       :help       => "Don't use headless"
+    },
+    {
+      :expression => /:shipit/,
+      :text       => "https://media.giphy.com/media/143vPc6b08locw/giphy.gif",
+      :help       => "link to SHIP IT gif"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
