@@ -17,7 +17,8 @@ module Selbot2
 
     def execute(message, query)
       # illicitonion happens to run a proxy for YouTube search which conveniently avoids Google's EC2 block.
-      resp = RestClient.get "https://lovely.beer/youtube/v3/search?part=snippet&q=#{escaper.escape query}&maxResults=1&key=#{@apiKey}"
+      # 10/28/16: illicitonion's proxy is down indefinitely, temporary proxy added
+      resp = RestClient.get "http://lucastproxy.dynu.com:9292/youtube/v3/search?part=snippet&q=#{escaper.escape query}&maxResults=1&key=#{@apiKey}"
       doc = JSON.parse(resp)
       results = doc.fetch("items", [])
       if results.any?
