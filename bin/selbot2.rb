@@ -194,6 +194,11 @@ Cinch::Bot.new {
       :expression => /:shipit/,
       :text       => "https://media.giphy.com/media/143vPc6b08locw/giphy.gif",
       :help       => "link to SHIP IT gif"
+    },
+    {
+      :expression => /┻━┻/,
+      :text       => "┬──┬ ノ( ゜-゜ノ)",
+      :help       => "unflips the table"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
