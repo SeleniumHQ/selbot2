@@ -31,6 +31,7 @@ require 'selbot2/ci'
 require 'selbot2/google'
 require 'selbot2/whobrokeit'
 require 'selbot2/commits'
+require 'selbot2/newissue'
 
 unless ENV['DATABASE_URL'].nil?
   DataMapper.setup(:default, ENV['DATABASE_URL'])
