@@ -19,7 +19,8 @@ Cinch::Bot.new {
       Selbot2::CI,
       Selbot2::Google,
       Selbot2::WhoBrokeIt,
-      Selbot2::Commits
+      Selbot2::Commits,
+      Selbot2::NewIssue
     ]
   end
 
@@ -39,11 +40,6 @@ Cinch::Bot.new {
   end
 
   [
-    {
-      :expression => /:newissue/,
-      :text       => "#{Selbot2::REPO}/issues/new",
-      :help       => "link to issue the tracker"
-    },
     {
       :expression => /:(source|code)/,
       :text       => "#{Selbot2::REPO}",
