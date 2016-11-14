@@ -32,6 +32,8 @@ require 'selbot2/google'
 require 'selbot2/whobrokeit'
 require 'selbot2/commits'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'])
-DataMapper.finalize
-DataMapper.auto_upgrade!
+unless ENV['DATABASE_URL'].nil?
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
+  DataMapper.finalize
+  DataMapper.auto_upgrade!
+end
