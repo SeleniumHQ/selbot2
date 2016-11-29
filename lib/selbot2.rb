@@ -12,6 +12,7 @@ module Selbot2
   HELPS = []
 end
 
+require 'selbot2/helpers/appveyor'
 require 'selbot2/helpers/git'
 require 'selbot2/helpers/travis'
 

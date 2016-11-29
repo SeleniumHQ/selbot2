@@ -2,14 +2,14 @@ require 'json'
 
 module Selbot2
   class Travis
-
-    HOST = 'https://travis-ci.org/SeleniumHQ'.freeze
     API = 'https://api.travis-ci.org/repos/SeleniumHQ'.freeze
     HEADERS = { accept: 'application/vnd.travis-ci.2+json' }.freeze
+    HOST = 'https://travis-ci.org/SeleniumHQ'.freeze
 
-    attr_reader :builds, :master_builds
+    attr_reader :repo
 
     def initialize(repo)
+      @repo = repo
       @resource = RestClient::Resource.new(API + "/#{repo}", headers: HEADERS)
     end
 
@@ -22,15 +22,15 @@ module Selbot2
     end
 
     def master_builds
-      @master_builds ||= builds.select{ |build| build['commit']['branch'] == 'master' && build['pull_request'] == false }
+      @master_builds ||= builds.select { |build| build['commit']['branch'] == 'master' && build['pull_request'] == false }
     end
 
     def last_build
-      master_builds.first
+      @last_build ||= master_builds.first
     end
 
     def last_completed
-      master_builds.find { |build| !build['duration'].nil? }
+      @last_completed ||= master_builds.find { |build| !build['duration'].nil? }
     end
 
     def blamed
@@ -40,6 +40,14 @@ module Selbot2
         break if build['state'] == 'passed'
       end
       blame
+    end
+
+    def status
+      last_build['state']
+    end
+
+    def last_state
+      last_completed['state'] if last_completed
     end
   end
 end
