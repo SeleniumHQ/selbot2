@@ -192,7 +192,7 @@ Cinch::Bot.new {
       :help       => "link to SHIP IT gif"
     },
     {
-      :expression => /┻━┻/,
+      :expression => /┻━*┻/,
       :text       => "┬──┬ ノ( ゜-゜ノ)",
       :help       => "unflips the table"
     }
