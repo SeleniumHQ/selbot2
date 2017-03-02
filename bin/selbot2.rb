@@ -51,6 +51,11 @@ Cinch::Bot.new {
       :help       => "links to API docs"
     },
     {
+      :expression => /:docs/,
+      :text       => "https://seleniumhq.github.io/docs",
+      :help       => "links to Selenium documentation"
+    },
+    {
       :expression => /:download\b/,
       :text       => "http://seleniumhq.org/download/ and http://selenium-release.storage.googleapis.com/index.html",
       :help       => "links to downloads pages"
