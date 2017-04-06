@@ -8,8 +8,7 @@ module Selbot2
 
     listen_to :message, :join
 
-    self.prefix = Selbot2::PREFIX
-    match /note (.+?) (.+)/
+    match /note (.+?) (.+)/, prefix: Selbot2::PREFIX
 
     def execute(message, receiver, note)
       return unless message.params.last =~ /^:note/ # anchor to the beginning

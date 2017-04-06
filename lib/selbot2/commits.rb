@@ -7,8 +7,7 @@ module Selbot2
     MAX_REVS = 10
     HELPS << [":last [num]", "show last num revisions (default = 1)"]
 
-    self.prefix = Selbot2::PREFIX
-    match /last( \d+)?/
+    match /last( \d+)?/, prefix: Selbot2::PREFIX
 
     def initialize(*args)
       super

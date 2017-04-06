@@ -14,8 +14,7 @@ module Selbot2
     GHOST = 'https://goo.gl/6GNq89'.freeze
     HTMLUNIT = 'https://goo.gl/iXUl9F'.freeze
 
-    self.prefix = Selbot2::PREFIX
-    match /newissue\s?(\w*)/
+    match /newissue\s?(\w*)/, prefix: Selbot2::PREFIX
 
     def execute(m, webdriver)
       webdriver = webdriver.strip if webdriver

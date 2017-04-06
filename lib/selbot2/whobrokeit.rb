@@ -4,8 +4,7 @@ module Selbot2
 
     HELPS << [':whobrokeit', 'Announces who broke it, along with the commit']
 
-    self.prefix = Selbot2::PREFIX
-    match /whobrokeit/
+    match /whobrokeit/, prefix: Selbot2::PREFIX
 
     def execute(m)
       travis = Travis.new('selenium')

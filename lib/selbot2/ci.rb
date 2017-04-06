@@ -7,8 +7,7 @@ module Selbot2
 
     JENKINS = 'http://ci.seleniumhq.org:8080'.freeze
 
-    self.prefix = Selbot2::PREFIX
-    match /ci\s?([\w|-]*)/
+    match /ci\s?([\w|-]*)/, prefix: Selbot2::PREFIX
 
     def execute(m, repo)
       repo = repo.strip if repo

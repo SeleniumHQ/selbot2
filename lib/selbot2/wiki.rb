@@ -4,8 +4,7 @@ module Selbot2
 
     HELPS << [":wiki", "search the wiki"]
 
-    self.prefix = Selbot2::PREFIX
-    match /wiki ((?:\w*\s?){0,3})[\\|$]?/
+    match /wiki ((?:\w*\s?){0,3})[\\|$]?/, prefix: Selbot2::PREFIX
 
     def execute(message, query)
       query = query.strip.gsub(' ', '-')
