@@ -8,7 +8,7 @@ module Selbot2
 
     listen_to :message, :join
 
-    prefix Selbot2::PREFIX
+    self.prefix = Selbot2::PREFIX
     match /note (.+?) (.+)/
 
     def execute(message, receiver, note)

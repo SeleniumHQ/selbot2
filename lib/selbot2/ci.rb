@@ -7,7 +7,7 @@ module Selbot2
 
     JENKINS = 'http://ci.seleniumhq.org:8080'.freeze
 
-    prefix Selbot2::PREFIX
+    self.prefix = Selbot2::PREFIX
     match /ci\s?([\w|-]*)/
 
     def execute(m, repo)

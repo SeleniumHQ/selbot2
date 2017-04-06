@@ -6,7 +6,7 @@ module Selbot2
     HELPS << [':seen <nick>', 'show when <nick> was last seen']
 
     listen_to :channel, :join, :part, :quit, :nick
-    prefix Selbot2::PREFIX
+    self.prefix = Selbot2::PREFIX
     match /seen (.+)/
 
     def listen(m)

@@ -4,7 +4,7 @@ module Selbot2
 
     HELPS << [':whobrokeit', 'Announces who broke it, along with the commit']
 
-    prefix Selbot2::PREFIX
+    self.prefix = Selbot2::PREFIX
     match /whobrokeit/
 
     def execute(m)

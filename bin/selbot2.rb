@@ -8,6 +8,8 @@ Cinch::Bot.new {
     c.server = "chat.freenode.net"
     c.nick   = "selbot2"
     c.channels = Selbot2::CHANNELS
+    c.sasl.username = "selbot2"
+    c.sasl.password = ENV['IRC_PASSWORD']
     c.plugins.plugins = [
       Selbot2::Issues,
       Selbot2::Revisions,
@@ -207,3 +209,4 @@ Cinch::Bot.new {
   end
 
 }.start
+

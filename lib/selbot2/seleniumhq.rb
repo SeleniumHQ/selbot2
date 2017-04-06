@@ -7,7 +7,7 @@ module Selbot2
 
     HELPS << [":sehq", "search SeleniumHQ"]
 
-    prefix Selbot2::PREFIX
+    self.prefix = Selbot2::PREFIX
     match /sehq (.+)/
 
     def execute(message, query)

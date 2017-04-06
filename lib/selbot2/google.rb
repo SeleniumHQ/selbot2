@@ -5,7 +5,7 @@ module Selbot2
   class Google
     include Cinch::Plugin
 
-    prefix Selbot2::PREFIX
+    self.prefix = Selbot2::PREFIX
     match /(?:g|google) (.+)/
 
 
