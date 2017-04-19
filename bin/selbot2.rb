@@ -69,7 +69,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:gist/,
-      :text       => "Please paste >3 lines of text to https://gist.github.com",
+      :text       => "Please paste >3 lines of code or text to https://gist.github.com and share the resulting URL",
       :help       => "link to gist.github.com",
     },
     {
