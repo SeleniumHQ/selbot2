@@ -150,7 +150,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:(spec|w3c?)/i,
-      :text       => "https://w3c.github.io/webdriver/webdriver-spec.html | https://github.com/w3c/webdriver | bugs: http://goo.gl/LxCtcV",
+      :text       => "https://w3c.github.io/webdriver/webdriver-spec.html | https://github.com/w3c/webdriver | bugs: http://goo.gl/LxCtcV | tests: https://goo.gl/c0jYUV",
       :help       => "Links to the WebDriver spec."
     },
     {
