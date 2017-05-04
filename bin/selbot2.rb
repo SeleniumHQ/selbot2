@@ -113,6 +113,11 @@ Cinch::Bot.new {
       :help       => "link to Marionette (Gecko) WebDriver (info + status)"
     },
     {
+      :expression => /:safari(driver)?/,
+      :text       => "Intro: https://goo.gl/sBhzTl",
+      :help       => "link to SafariDriver"
+    },
+    {
       :expression => /:firefox/,
       :text       => "https://wiki.mozilla.org/Releases | Every version of Firefox can be found here http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/ ",
       :help       => "link to release plan and download page of every Firefox version"
