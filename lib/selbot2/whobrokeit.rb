@@ -7,10 +7,10 @@ module Selbot2
     match /whobrokeit/, prefix: Selbot2::PREFIX
 
     def execute(m)
-      travis = Travis.new('selenium')
-      broken = travis.blamed
+      # travis = Travis.new('selenium')
+      # broken = travis.blamed
       response = 'simonstewart'
-      response << " | #{Selbot2::RevisionFinder.find(broken['commit']['sha'])}" if broken
+      # response << " | #{Selbot2::RevisionFinder.find(broken['commit']['sha'])}" if broken
       m.reply response
     end
   end
