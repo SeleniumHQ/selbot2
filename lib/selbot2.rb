@@ -7,7 +7,7 @@ require 'data_mapper'
 module Selbot2
   PROJECT_NAME = 'SeleniumHQ/selenium'
   REPO = "https://github.com/#{PROJECT_NAME}"
-  PREFIX = ":"
+  PREFIX = /:/
   CHANNELS = Array(ENV['SELBOT_CHANNEL'] || ["#selenium"])
   HELPS = []
 end

@@ -10,6 +10,7 @@ Cinch::Bot.new {
     c.channels = Selbot2::CHANNELS
     c.sasl.username = "selbot2"
     c.sasl.password = ENV['IRC_PASSWORD']
+    c.plugins.prefix = Selbot2::PREFIX
     c.plugins.plugins = [
       Selbot2::Issues,
       Selbot2::Revisions,

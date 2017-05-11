@@ -5,7 +5,7 @@ module Selbot2
   class Google
     include Cinch::Plugin
 
-    match /(?:g|google) (.+)/, prefix: Selbot2::PREFIX
+    match /(?:g|google) (.+)/
 
 
     def execute(message, query)

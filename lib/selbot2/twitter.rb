@@ -7,7 +7,7 @@ module Selbot2
 
     HELPS << [":fset", "post to twitter an F*SeTips, sorry committers only."]
 
-    match /fset (.+)/, prefix: Selbot2::PREFIX
+    match /fset (.+)/
 
     COMMITTERS = [
       "adamgoucher",

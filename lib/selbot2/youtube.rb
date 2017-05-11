@@ -6,7 +6,7 @@ module Selbot2
 
     HELPS << [":yt", "search YouTube"]
 
-    match /(?:yt|youtube) (.+)/, prefix: Selbot2::PREFIX
+    match /(?:yt|youtube) (.+)/
 
     def initialize(*args)
       super
