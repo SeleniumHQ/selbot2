@@ -21,7 +21,7 @@ module Selbot2
 
     def google_fallback(message, query)
       query += " site:github.com/seleniumhq/selenium/wiki"
-      resp   = JSON.parse(RestClient.get("https://www.googleapis.com/customsearch/v1?cx=005991058577830013072%3Awcdcytdwbcy&key=AIzaSyC3Nf0aBxyTLp9aZZkbAJkq0sXXWU35bJ4&num=1&q=#{URI.escape query}"))
+      resp   = JSON.parse(RestClient.get("https://www.googleapis.com/customsearch/v1?cx=007816448168391566202%3Apybhzvkvbrq&key=#{ENV['GOOGLE_API_KEY']}&num=1&q=#{URI.escape query}"))
       result = resp['items']
 
       if result.nil?
