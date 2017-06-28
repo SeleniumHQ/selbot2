@@ -12,11 +12,7 @@ module Selbot2
       replies = replies_for("pagename:#{query}")
 
       if replies.empty?
-        replies = replies_for(query)
-      end
-
-      if replies.empty?
-        googleFallback(message, query)
+        google_fallback(message, query)
       end
 
       replies.each_with_index do |resp, idx|
@@ -24,8 +20,9 @@ module Selbot2
       end
     end
 
-    def googleFallback(message, query)
-      query += "site:github.com/seleniumhq/selenium/wiki"
+    def google_fallback(message, query)
+      puts "Falling back to google search"
+      query += " site:github.com/seleniumhq/selenium/wiki"
       resp   = JSON.parse(RestClient.get("https://www.googleapis.com/customsearch/v1?cx=005991058577830013072%3Awcdcytdwbcy&key=AIzaSyC3Nf0aBxyTLp9aZZkbAJkq0sXXWU35bJ4&num=1&q=#{URI.escape query}"))
       result = resp.fetch('items').first
 
