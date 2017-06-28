@@ -16,13 +16,26 @@ module Selbot2
       end
 
       if replies.empty?
-        message.reply "No results."
-        return
+        googleFallback(message, query)
       end
 
       replies.each_with_index do |resp, idx|
         message.reply "#{idx + 1}: #{resp}"
       end
+    end
+
+    def googleFallback(message, query)
+      query += "site:github.com/seleniumhq/selenium/wiki"
+      resp   = JSON.parse(RestClient.get("https://www.googleapis.com/customsearch/v1?cx=005991058577830013072%3Awcdcytdwbcy&key=AIzaSyC3Nf0aBxyTLp9aZZkbAJkq0sXXWU35bJ4&num=1&q=#{URI.escape query}"))
+      result = resp.fetch('items').first
+
+      if result
+        message.reply "#{result['title']}: #{result['link']}"
+      else
+        message.reply "No results."
+      end
+    rescue => e
+      message.reply e.message
     end
 
     def escaper
