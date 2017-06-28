@@ -21,15 +21,15 @@ module Selbot2
     end
 
     def google_fallback(message, query)
-      puts "Falling back to google search"
       query += " site:github.com/seleniumhq/selenium/wiki"
       resp   = JSON.parse(RestClient.get("https://www.googleapis.com/customsearch/v1?cx=005991058577830013072%3Awcdcytdwbcy&key=AIzaSyC3Nf0aBxyTLp9aZZkbAJkq0sXXWU35bJ4&num=1&q=#{URI.escape query}"))
-      result = resp.fetch('items').first
+      result = resp['items']
 
-      if result
-        message.reply "#{result['title']}: #{result['link']}"
-      else
+      if result.nil?
         message.reply "No results."
+      else
+        item = result.first
+        message.reply "#{item['title']}: #{item['link']}"
       end
     rescue => e
       message.reply e.message
