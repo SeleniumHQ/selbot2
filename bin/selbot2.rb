@@ -208,6 +208,11 @@ Cinch::Bot.new {
       :expression => /┻━*┻/,
       :text       => "┬──┬ ノ( ゜-゜ノ)",
       :help       => "unflips the table"
+    },
+    {
+      :expression => /:blame/,
+      :text => "Saying \"It's broken\" isn't helpful to anyone, especially us - if you have a specific issue, please detail it and submit it to the appropriate project's bug tracker with a reproduceable test case",
+      :help => "It's broken is pointless"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
