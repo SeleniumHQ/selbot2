@@ -213,6 +213,11 @@ Cinch::Bot.new {
       :expression => /:blame/,
       :text => "Saying \"It's broken\" is nondescript. If you have a question, please ask with details. If you have a reproducible test case, please submit to the appropriate project's bug tracker.",
       :help => "Provide more details for broken claim"
+    },
+    {
+      :expression => /:tias/,
+      :text => "Try it and see - you'll be able to find out much faster if your proposal works by trying it than by asking us if it will work.",
+      :help => "Try it and see"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
