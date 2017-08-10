@@ -5,8 +5,6 @@ module Selbot2
     HELPS << [':ci', "Links to Selenium's CI"]
     HELPS << [':ci repo', 'Link and Travis CI status for given repo']
 
-    JENKINS = 'http://ci.seleniumhq.org:8080'.freeze
-
     match /ci\s?([\w|-]*)/
 
     def execute(m, repo)
@@ -14,7 +12,6 @@ module Selbot2
 
       repo = 'selenium' if repo.nil? || repo.empty?
       statuses = [ci_status(Travis.new(repo)), ci_status(AppVeyor.new(repo))]
-      statuses << JENKINS if repo.casecmp('selenium').zero?
       statuses.compact!
       statuses.any? ? m.reply(statuses.join(' | ')) : m.reply("SeleniumHQ has no such repo '#{repo}'")
     end
