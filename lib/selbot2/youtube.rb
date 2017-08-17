@@ -37,10 +37,14 @@ module Selbot2
       end
 
       def url
-        if @item["id"]["kind"].include? "playlist"
-          "https://www.youtube.com/playlist?list=#{@item["id"]["playlistId"]}"
+        if @item["snippet"]["title"] =~ /nickelback/i
+          "nope, no thank you"
         else
-          "https://www.youtube.com/watch?v=#{@item["id"]["videoId"]}"
+          if @item["id"]["kind"].include? "playlist"
+            "https://www.youtube.com/playlist?list=#{@item["id"]["playlistId"]}"
+          else
+            "https://www.youtube.com/watch?v=#{@item["id"]["videoId"]}"
+          end
         end
       end
 
