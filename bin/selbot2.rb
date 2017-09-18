@@ -186,7 +186,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:ide/i,
-      :text       => "Selenium IDE is no longer being maintained, and as of Firefox 55, will no longer work at all. You can ask a question, but most people here will be unable to help you. Either downgrade your Firefox version, or instead, consider using WebDriver - http://www.seleniumhq.org/projects/webdriver/ There is a more detailed explanation here: https://seleniumhq.wordpress.com/2017/08/09/firefox-55-and-selenium-ide/",
+      :text       => "The original Selenium IDE is no longer being maintained, and as of Firefox 55, will no longer work at all. There is a more detailed explanation here: https://seleniumhq.wordpress.com/2017/08/09/firefox-55-and-selenium-ide/ Fortunately, IDE2 is under active development. Check it out, and please file issues: https://github.com/seleniumhq/selenium-ide",
       :help       => "Let users know IDE is no longer maintained"
     },
     {
