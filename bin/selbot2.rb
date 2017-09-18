@@ -221,8 +221,8 @@ Cinch::Bot.new {
     },
     {
       :expression => /:path/,
-      :text .     => "https://seleniumhq.github.io/docs/wd.html#adding_executables_to_your_path",
-      :help .     => "Add WebDriver to your PATH"
+      :text       => "Adding Executables to your PATH - https://seleniumhq.github.io/docs/wd.html#adding_executables_to_your_path",
+      :help       => "Add WebDriver to your PATH"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
