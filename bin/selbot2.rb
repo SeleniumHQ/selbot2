@@ -218,6 +218,11 @@ Cinch::Bot.new {
       :expression => /:tias/,
       :text => "Try it and see - you'll be able to find out much faster if your proposal works by trying it than by asking us if it will work.",
       :help => "Try it and see"
+    },
+    {
+      :expression => /:path/,
+      :text       => "Adding Executables to your PATH - https://seleniumhq.github.io/docs/wd.html#adding_executables_to_your_path",
+      :help       => "Add WebDriver to your PATH"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
