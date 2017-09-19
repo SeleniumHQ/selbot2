@@ -186,7 +186,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:ide/i,
-      :text       => "The original Selenium IDE is no longer being maintained, and as of Firefox 55, will no longer work at all. There is a more detailed explanation here: https://seleniumhq.wordpress.com/2017/08/09/firefox-55-and-selenium-ide/ Fortunately, IDE2 is under active development. Check it out, and please file issues: https://github.com/seleniumhq/selenium-ide",
+      :text       => "The original Selenium IDE is no longer being maintained, and as of Firefox 55, will no longer work at all. Fortunately, IDE2 is under active development and is available to try out. Check it out, and please file issues: https://github.com/seleniumhq/selenium-ide. For a more detailed explanation regarding the original Selenium IDE: https://seleniumhq.wordpress.com/2017/08/09/firefox-55-and-selenium-ide/",
       :help       => "Let users know IDE is no longer maintained"
     },
     {
