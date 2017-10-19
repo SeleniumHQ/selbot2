@@ -100,8 +100,8 @@ Cinch::Bot.new {
     },
     {
       :expression => /:chrome(driver)?/,
-      :text       => "#{Selbot2::REPO}/wiki/ChromeDriver | http://chromedriver.storage.googleapis.com/index.html ",
-      :help       => "link to ChromeDriver (wiki + downloads)"
+      :text       => "Wiki: #{Selbot2::REPO}/wiki/ChromeDriver | Info: https://goo.gl/D2sZsH | Download: https://goo.gl/gQyZy4",
+      :help       => "link to ChromeDriver (wiki, official site, downloads)"
     },
     {
       :expression => /:edge(driver)?/,
