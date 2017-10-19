@@ -105,7 +105,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:edge(driver)?/,
-      :text       => "Download: https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/dev-guide/tools/webdriver/ | Status: https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/webdriver-commands/",
+      :text       => "Dev-Guide: https://goo.gl/kRR8gz | Download: https://goo.gl/zvW1xW | Status: https://goo.gl/n531sd",
       :help       => "link to Microsoft WebDriver (download + status)"
     },
     {
