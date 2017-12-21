@@ -196,7 +196,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:phantomjs/,
-      :text       => "No users will ever visit your site using a browser even approximating phantomjs. While phantomjs is based on a rendering engine used by one of the major desktop browsers (webkit), it's not the current version, and more importantly, the javascript engine is completely different.",
+      :text       => "PhantomJS support is deprecated. If you're looking for a headless solution for Selenium, use Chrome or Firefox in headless mode.",
       :help       => "Don't use headless"
     },
     {
