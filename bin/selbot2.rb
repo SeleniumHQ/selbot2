@@ -226,7 +226,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:usefullinks/,
-      :text       => "Some good selenium resources are: the :docs, http://elementalselenium.com/ , Simon's blog: http://blog.rocketpoweredjetpants.com/ , https://github.com/christian-bromann/awesome-selenium and https://saucelabs.com/blog/category/selenium-resources"
+      :text       => "Some good selenium resources are: the :docs, http://elementalselenium.com/ , Simon's blog: http://blog.rocketpoweredjetpants.com/ , https://github.com/christian-bromann/awesome-selenium, and https://saucelabs.com/blog/category/selenium-resources"
       :help       => "Useful Selenium resources"
     }
   ].each do |cmd|
