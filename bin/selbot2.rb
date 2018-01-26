@@ -223,6 +223,11 @@ Cinch::Bot.new {
       :expression => /:path/,
       :text       => "Adding Executables to your PATH - https://seleniumhq.github.io/docs/wd.html#adding_executables_to_your_path",
       :help       => "Add WebDriver to your PATH"
+    },
+    {
+      :expression => /:usefullinks/,
+      :text       => "Some good selenium resources are: the :docs, http://elementalselenium.com/ , Simon's blog: http://blog.rocketpoweredjetpants.com/ , https://github.com/christian-bromann/awesome-selenium, and https://saucelabs.com/blog/category/selenium-resources"
+      :help       => "Useful Selenium resources"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
