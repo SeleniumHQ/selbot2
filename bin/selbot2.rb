@@ -230,8 +230,8 @@ Cinch::Bot.new {
       :help       => "Useful Selenium resources"
     },
     {
-      :expression => /:ie64/,
-      :text       => "http://jimevansmusic.blogspot.co.uk/2014/09/screenshots-sendkeys-and-sixty-four.html",
+      :expression => /:ie64/i,
+      :text       => "The 64 bit IE Driver should not be used with IE10 or IE11.  You can read why here - http://jimevansmusic.blogspot.co.uk/2014/09/screenshots-sendkeys-and-sixty-four.html",
       :help       => "Why you shouldn't use the 64bit driver"
     }
   ].each do |cmd|
