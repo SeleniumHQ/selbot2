@@ -228,6 +228,11 @@ Cinch::Bot.new {
       :expression => /:usefullinks/,
       :text       => "Some good selenium resources are: the :docs, http://elementalselenium.com/ , Simon's blog: http://blog.rocketpoweredjetpants.com/ , https://github.com/christian-bromann/awesome-selenium, and https://saucelabs.com/blog/category/selenium-resources",
       :help       => "Useful Selenium resources"
+    },
+    {
+      :expression => /:ie64/,
+      :text       => "http://jimevansmusic.blogspot.co.uk/2014/09/screenshots-sendkeys-and-sixty-four.html",
+      :help       => "Why you shouldn't use the 64bit driver"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
