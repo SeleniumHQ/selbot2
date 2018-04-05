@@ -13,6 +13,7 @@ module Selbot2
     SAFARI = 'https://goo.gl/lEKZEM'.freeze
     GHOST = 'https://goo.gl/6GNq89'.freeze
     HTMLUNIT = 'https://goo.gl/iXUl9F'.freeze
+    IDE = 'https://goo.gl/ek3UKj'.freeze
 
     match /newissue\s?(\w*)/
 
@@ -34,6 +35,8 @@ module Selbot2
           message = "Submit a new issue with Ghostdriver -- #{GHOST}"
         when /html(unit)?\-?(driver)?/
           message = "Submit a new issue with HtmlUnitDriver -- #{HTMLUNIT}"
+        when /ide/
+          message = "Submit a new issue with Selenium IDE 2 -- #{IDE}"
         else
           message = "Submit a new issue with the Selenium project -- #{SELENIUM}"
       end
