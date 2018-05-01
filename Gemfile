@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.0.0"
+ruby "2.3.7"
 
 gem "cinch", ">= 2.0"
 gem "rspec", ">= 2.5.0"
