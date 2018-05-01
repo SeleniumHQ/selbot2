@@ -69,8 +69,8 @@ Cinch::Bot.new {
       :help       => "links to article about downloading files"
     },
     {
-      :expression => /:gist/,
-      :text       => "Please paste >3 lines of code or text to https://gist.github.com and share the resulting URL",
+      :expression => /:(gist|paste|pastebin)/,
+      :text       => "Please paste >3 lines of code or text to https://pastebin.com and share the resulting URL",
       :help       => "link to gist.github.com",
     },
     {
