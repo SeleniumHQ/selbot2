@@ -110,7 +110,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:(marionet+e|gecko(driver)?)/,
-      :text       => "Info: https://goo.gl/Xbtrrm | Download: https://goo.gl/iMvo1d | Status: https://goo.gl/N8DiZU",
+      :text       => "Info: https://goo.gl/Xbtrrm | Download: https://goo.gl/iMvo1d | Status: https://goo.gl/N8DiZU | Mapping: https://goo.gl/Ux42jv",
       :help       => "link to Marionette (Gecko) WebDriver (info + status)"
     },
     {
