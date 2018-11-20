@@ -38,9 +38,9 @@ Cinch::Bot.new {
     end
   end
 
-  Selbot2::HELPS << [':log', "link to today's chat log at illictonion"]
+  Selbot2::HELPS << [':log', "link to today's chat log at logbot"]
   on :message, /:log/ do |m|
-    m.reply "https://botbot.me/freenode/selenium"
+    m.reply "https://freenode.logbot.info/selenium"
   end
 
   [
