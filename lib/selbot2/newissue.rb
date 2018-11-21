@@ -9,7 +9,7 @@ module Selbot2
     GECKO = 'https://goo.gl/B81m26'.freeze
     MARIONETTE = 'https://goo.gl/qZembo'.freeze
     EDGE = 'https://goo.gl/IagI9v'.freeze
-    SELENIUM = "#{Selbot2::REPO}/issues/new".freeze
+    SELENIUM = "#{Selbot2::REPO}/issues/new/choose".freeze
     SAFARI = 'https://goo.gl/lEKZEM'.freeze
     HTMLUNIT = 'https://goo.gl/iXUl9F'.freeze
     SPEC = 'https://goo.gl/rSgQF7'.freeze
