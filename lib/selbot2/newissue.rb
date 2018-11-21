@@ -11,9 +11,9 @@ module Selbot2
     EDGE = 'https://goo.gl/IagI9v'.freeze
     SELENIUM = "#{Selbot2::REPO}/issues/new".freeze
     SAFARI = 'https://goo.gl/lEKZEM'.freeze
-    GHOST = 'https://goo.gl/6GNq89'.freeze
     HTMLUNIT = 'https://goo.gl/iXUl9F'.freeze
-    IDE = 'https://goo.gl/ek3UKj'.freeze
+    SPEC = 'https://goo.gl/rSgQF7'.freeze
+    IDE = 'https://goo.gl/RJqjRr'.freeze
 
     match /newissue\s?(\w*)/
 
@@ -31,12 +31,12 @@ module Selbot2
           message = "Submit a new issue with Microsoft (Edge) Webdriver -- #{EDGE}"
         when /safari(driver)?/
           message = "Submit a new issue with Safaridriver -- #{SAFARI}"
-        when /ghost(driver)?/
-          message = "Submit a new issue with Ghostdriver -- #{GHOST}"
         when /html(unit)?\-?(driver)?/
           message = "Submit a new issue with HtmlUnitDriver -- #{HTMLUNIT}"
         when /ide/
           message = "Submit a new issue with Selenium IDE 2 -- #{IDE}"
+        when /spec/
+          message = "Submit a new issue with W3C WebDriver Specification -- #{SPEC}"
         else
           message = "Submit a new issue with the Selenium project -- #{SELENIUM}"
       end
