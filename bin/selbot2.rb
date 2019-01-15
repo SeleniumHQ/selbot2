@@ -234,6 +234,11 @@ Cinch::Bot.new {
       :expression => /:ie64/i,
       :text       => "The 64 bit IE Driver should not be used with IE10 or IE11.  You can read why here - http://jimevansmusic.blogspot.co.uk/2014/09/screenshots-sendkeys-and-sixty-four.html",
       :help       => "Why you shouldn't use the 64bit driver"
+    },
+    {
+      :expression => /:slack/i,
+      :text       => "We also have a Slack workspace at https://seleniumhq.slack.com which mirrors this channel as well as offers more specific channels. You can join in here: https://goo.gl/9o4J3Y",
+      :help       => "Slack info and invite link."
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
