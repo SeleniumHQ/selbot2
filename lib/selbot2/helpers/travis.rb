@@ -4,7 +4,7 @@ module Selbot2
   class Travis
     API = 'https://api.travis-ci.org/repos/SeleniumHQ'.freeze
     HEADERS = { accept: 'application/vnd.travis-ci.2.1+json' }.freeze
-    HOST = 'https://travis-ci.org/SeleniumHQ'.freeze
+    HOST = 'https://travis-ci.com/SeleniumHQ'.freeze
 
     attr_reader :repo
 
