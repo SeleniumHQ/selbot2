@@ -10,6 +10,6 @@ gem "rake"
 # gem "twitter"
 gem 'pry'
 gem 'octokit'
-gem 'data_mapper'
+gem 'data_mapper', '1.2.0'
 gem 'dm-postgres-adapter'
 gem 'dm-ar-finders'
