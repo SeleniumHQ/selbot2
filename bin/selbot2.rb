@@ -56,12 +56,12 @@ Cinch::Bot.new {
     },
     {
       :expression => /:docs/,
-      :text       => "https://seleniumhq.github.io/docs",
+      :text       => "https://selenium.dev/documentation",
       :help       => "links to Selenium documentation"
     },
     {
       :expression => /:download\b/,
-      :text       => "http://seleniumhq.org/download/ and http://selenium-release.storage.googleapis.com/index.html",
+      :text       => "http://selenium.dev/downloads/ and http://selenium-release.storage.googleapis.com/index.html",
       :help       => "links to downloads pages"
     },
     {
@@ -77,7 +77,7 @@ Cinch::Bot.new {
     {
       :expression => /:docker/,
       :text       => "docker-selenium project: https://github.com/SeleniumHQ/docker-selenium",
-      :help       => "Docker images for Selenium Standalone Server",
+      :help       => "Docker images for Selenium Grid",
     },
     {
       :expression => /:(gist-?usage|using-?gist)/,
@@ -147,7 +147,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /(can i|how do i|is it possible to).+set (a )?cookies?.*\?/i,
-      :text       => "http://seleniumhq.org/docs/03_webdriver.html#cookies",
+      :text       => "https://selenium.dev/documentation/en/support_packages/working_with_cookies/",
       :help       => "Help people with cookies."
     },
     {
@@ -172,7 +172,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:waits/,
-      :text       => "https://seleniumhq.github.io/docs/wd.html#waits",
+      :text       => "https://selenium.dev/documentation/en/webdriver/waits/",
       :help       => "link to docs section on explicit and implicit waits"
     },
     {
@@ -187,7 +187,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:ide/i,
-      :text       => "The original Selenium IDE is no longer being maintained, and as of Firefox 55, will no longer work at all. Fortunately, IDE2 is under active development and is available to try out. Check it out, and please file issues: https://github.com/seleniumhq/selenium-ide. For a more detailed explanation regarding the original Selenium IDE: https://seleniumhq.wordpress.com/2017/08/09/firefox-55-and-selenium-ide/",
+      :text       => "If you want to create quick bug reproduction scripts, create scripts to aid in automation-aided exploratory testing, then you want to use Selenium IDE; a Chrome and Firefox add-on that will do simple record-and-playback of interactions with the browser. For a more detailed explanation regarding the original Selenium IDE: https://selenium.dev/blog/2017/firefox-55-and-selenium-ide/",
       :help       => "Let users know IDE is no longer maintained"
     },
     {
@@ -222,7 +222,7 @@ Cinch::Bot.new {
     },
     {
       :expression => /:path/,
-      :text       => "Adding Executables to your PATH - https://seleniumhq.github.io/docs/wd.html#adding_executables_to_your_path",
+      :text       => "Adding Executables to your PATH - https://selenium.dev/documentation/en/webdriver/driver_requirements/#adding-executables-to-your-path",
       :help       => "Add WebDriver to your PATH"
     },
     {
