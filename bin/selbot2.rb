@@ -239,6 +239,11 @@ Cinch::Bot.new {
       :expression => /:slack/i,
       :text       => "We also have a Slack workspace at https://seleniumhq.slack.com which mirrors this channel as well as offers more specific channels. You can join in here: https://goo.gl/9o4J3Y",
       :help       => "Slack info and invite link."
+    },
+    {
+      :expression => /:mirrored/i,
+      :text       => "Gentle reminder to our Slack-only participants: this channel is mirrored to IRC, so Slack-only features like threads will not work properly for our IRC users. Let’s try to keep this community welcoming to all who find it by not using Slack-only features.",
+      :help       => "This channel is mirrored to IRC"
     }
   ].each do |cmd|
     Selbot2::HELPS << [cmd[:expression].source, cmd[:help]]
