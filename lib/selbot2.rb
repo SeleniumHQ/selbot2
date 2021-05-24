@@ -28,7 +28,3 @@ require 'selbot2/whobrokeit'
 require 'selbot2/commits'
 require 'selbot2/newissue'
 require 'selbot2/mention'
-
-unless ENV['DATABASE_URL'].nil?
-  ROM.container(:sql,  ENV['DATABASE_URL'])
-end
