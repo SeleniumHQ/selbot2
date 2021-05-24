@@ -5,7 +5,7 @@ require 'octokit'
 
 Cinch::Bot.new {
   configure do |c|
-    c.server = "chat.freenode.net"
+    c.server = "irc.libera.chat"
     c.nick   = "selbot2"
     c.channels = Selbot2::CHANNELS
     c.sasl.username = "selbot2"
@@ -16,8 +16,6 @@ Cinch::Bot.new {
       Selbot2::Revisions,
       Selbot2::Wiki,
       Selbot2::Youtube,
-      Selbot2::Notes,
-      Selbot2::Seen,
       Selbot2::SeleniumHQ,
       Selbot2::CI,
       Selbot2::Google,
@@ -28,15 +26,15 @@ Cinch::Bot.new {
     ]
   end
 
-  Selbot2::HELPS << [':help', "you're looking at it"]
-  on :message, /:help/ do |m|
-    helps = Selbot2::HELPS.sort_by { |e| e[0] }
-    just = helps.map { |e| e[0].length }.max
-
-    helps.each do |command, help|
-      m.user.privmsg "#{command.ljust just} - #{help}"
-    end
-  end
+#  Selbot2::HELPS << [':help', "you're looking at it"]
+#  on :message, /:help/ do |m|
+#    helps = Selbot2::HELPS.sort_by { |e| e[0] }
+#    just = helps.map { |e| e[0].length }.max
+#
+#    helps.each do |command, help|
+#      m.user.privmsg "#{command.ljust just} - #{help}"
+#    end
+#  end
 
   Selbot2::HELPS << [':log', "link to today's chat log at logbot"]
   on :message, /:log/ do |m|
@@ -44,6 +42,11 @@ Cinch::Bot.new {
   end
 
   [
+    {
+      :expression => /:help/,
+      :text       => "DM of help content not allowed right now, feel free to look at the source for commands to use: https://github.com/SeleniumHQ/selbot2/blob/master/bin/selbot2.rb",
+      :help       => "you're looking at it"
+    },
     {
       :expression => /:(source|code)/,
       :text       => "#{Selbot2::REPO}",
